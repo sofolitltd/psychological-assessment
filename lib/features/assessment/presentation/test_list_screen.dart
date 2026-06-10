@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 import '../../../core/design_system/app_theme.dart';
 import '../../../core/design_system/responsive.dart';
@@ -9,6 +8,10 @@ import '../data/assessment_repository.dart';
 import '../domain/assessment_models.dart';
 import 'widgets/mobile_bottom_nav.dart';
 import 'widgets/test_card.dart';
+import 'widgets/test_empty_state.dart';
+import 'widgets/test_filter_chip.dart';
+import 'widgets/test_search_field.dart';
+import 'widgets/test_sort_dropdown.dart';
 import 'widgets/web_top_nav.dart';
 
 class TestListScreen extends ConsumerStatefulWidget {
@@ -136,10 +139,13 @@ class _TestListScreenState extends ConsumerState<TestListScreen> {
                               categories: categories,
                             ),
                           ),
+                          const SliverToBoxAdapter(
+                            child: SizedBox(height: AppSpacing.sm),
+                          ),
 
                           if (filteredTests.isEmpty)
                             SliverFillRemaining(
-                              child: _buildEmptyState(
+                              child: TestEmptyState(
                                 isDark: isDark,
                                 textTheme: textTheme,
                               ),
@@ -213,7 +219,7 @@ class _TestListScreenState extends ConsumerState<TestListScreen> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(
         AppSpacing.md,
-        AppSpacing.lg,
+        AppSpacing.md,
         AppSpacing.md,
         AppSpacing.sm,
       ),
@@ -250,10 +256,20 @@ class _TestListScreenState extends ConsumerState<TestListScreen> {
                 const SizedBox(width: AppSpacing.md),
                 ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 360),
-                  child: _buildSearchField(isDark, textTheme),
+                  child: TestSearchField(
+                    controller: _searchController,
+                    searchQuery: _searchQuery,
+                    isDark: isDark,
+                    textTheme: textTheme,
+                  ),
                 ),
                 const SizedBox(width: AppSpacing.sm),
-                _buildSortDropdown(isDark, textTheme),
+                TestSortDropdown(
+                  value: _sortBy,
+                  isDark: isDark,
+                  textTheme: textTheme,
+                  onChanged: (val) => setState(() => _sortBy = val),
+                ),
               ],
             )
           else ...[
@@ -280,12 +296,27 @@ class _TestListScreenState extends ConsumerState<TestListScreen> {
                   child: isTablet
                       ? ConstrainedBox(
                           constraints: const BoxConstraints(maxWidth: 420),
-                          child: _buildSearchField(isDark, textTheme),
+                          child: TestSearchField(
+                            controller: _searchController,
+                            searchQuery: _searchQuery,
+                            isDark: isDark,
+                            textTheme: textTheme,
+                          ),
                         )
-                      : _buildSearchField(isDark, textTheme),
+                      : TestSearchField(
+                          controller: _searchController,
+                          searchQuery: _searchQuery,
+                          isDark: isDark,
+                          textTheme: textTheme,
+                        ),
                 ),
                 const SizedBox(width: AppSpacing.sm),
-                _buildSortDropdown(isDark, textTheme),
+                TestSortDropdown(
+                  value: _sortBy,
+                  isDark: isDark,
+                  textTheme: textTheme,
+                  onChanged: (val) => setState(() => _sortBy = val),
+                ),
               ],
             ),
           ],
@@ -297,7 +328,7 @@ class _TestListScreenState extends ConsumerState<TestListScreen> {
               scrollDirection: Axis.horizontal,
               clipBehavior: Clip.none,
               children: [
-                _FilterChip(
+                TestFilterChip(
                   label: 'All',
                   selected: _selectedCategory == null,
                   count: tests.length,
@@ -308,7 +339,7 @@ class _TestListScreenState extends ConsumerState<TestListScreen> {
                 ...categories.map(
                   (category) => Padding(
                     padding: const EdgeInsets.only(right: 8),
-                    child: _FilterChip(
+                    child: TestFilterChip(
                       label: category,
                       selected: _selectedCategory == category,
                       count: tests.where(
@@ -330,217 +361,4 @@ class _TestListScreenState extends ConsumerState<TestListScreen> {
     );
   }
 
-  Widget _buildEmptyState({
-    required bool isDark,
-    required TextTheme textTheme,
-  }) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(AppSpacing.lg),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(
-              LucideIcons.searchX,
-              size: 64,
-              color: isDark
-                  ? AppColors.textSecondaryDark
-                  : AppColors.textSecondary,
-            ),
-            const SizedBox(height: AppSpacing.md),
-            Text(
-              'No assessments match your search',
-              style: textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.w600,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: AppSpacing.sm),
-            Text(
-              'Try a different keyword or category.',
-              style: textTheme.bodyMedium?.copyWith(
-                color: isDark
-                    ? AppColors.textSecondaryDark
-                    : AppColors.textSecondary,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildSearchField(bool isDark, TextTheme textTheme) {
-    return Container(
-      decoration: BoxDecoration(
-        color: isDark ? AppColors.surfaceDark : AppColors.surface,
-        borderRadius: AppRadius.roundedSm,
-        border: Border.all(
-          color: isDark ? AppColors.borderDark : AppColors.border,
-          width: 1,
-        ),
-      ),
-      child: Center(
-        child: TextField(
-          controller: _searchController,
-          style: textTheme.bodyLarge,
-          decoration: InputDecoration(
-            hintText: 'Search assessments…',
-            hintStyle: TextStyle(
-              color: isDark
-                  ? AppColors.textSecondaryDark
-                  : AppColors.textSecondary,
-            ),
-            prefixIcon: Icon(
-              LucideIcons.search,
-              color: isDark
-                  ? AppColors.textSecondaryDark
-                  : AppColors.textSecondary,
-              size: 20,
-            ),
-            suffixIcon: _searchQuery.isNotEmpty
-                ? IconButton(
-                    icon: const Icon(LucideIcons.x, size: 18),
-                    onPressed: () {
-                      _searchController.clear();
-                      setState(() => _searchQuery = '');
-                    },
-                  )
-                : null,
-            border: InputBorder.none,
-            isDense: true,
-            contentPadding: const EdgeInsets.symmetric(
-              horizontal: 12,
-              vertical: 12,
-            ),
-          
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildSortDropdown(bool isDark, TextTheme textTheme) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      decoration: BoxDecoration(
-        color: isDark ? AppColors.surfaceDark : AppColors.surface,
-        borderRadius: AppRadius.roundedSm,
-        border: Border.all(
-          color: isDark ? AppColors.borderDark : AppColors.border,
-          width: 0.5,
-        ),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(
-            LucideIcons.arrowUpDown,
-            size: 16,
-            color: isDark
-                ? AppColors.textSecondaryDark
-                : AppColors.textSecondary,
-          ),
-          const SizedBox(width: 6),
-          DropdownButtonHideUnderline(
-            child: DropdownButton<String>(
-              value: _sortBy,
-              isDense: true,
-              style: textTheme.bodySmall?.copyWith(
-                fontWeight: FontWeight.w500,
-              ),
-              items: const [
-                DropdownMenuItem(value: 'all', child: Text('All')),
-                DropdownMenuItem(value: 'name', child: Text('Name')),
-                DropdownMenuItem(value: 'time', child: Text('Time')),
-                DropdownMenuItem(value: 'severity', child: Text('Severity')),
-                DropdownMenuItem(value: 'items', child: Text('Items')),
-              ],
-              onChanged: (val) {
-                if (val != null) setState(() => _sortBy = val);
-              },
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _FilterChip extends StatelessWidget {
-  final String label;
-  final bool selected;
-  final int count;
-  final VoidCallback onTap;
-
-  const _FilterChip({
-    required this.label,
-    required this.selected,
-    required this.count,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
-    return GestureDetector(
-      onTap: onTap,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
-        decoration: BoxDecoration(
-          color: selected
-              ? AppColors.primary
-              : isDark
-                  ? AppColors.surfaceDark
-                  : AppColors.surface,
-          borderRadius: AppRadius.roundedSm,
-          border: Border.all(
-            color: selected
-                ? AppColors.primary
-                : isDark
-                    ? AppColors.borderDark
-                    : AppColors.border,
-          ),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              label,
-              style: TextStyle(
-                fontSize: 13,
-                fontWeight: selected ? FontWeight.w600 : FontWeight.normal,
-                color: selected ? Colors.white : null,
-              ),
-            ),
-            const SizedBox(width: 6),
-            Container(
-              padding: const EdgeInsets.only(left: 5, top: 2, right: 5, bottom: 4),
-              decoration: BoxDecoration(
-                color: selected
-                    ? Colors.white.withValues(alpha: 0.2)
-                    : isDark
-                        ? AppColors.textSecondaryDark.withValues(alpha: 0.2)
-                        : AppColors.textSecondary.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(4),
-              ),
-              
-              child: Text(
-                '$count',
-                style: TextStyle(
-                  fontSize: 11,
-                  height: 1,
-                  fontWeight: FontWeight.w600,
-                  color: selected ? Colors.white : null,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }

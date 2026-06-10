@@ -102,6 +102,7 @@ class _AssessmentRunnerScreenState
       if (index >= updatedVisible.length) return;
       final retryCtx = _questionKeyMap[updatedVisible[index].id]?.currentContext;
       if (retryCtx == null) return;
+      if(!retryCtx.mounted) return;
       Scrollable.ensureVisible(
         retryCtx,
         duration: const Duration(milliseconds: 200),
@@ -145,6 +146,7 @@ class _AssessmentRunnerScreenState
       if (updatedIndex < 0) return;
       final retryCtx = _questionKeyMap[updatedVisible[updatedIndex].id]?.currentContext;
       if (retryCtx == null) return;
+      if(!retryCtx.mounted) return;
       Scrollable.ensureVisible(
         retryCtx,
         duration: const Duration(milliseconds: 200),
@@ -238,6 +240,8 @@ class _AssessmentRunnerScreenState
                                 instruction: widget.test.instruction,
                                 scoringProcedure: widget.test.scoringProcedure,
                                 isDark: isDark,
+                                margin: const EdgeInsets.only(
+                                    left: 16, top: 16, right: 16, bottom: 8),
                                 onScoringInfo: () {
                                   showScoringProcedureDialog(
                                       context, widget.test.scoringProcedure!);
@@ -327,6 +331,7 @@ class _AssessmentRunnerScreenState
         instruction: widget.test.instruction,
         scoringProcedure: widget.test.scoringProcedure,
         isDark: isDark,
+        margin: const EdgeInsets.only(top: 4, bottom: 24),
         onScoringInfo: () {
           showScoringProcedureDialog(
               context, widget.test.scoringProcedure!);

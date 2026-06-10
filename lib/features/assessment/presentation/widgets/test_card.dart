@@ -16,7 +16,7 @@ Color _sensitivityColor(String level) {
     case 'Low':
       return const Color(0xFF43A047);
     default:
-      return const Color(0xFF9E9E9E);
+      return const Color(0xFFD9D7D7);
   }
 }
 
@@ -190,11 +190,11 @@ class _TestCardState extends State<TestCard> {
                         const SizedBox(width: 6),
                         Container(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 6, vertical: 3),
+                              horizontal: 6, vertical: 4),
                           decoration: BoxDecoration(
                             color: isDark
                                 ? AppColors.borderDark
-                                : AppColors.border,
+                                : AppColors.border.withValues(alpha: 0.3),
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: Text(

@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 
 import 'core/design_system/app_theme.dart';
 import 'features/about/presentation/about_screen.dart';
+import 'features/assessment/presentation/not_found_screen.dart';
 import 'features/assessment/presentation/result_screen_loader.dart';
 import 'features/assessment/presentation/runner_screen_loader.dart';
 import 'features/assessment/presentation/test_detail_screen.dart';
@@ -25,6 +26,9 @@ const _titleColor = Color(0xFF1A73E8);void main() {
 
 final _router = GoRouter(
   initialLocation: '/',
+  errorPageBuilder: (context, state) => NoTransitionPage(
+    child: NotFoundScreen(),
+  ),
   routes: [
     GoRoute(
       path: '/',

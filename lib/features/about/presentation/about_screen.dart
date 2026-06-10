@@ -65,8 +65,6 @@ class AboutScreen extends ConsumerWidget {
         const SizedBox(height: AppSpacing.md),
         _buildConnectSection(isDark, textTheme),
         const SizedBox(height: AppSpacing.lg),
-        const Divider(),
-        const SizedBox(height: AppSpacing.md),
         _buildPoweredBySection(textTheme),
         const SizedBox(height: AppSpacing.xl),
       ],
@@ -109,8 +107,6 @@ class AboutScreen extends ConsumerWidget {
                 const SizedBox(height: AppSpacing.md),
                 _buildConnectSection(isDark, textTheme),
                 const SizedBox(height: AppSpacing.lg),
-                const Divider(),
-                const SizedBox(height: AppSpacing.md),
                 _buildPoweredBySection(textTheme),
               ],
             ),
@@ -352,15 +348,32 @@ class AboutScreen extends ConsumerWidget {
             ],
           ),
           const SizedBox(height: AppSpacing.md),
-          const CircleAvatar(
-            radius: 36,
-            backgroundColor: AppColors.primary,
-            child: Text('MR', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white)),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(36),
+            child: Image.network(
+              'https://reyad.vercel.app/_next/image?url=%2Freyad1.png&w=256&q=75',
+              height: 72,
+              width: 72,
+              fit: BoxFit.cover,
+              errorBuilder: (_, _, _) => const CircleAvatar(
+                radius: 36,
+                backgroundColor: AppColors.primary,
+                child: Text('MR', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white)),
+              ),
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) return child;
+                return const CircleAvatar(
+                  radius: 36,
+                  backgroundColor: AppColors.primary,
+                  child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2),
+                );
+              },
+            ),
           ),
           const SizedBox(height: 12),
           Text('Md Asifuzzaman Reyad', style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
           const SizedBox(height: 4),
-          Text('Software Developer', style: textTheme.bodySmall?.copyWith(color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondary)),
+          Text('App Developer', style: textTheme.bodySmall?.copyWith(color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondary)),
         ],
       ),
     );

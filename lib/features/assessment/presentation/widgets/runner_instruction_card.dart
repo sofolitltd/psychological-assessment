@@ -9,6 +9,7 @@ class RunnerInstructionCard extends StatelessWidget {
   final String? scoringProcedure;
   final bool isDark;
   final VoidCallback? onScoringInfo;
+  final EdgeInsetsGeometry? margin;
 
   const RunnerInstructionCard({
     super.key,
@@ -16,6 +17,7 @@ class RunnerInstructionCard extends StatelessWidget {
     this.scoringProcedure,
     required this.isDark,
     this.onScoringInfo,
+    this.margin,
   });
 
   @override
@@ -26,7 +28,7 @@ class RunnerInstructionCard extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      margin: const EdgeInsets.fromLTRB(AppSpacing.md, AppSpacing.sm, AppSpacing.md, 0),
+      margin: margin ?? const EdgeInsets.fromLTRB(AppSpacing.md, AppSpacing.sm, AppSpacing.md, 0),
       padding: const EdgeInsets.all(AppSpacing.md),
       decoration: BoxDecoration(
         color: const Color(0xFFFFF9E6),

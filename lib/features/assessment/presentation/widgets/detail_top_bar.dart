@@ -18,7 +18,7 @@ class DetailTopBar extends StatelessWidget {
         AppSpacing.md,
         AppSpacing.lg,
         AppSpacing.sm,
-        0,
+        AppSpacing.sm,
       ),
       child: Row(
         children: [

@@ -48,14 +48,16 @@ class _AssessmentResultsScreenState extends State<AssessmentResultsScreen> {
 
   Color _severityColor(String severity) {
     final s = severity.toLowerCase();
-    if (s.contains('normal') || s.contains('no risk') || s.contains('no love'))
+    if (s.contains('normal') || s.contains('no risk') || s.contains('no love')) {
       return Colors.green;
+    }
     if (s.contains('mild') || s.contains('low')) return Colors.amber.shade700;
     if (s.contains('moderate') || s.contains('probable')) return Colors.orange;
     if (s.contains('extremely') ||
         s.contains('high') ||
-        s.contains('excessive'))
+        s.contains('excessive')) {
       return const Color(0xFFB71C1C);
+    }
     if (s.contains('severe')) return Colors.red;
     return AppColors.textSecondary;
   }
@@ -317,7 +319,7 @@ class _AssessmentResultsScreenState extends State<AssessmentResultsScreen> {
                   vertical: 4,
                 ),
                 decoration: BoxDecoration(
-                  color: color.withOpacity(0.15),
+                  color: color.withValues(alpha: 0.15),
                   borderRadius: AppRadius.roundedSm,
                 ),
                 child: Text(
@@ -455,14 +457,14 @@ class _AssessmentResultsScreenState extends State<AssessmentResultsScreen> {
               width: double.infinity,
               padding: const EdgeInsets.all(AppSpacing.md),
               decoration: BoxDecoration(
-                color: color.withOpacity(0.08),
+                color: color.withValues(alpha: 0.08),
                 borderRadius: AppRadius.roundedSm,
               ),
               child: Text(
                 result.interpretation!,
                 style: GoogleFonts.tiroBangla(
                   fontSize: 15,
-                  color: color.withOpacity(0.9),
+                  color: color.withValues(alpha: 0.9),
                   height: 1.4,
                 ),
               ),
@@ -472,9 +474,11 @@ class _AssessmentResultsScreenState extends State<AssessmentResultsScreen> {
           if (result.suggestions != null &&
               result.suggestions!.isNotEmpty) ...[
             const SizedBox(height: AppSpacing.md),
-            const Text(
+             Text(
               'পরামর্শ:',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontFamily: GoogleFonts.notoSerifBengali().fontFamily,
+                fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
             Text(

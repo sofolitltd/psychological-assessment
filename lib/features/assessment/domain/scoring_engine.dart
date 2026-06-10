@@ -184,7 +184,7 @@ class CsptScoringEngine implements ScoringEngine {
     List<TestQuestion> questions,
     int maxOptionValue,
   ) {
-    final yes = (int id) => responses[id] == 1;
+    bool yes(int id) => responses[id] == 1;
     int raw;
     if (yes(4) || yes(5) || (yes(6) && yes(7))) {
       raw = 3; // High Risk

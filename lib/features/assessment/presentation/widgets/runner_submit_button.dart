@@ -21,7 +21,7 @@ class RunnerSubmitButton extends StatelessWidget {
       child: SizedBox(
         width: double.infinity,
         height: 48,
-        child: ElevatedButton.icon(
+        child: ElevatedButton(
           onPressed: isComplete ? onSubmit : null,
           style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.primary,
@@ -30,13 +30,20 @@ class RunnerSubmitButton extends StatelessWidget {
               borderRadius: AppRadius.roundedSm,
             ),
           ),
-          icon: const Icon(LucideIcons.arrowRight, size: 18),
-          label: Text(
-            'মূল্যায়ন জমা দিন',
-            style: GoogleFonts.notoSerifBengali(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'মূল্যায়ন জমা দিন',
+                style: GoogleFonts.notoSerifBengali(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(width: 8),
+              const Icon(LucideIcons.arrowRight, size: 18),
+            ],
           ),
         ),
       ),

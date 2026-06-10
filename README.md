@@ -12,6 +12,7 @@ A modern, offline-first psychological assessment platform built with Flutter. Pr
 - **Responsive UI** — optimized for mobile, tablet, and desktop (LG 4:3 / MD 3:2 ratios)
 - **Dark mode** — full dark theme support
 - **Riverpod state management** — reactive, testable architecture
+- **Developer profile** — network-loaded avatar with fallback
 
 ## Included Assessments
 
@@ -45,6 +46,7 @@ A modern, offline-first psychological assessment platform built with Flutter. Pr
 - **Icons:** Lucide Icons
 - **Fonts:** Google Fonts (Outfit, Noto Serif Bengali, Tiro Bangla)
 - **Responsive:** Custom breakpoints (SM <640 / MD 640-1024 / LG ≥1024)
+- **URL Launching:** `url_launcher` for external links
 
 ## Project Structure
 
@@ -60,19 +62,41 @@ lib/
 │   │       └── about_screen.dart
 │   ├── assessment/
 │   │   ├── data/
-│   │   │   ├── assessment_repository.dart
-│   │   │   └── test_data_providers.dart
+│   │   │   └── assessment_repository.dart
 │   │   ├── domain/
 │   │   │   ├── assessment_models.dart
 │   │   │   ├── assessment_bundle.dart
 │   │   │   └── scoring_engine.dart
-│   │   └── presentation/
-│   │       ├── widgets/         # Reusable UI components
-│   │       ├── test_list_screen.dart
-│   │       ├── test_detail_screen.dart
-│   │       ├── assessment_runner_screen.dart
-│   │       ├── assessment_results_screen.dart
-│   │       └── scoring_procedure_dialog.dart
+│   │   ├── presentation/
+│   │   │   ├── widgets/
+│   │   │   │   ├── detail_about_section.dart
+│   │   │   │   ├── detail_content_card.dart
+│   │   │   │   ├── detail_header_card.dart
+│   │   │   │   ├── detail_instruction_section.dart
+│   │   │   │   ├── detail_lucide_icon_map.dart
+│   │   │   │   ├── detail_ready_card.dart
+│   │   │   │   ├── detail_resources_card.dart
+│   │   │   │   ├── detail_stats.dart
+│   │   │   │   ├── detail_top_bar.dart
+│   │   │   │   ├── mobile_bottom_nav.dart
+│   │   │   │   ├── runner_instruction_card.dart
+│   │   │   │   ├── runner_question_card.dart
+│   │   │   │   ├── runner_question_navigator.dart
+│   │   │   │   ├── runner_sidebar.dart
+│   │   │   │   ├── runner_submit_button.dart
+│   │   │   │   ├── runner_top_bar.dart
+│   │   │   │   ├── test_card.dart
+│   │   │   │   └── web_top_nav.dart
+│   │   │   ├── assessment_notifier.dart
+│   │   │   ├── assessment_results_screen.dart
+│   │   │   ├── assessment_runner_screen.dart
+│   │   │   ├── result_screen_loader.dart
+│   │   │   ├── runner_screen_loader.dart
+│   │   │   ├── scoring_procedure_dialog.dart
+│   │   │   ├── test_detail_screen.dart
+│   │   │   └── test_list_screen.dart
+│   │   └── services/
+│   │       └── pdf_export_service.dart
 │   └── upcoming/
 │       └── presentation/
 │           └── upcoming_screen.dart
@@ -126,7 +150,7 @@ flutter build apk
 - Facebook: [/asifuzzamanreyad](https://www.facebook.com/asifuzzamanreyad)
 - LinkedIn: [/in/asifuzzamanreyad](https://linkedin.com/in/asifuzzamanreyad)
 - WhatsApp: [+880 1704-340860](https://wa.me/+8801704340860)
-- YouTube: [@sofolitltd](https://youtube.com/@sofolitltd)
+- YouTube: [@sofolitltd](https://youtube.com/@sofolitltd) — Powered by [Sofol IT](https://sofolit.vercel.app)
 
 ## Disclaimer
 
@@ -139,4 +163,3 @@ MIT
 ---
 
 Built with Flutter.
-# psychological-assessment

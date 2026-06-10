@@ -60,7 +60,7 @@ class DetailReadyCard extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               height: 40,
-              child: ElevatedButton.icon(
+              child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: _color,
                   foregroundColor: Colors.white,
@@ -69,13 +69,20 @@ class DetailReadyCard extends StatelessWidget {
                   ),
                 ),
                 onPressed: () => context.push('/test/${test.testId}/run'),
-                icon: const Icon(LucideIcons.arrowRight, size: 18),
-                label: Text(
-                  'শুরু করুন',
-                  style: GoogleFonts.notoSerifBengali(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'শুরু করুন',
+                      style: GoogleFonts.notoSerifBengali(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    const Icon(LucideIcons.arrowRight, size: 18),
+                  ],
                 ),
               ),
             ),
