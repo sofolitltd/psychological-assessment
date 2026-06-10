@@ -20,6 +20,7 @@ class TestSearchField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 40,
       decoration: BoxDecoration(
         color: isDark ? AppColors.surfaceDark : AppColors.surface,
         borderRadius: AppRadius.roundedSm,
@@ -28,38 +29,37 @@ class TestSearchField extends StatelessWidget {
           width: 1,
         ),
       ),
-      child: Center(
-        child: TextField(
-          controller: controller,
-          style: textTheme.bodyLarge,
-          decoration: InputDecoration(
-            hintText: 'Search assessments…',
-            hintStyle: TextStyle(
-              color: isDark
-                  ? AppColors.textSecondaryDark
-                  : AppColors.textSecondary,
-            ),
-            prefixIcon: Icon(
-              LucideIcons.search,
-              color: isDark
-                  ? AppColors.textSecondaryDark
-                  : AppColors.textSecondary,
-              size: 20,
-            ),
-            suffixIcon: searchQuery.isNotEmpty
-                ? IconButton(
-                    icon: const Icon(LucideIcons.x, size: 18),
-                    onPressed: () {
-                      controller.clear();
-                    },
-                  )
-                : null,
-            border: InputBorder.none,
-            isDense: true,
-            contentPadding: const EdgeInsets.symmetric(
-              horizontal: 12,
-              vertical: 12,
-            ),
+      child: TextField(
+        controller: controller,
+        style: textTheme.bodyMedium,
+        textAlignVertical: TextAlignVertical.center,
+        decoration: InputDecoration(
+          hintText: 'Search assessments…',
+          hintStyle: TextStyle(
+            color: isDark
+                ? AppColors.textSecondaryDark
+                : AppColors.textSecondary,
+          ),
+          prefixIcon: Icon(
+            LucideIcons.search,
+            color: isDark
+                ? AppColors.textSecondaryDark
+                : AppColors.textSecondary,
+            size: 20,
+          ),
+          suffixIcon: searchQuery.isNotEmpty
+              ? IconButton(
+                  icon: const Icon(LucideIcons.x, size: 18),
+                  onPressed: () {
+                    controller.clear();
+                  },
+                )
+              : null,
+          border: InputBorder.none,
+          isDense: true,
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 12,
+            vertical: 8,
           ),
         ),
       ),

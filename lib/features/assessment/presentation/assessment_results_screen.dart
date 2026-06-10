@@ -8,6 +8,7 @@ import '../../../core/design_system/app_theme.dart';
 import '../../../core/design_system/responsive.dart';
 import '../domain/assessment_bundle.dart';
 import '../services/pdf_export_service.dart';
+import 'pdf_info_dialog.dart';
 import 'scoring_procedure_dialog.dart';
 
 class AssessmentResultsScreen extends StatefulWidget {
@@ -24,10 +25,17 @@ class _AssessmentResultsScreenState extends State<AssessmentResultsScreen> {
   bool _isGeneratingPdf = false;
 
   Future<void> _sharePdf() async {
+    final userInfo = await showPdfInfoDialog(context);
+    if (userInfo == null) return;
+
     setState(() => _isGeneratingPdf = true);
     try {
       final pdfBytes = await PdfExportService.generateAssessmentReport(
         widget.bundle,
+        clientName: userInfo.name,
+        clientId: userInfo.clientId,
+        clientPhone: userInfo.phone,
+        fullReport: userInfo.pdfType == PdfType.full,
       );
       final fileName =
           '${widget.bundle.testName.replaceAll(' ', '_')}_Report.pdf';

@@ -1,7 +1,6 @@
 {
   "testId": "gad7_bn",
   "testName": "GAD-7 - Generalized Anxiety Disorder",
-  "category": "Emotion",
   "about": "মনোবৈজ্ঞানিক মূল্যায়ন পদ্ধতি, যা সাধারণ উদ্বেগজনিত অসুস্থতার লক্ষণ ও তার মাত্রা পরিমাপের জন্য তৈরি করা হয়েছে। এতে সাধারণত এমন কিছু প্রশ্ন থাকে, যা উদ্বেগের বিভিন্ন দিক বিশ্লেষণ করে। এই টেস্টের মাধ্যমে একজন ব্যক্তির উদ্বেগ কতটা তীব্র বা দীর্ঘস্থায়ী, তা বোঝা যায়।",
   "author": "Developed by: Dr. Robert L. Spitzer, Dr. Kurt Kroenke, et al. (2006)\nAdapted by: ASM Redwan, Md Rezaul Karim, Ramendra Kumar Singha Royle, & Ahmed Riad Chowdhury",
   "instruction": "গত ২ সপ্তাহে কত ঘন ঘন আপনি নিম্নলিখিত সমস্যাগুলো অনুভব করেছেন?",

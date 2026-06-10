@@ -28,6 +28,24 @@ class ScoreResult {
         interpretation: band.interpretation,
         suggestions: band.suggestions,
       );
+
+  Map<String, dynamic> toJson() => {
+        'rawScore': rawScore,
+        'maxScore': maxScore,
+        'severity': severity,
+        'scale': scale,
+        'interpretation': interpretation,
+        'suggestions': suggestions,
+      };
+
+  factory ScoreResult.fromJson(Map<String, dynamic> json) => ScoreResult(
+        rawScore: json['rawScore'] as int,
+        maxScore: json['maxScore'] as int,
+        severity: json['severity'] as String,
+        scale: json['scale'] as String,
+        interpretation: json['interpretation'] as String?,
+        suggestions: json['suggestions'] as String?,
+      );
 }
 
 // ─── ResultBand Lookup ────────────────────────────────────────────────────────

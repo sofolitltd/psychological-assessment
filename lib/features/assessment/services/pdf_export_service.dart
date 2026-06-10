@@ -9,6 +9,10 @@ import 'package:intl/intl.dart';
 import '../domain/assessment_bundle.dart';
 
 class PdfExportService {
+  static bool _containsBangla(String text) {
+    return RegExp(r'[\u0980-\u09FF]').hasMatch(text);
+  }
+
   /// Unified text renderer that uses bangla_pdf_fixer widgets for proper 
   /// layout mapping and multi-page text breaking logic.
   static pw.Widget _text(
@@ -16,12 +20,22 @@ class PdfExportService {
     double size = 12,
     PdfColor? color,
     bool isBold = false,
+    bool Function(String)? isBangla,
   }) {
     final trimmed = text.trim();
     if (trimmed.isEmpty) return pw.SizedBox();
     
-    // Bangla PDF Fixer provides ready-to-use BanglaText that automatically
-    // manages complex font reshaper parameters without throwing RangeErrors.
+    final bangla = isBangla?.call(trimmed) ?? _containsBangla(trimmed);
+    if (!bangla) {
+      return pw.Text(
+        trimmed,
+        style: pw.TextStyle(
+          fontSize: size,
+          color: color ?? PdfColors.grey900,
+        ),
+      );
+    }
+    
     return BanglaText(
       trimmed,
       fontSize: size,
@@ -31,7 +45,12 @@ class PdfExportService {
   }
 
   static Future<Uint8List> generateAssessmentReport(
-      AssessmentResultBundle bundle) async {
+      AssessmentResultBundle bundle, {
+    String? clientName,
+    String? clientId,
+    String? clientPhone,
+    bool fullReport = true,
+  }) async {
     // CRITICAL REQUIREMENT FOR V2.0.0: Make sure this initialization 
     // runs so the layout engine cache shapes up properly.
     await BanglaFontManager().initialize();
@@ -135,7 +154,24 @@ class PdfExportService {
               ],
             ),
 
-            pw.SizedBox(height: 16),
+            // ── Client Info ──────────────────────────────────────────────────
+            if (clientName != null ||
+                clientId != null ||
+                clientPhone != null) ...[
+              pw.Text('Client Information', style: engStyle(font: boldFont, size: 15, color: accentColor)),
+              pw.SizedBox(height: 8),
+              if (clientName != null)
+                pw.Text('Name: $clientName', style: engStyle(size: 12)),
+              if (clientId != null) ...[
+                pw.SizedBox(height: 4),
+                pw.Text('Client ID: $clientId', style: engStyle(size: 12)),
+              ],
+              if (clientPhone != null) ...[
+                pw.SizedBox(height: 4),
+                pw.Text('Phone: $clientPhone', style: engStyle(size: 12)),
+              ],
+              pw.SizedBox(height: 16),
+            ],
 
             // ── Test Info ──────────────────────────────────────────────────
             pw.Text('Assessment Information', style: engStyle(font: boldFont, size: 15, color: accentColor)),
@@ -166,47 +202,49 @@ class PdfExportService {
 
             pw.SizedBox(height: 24),
 
-            // ── Detailed Results ───────────────────────────────────────────
-            pw.Text('Detailed Interpretation', style: engStyle(font: boldFont, size: 15, color: accentColor)),
-            pw.SizedBox(height: 10),
+            if (fullReport) ...[
+              // ── Detailed Results ───────────────────────────────────────────
+              pw.Text('Detailed Interpretation', style: engStyle(font: boldFont, size: 15, color: accentColor)),
+              pw.SizedBox(height: 10),
 
-            ...bundle.scores.values.map((result) {
-              return pw.Column(
-                crossAxisAlignment: pw.CrossAxisAlignment.start,
-                children: [
-                  pw.Container(
-                    width: double.infinity,
-                    padding: const pw.EdgeInsets.symmetric(vertical: 4),
-                    decoration: const pw.BoxDecoration(
-                      border: pw.Border(bottom: pw.BorderSide(color: PdfColors.grey300, width: 0.5)),
+              ...bundle.scores.values.map((result) {
+                return pw.Column(
+                  crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  children: [
+                    pw.Container(
+                      width: double.infinity,
+                      padding: const pw.EdgeInsets.symmetric(vertical: 4),
+                      decoration: const pw.BoxDecoration(
+                        border: pw.Border(bottom: pw.BorderSide(color: PdfColors.grey300, width: 0.5)),
+                      ),
+                      child: pw.Text(
+                        '${result.scale.replaceAll('_', ' ').toUpperCase()}  •  ${result.severity}',
+                        style: engStyle(
+                          
+                        isBold: true,
+                        size: 13,
+                        color: accentColor,),
+                      ),
                     ),
-                    child: pw.Text(
-                      '${result.scale.replaceAll('_', ' ').toUpperCase()}  •  ${result.severity}',
-                      style: engStyle(
-                        
-                      isBold: true,
-                      size: 13,
-                      color: accentColor,),
-                    ),
-                  ),
-                  pw.SizedBox(height: 6),
-                  
-                  if (result.interpretation != null && result.interpretation!.isNotEmpty) ...[
-                    _text(result.interpretation!, size: 12),
                     pw.SizedBox(height: 6),
+                    
+                    if (result.interpretation != null && result.interpretation!.isNotEmpty) ...[
+                      _text(result.interpretation!, size: 12),
+                      pw.SizedBox(height: 6),
+                    ],
+                    if (result.suggestions != null && result.suggestions!.isNotEmpty) ...[
+                      _text('পরামর্শ:', isBold: true, size: 12),
+                      pw.SizedBox(height: 4),
+                      _text(result.suggestions!, size: 12, color: PdfColors.grey800),
+                    ],
+                    
+                    pw.SizedBox(height: 16),
                   ],
-                  if (result.suggestions != null && result.suggestions!.isNotEmpty) ...[
-                    _text('পরামর্শ:', isBold: true, size: 12),
-                    pw.SizedBox(height: 4),
-                    _text(result.suggestions!, size: 12, color: PdfColors.grey800),
-                  ],
-                  
-                  pw.SizedBox(height: 16),
-                ],
-              );
-            }),
+                );
+              }),
 
-            pw.SizedBox(height: 16),
+              pw.SizedBox(height: 16),
+            ],
 
             // ── Disclaimer ─────────────────────────────────────────────────
             pw.Container(

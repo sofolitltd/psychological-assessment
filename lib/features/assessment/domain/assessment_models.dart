@@ -129,7 +129,10 @@ class AssessmentTest {
     this.resultBands = const {},
   });
 
-  factory AssessmentTest.fromJson(Map<String, dynamic> json) {
+  factory AssessmentTest.fromJson(
+    Map<String, dynamic> json, {
+    String? categoryOverride,
+  }) {
     final rawBands = json['resultBands'] as Map<String, dynamic>? ?? {};
     final bands = rawBands.map((key, value) {
       final list = (value as List)
@@ -143,7 +146,7 @@ class AssessmentTest {
       testName: json['testName'] as String,
       about: json['about'] as String?,
       author: json['author'] as String?,
-      category: json['category'] as String?,
+      category: categoryOverride ?? json['category'] as String?,
       instruction: json['instruction'] as String?,
       scoringProcedure: json['scoringProcedure'] as String?,
       pdfUrl: json['pdfUrl'] as String?,
