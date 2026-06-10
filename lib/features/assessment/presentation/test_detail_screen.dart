@@ -35,6 +35,11 @@ class TestDetailScreen extends ConsumerWidget {
       body: Column(
         children: [
           if (!isMobile) const WebTopNav(currentTab: 'tests'),
+          if (testAsync.isLoading)
+            const LinearProgressIndicator(
+              color: AppColors.primary,
+              minHeight: 3,
+            ),
           Expanded(
             child: testAsync.when(
               error: (error, _) => Center(
