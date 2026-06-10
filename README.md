@@ -123,8 +123,10 @@ flutter build apk
 
 **Md Asifuzzaman Reyad**
 
-- Facebook: [/asifuzzaman](https://facebook.com/asifuzzaman)
-- WhatsApp: [+880](https://wa.me/880)
+- Facebook: [/asifuzzamanreyad](https://www.facebook.com/asifuzzamanreyad)
+- LinkedIn: [/in/asifuzzamanreyad](https://linkedin.com/in/asifuzzamanreyad)
+- WhatsApp: [+880 1704-340860](https://wa.me/+8801704340860)
+- YouTube: [@sofolitltd](https://youtube.com/@sofolitltd)
 
 ## Disclaimer
 
