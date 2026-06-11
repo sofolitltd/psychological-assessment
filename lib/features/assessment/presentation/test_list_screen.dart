@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/design_system/app_theme.dart';
 import '../../../core/design_system/responsive.dart';
+import '../../../core/design_system/theme_toggle_button.dart';
+import '../../../features/upcoming/presentation/widgets/upcoming_contact_dialog.dart';
 import '../data/assessment_repository.dart';
 import '../domain/assessment_models.dart';
 import 'widgets/mobile_bottom_nav.dart';
@@ -11,7 +16,7 @@ import 'widgets/test_card.dart';
 import 'widgets/test_empty_state.dart';
 import 'widgets/test_filter_chip.dart';
 import 'widgets/test_search_field.dart';
-import 'widgets/test_sort_dropdown.dart';
+import 'widgets/test_sort_menu.dart';
 import 'widgets/web_top_nav.dart';
 
 class TestListScreen extends ConsumerStatefulWidget {
@@ -26,13 +31,29 @@ class _TestListScreenState extends ConsumerState<TestListScreen> {
   String _searchQuery = '';
   String? _selectedCategory;
   String _sortBy = 'all';
+  bool _sortAscending = true;
+  bool _bannerDismissed = false;
 
   @override
   void initState() {
     super.initState();
+    _loadBannerState();
     _searchController.addListener(() {
       setState(() => _searchQuery = _searchController.text);
     });
+  }
+
+  Future<void> _loadBannerState() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _bannerDismissed = prefs.getBool('edu_banner_dismissed') ?? false;
+    });
+  }
+
+  Future<void> _dismissBanner() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('edu_banner_dismissed', true);
+    setState(() => _bannerDismissed = true);
   }
 
   @override
@@ -47,28 +68,29 @@ class _TestListScreenState extends ConsumerState<TestListScreen> {
   }
 
   List<TestListItem> _sorted(List<TestListItem> items) {
+    if (_sortBy == 'all') {
+      if (!_sortAscending) return items.reversed.toList();
+      return items;
+    }
+    final sorted = List<TestListItem>.of(items);
     switch (_sortBy) {
       case 'time':
-        final sorted = List<TestListItem>.of(items);
         sorted.sort((a, b) => a.estimatedTimeMinutes.compareTo(b.estimatedTimeMinutes));
-        return sorted;
+        break;
       case 'severity':
         const order = {'High': 0, 'Medium': 1, 'Low': 2};
-        final sorted = List<TestListItem>.of(items);
         sorted.sort((a, b) => (order[a.sensitivityLevel] ?? 3)
             .compareTo(order[b.sensitivityLevel] ?? 3));
-        return sorted;
+        break;
       case 'items':
-        final sorted = List<TestListItem>.of(items);
         sorted.sort((a, b) => a.questionCount.compareTo(b.questionCount));
-        return sorted;
+        break;
       case 'name':
-        final sorted = List<TestListItem>.of(items);
         sorted.sort((a, b) => a.name.compareTo(b.name));
-        return sorted;
-      default:
-        return items;
+        break;
     }
+    if (!_sortAscending) return sorted.reversed.toList();
+    return sorted;
   }
 
   @override
@@ -142,6 +164,16 @@ class _TestListScreenState extends ConsumerState<TestListScreen> {
                           const SliverToBoxAdapter(
                             child: SizedBox(height: AppSpacing.sm),
                           ),
+                          if (!_bannerDismissed)
+                            SliverPadding(
+                              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
+                              sliver: SliverToBoxAdapter(
+                                child: _buildEducationalBanner(
+                                  isDark: isDark,
+                                  textTheme: textTheme,
+                                ),
+                              ),
+                            ),
 
                           if (filteredTests.isEmpty)
                             SliverFillRemaining(
@@ -187,9 +219,9 @@ class _TestListScreenState extends ConsumerState<TestListScreen> {
                                       TestCard(
                                     test: filteredTests[index],
                                   ),
-                                ),
                               ),
                             ),
+                          ),
                         ],
                       ),
                     ),
@@ -264,21 +296,30 @@ class _TestListScreenState extends ConsumerState<TestListScreen> {
                   ),
                 ),
                 const SizedBox(width: AppSpacing.sm),
-                TestSortDropdown(
+                TestSortMenu(
                   value: _sortBy,
+                  sortAscending: _sortAscending,
                   isDark: isDark,
                   textTheme: textTheme,
                   onChanged: (val) => setState(() => _sortBy = val),
+                  onToggleDirection: () => setState(() => _sortAscending = !_sortAscending),
                 ),
               ],
             )
           else ...[
-            Text(
-              'Assessments',
-              style: textTheme.headlineSmall?.copyWith(
-                fontWeight: FontWeight.bold,
-                height: 1.2,
-              ),
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    'Assessments',
+                    style: textTheme.headlineSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      height: 1.2,
+                    ),
+                  ),
+                ),
+                const ThemeToggleButton(),
+              ],
             ),
             const SizedBox(height: AppSpacing.xs),
             Text(
@@ -311,11 +352,14 @@ class _TestListScreenState extends ConsumerState<TestListScreen> {
                         ),
                 ),
                 const SizedBox(width: AppSpacing.sm),
-                TestSortDropdown(
+                TestSortMenu(
                   value: _sortBy,
+                  sortAscending: _sortAscending,
                   isDark: isDark,
                   textTheme: textTheme,
+                  showLabel: false,
                   onChanged: (val) => setState(() => _sortBy = val),
+                  onToggleDirection: () => setState(() => _sortAscending = !_sortAscending),
                 ),
               ],
             ),
@@ -361,4 +405,80 @@ class _TestListScreenState extends ConsumerState<TestListScreen> {
     );
   }
 
+  Widget _buildEducationalBanner({
+    required bool isDark,
+    required TextTheme textTheme,
+  }) {
+    final notoSerif = GoogleFonts.notoSerifBengali();
+
+    return GestureDetector(
+      onTap: () => showUpcomingContactDialog(
+        context,
+        isDark,
+        textTheme,
+        titleText: 'যোগাযোগ করুন',
+        subtitleText: 'যে কোন প্রশ্ন বা মতামত জানাতে নিচের যেকোনো মাধ্যমে যোগাযোগ করুন।',
+      ),
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Container(
+            width: double.infinity,
+            margin: const EdgeInsets.only(bottom: 4),
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Colors.orange.withValues(alpha: 0.6),
+                  Colors.orange.withValues(alpha: 0.9),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+              borderRadius: AppRadius.roundedSm,
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.primary.withValues(alpha: 0.3),
+                  blurRadius: 8,
+                  offset: const Offset(0, 2),
+                ),
+              ],
+            ),
+            child: Expanded(
+              child: Text(
+                'এটি একটি শিক্ষামূলক প্রকল্প। শিক্ষক, শিক্ষার্থী এবং কমিউনিটির কাছ থেকে তথ্য সংগ্রহ করা হয়েছে। দয়া করে দায়িত্বশীলভাবে ব্যবহার করুন। যে কোন প্রশ্ন বা মতামত জানাতে এখানে ক্লিক করুন।',
+                style: TextStyle(
+                  fontSize: 12,
+                  color: Colors.white.withValues(alpha: 0.85),
+                  fontFamily: notoSerif.fontFamily,
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            top:-5,
+            right:-5,
+            child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: () {
+                _dismissBanner();
+              },
+              child: Container(
+                padding: const EdgeInsets.all(4),
+                decoration: BoxDecoration(
+                  color: Colors.white.withValues(alpha: 0.9),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  LucideIcons.x,
+                  size: 14,
+                  color: Colors.orange.withValues(alpha: 0.9),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }

@@ -31,17 +31,21 @@ class ResultScreenLoader extends ConsumerWidget {
     if (bundle != null) {
       return AssessmentResultsScreen(bundle: bundle);
     }
-    return FutureBuilder<AssessmentResultBundle?>(
-      future: _loadFromPrefs(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
-        }
-        if (snapshot.hasData && snapshot.data != null) {
-          return AssessmentResultsScreen(bundle: snapshot.data!);
-        }
-        return _buildNoResults(context);
-      },
+    return Title(
+      title: '$testId - Psychological Assessment',
+      color: AppColors.primary,
+      child: FutureBuilder<AssessmentResultBundle?>(
+        future: _loadFromPrefs(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (snapshot.hasData && snapshot.data != null) {
+            return AssessmentResultsScreen(bundle: snapshot.data!);
+          }
+          return _buildNoResults(context);
+        },
+      ),
     );
   }
 

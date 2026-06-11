@@ -45,12 +45,23 @@ class TestDetailScreen extends ConsumerWidget {
               error: (error, _) => Center(
                 child: Padding(
                   padding: const EdgeInsets.all(AppSpacing.lg),
-                  child: Text(
-                    'Something went wrong.\n$error',
-                    textAlign: TextAlign.center,
-                    style: textTheme.bodyMedium?.copyWith(
-                      color: Theme.of(context).colorScheme.error,
-                    ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        'Something went wrong.\n$error',
+                        textAlign: TextAlign.center,
+                        style: textTheme.bodyMedium?.copyWith(
+                          color: Theme.of(context).colorScheme.error,
+                        ),
+                      ),
+                      const SizedBox(height: AppSpacing.lg),
+                      FilledButton.icon(
+                        onPressed: () => ref.invalidate(testDetailProvider(testId)),
+                        icon: const Icon(LucideIcons.refreshCw, size: 18),
+                        label: const Text('Retry'),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -176,18 +187,20 @@ class TestDetailScreen extends ConsumerWidget {
                               ),
                               Expanded(
                                 flex: Responsive.isDesktop(context) ? 1 : 2,
-                                child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: [
-                                    DetailResourcesCard(
-                                      test: test,
-                                      isDark: isDark,
-                                      outerContext: context,
-                                    ),
-                                    const SizedBox(height: AppSpacing.md),
-                                    DetailReadyCard(test: test, meta: meta),
-                                  ],
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.stretch,
+                                    children: [
+                                      DetailResourcesCard(
+                                        test: test,
+                                        isDark: isDark,
+                                        outerContext: context,
+                                      ),
+                                      const SizedBox(height: AppSpacing.md),
+                                      DetailReadyCard(test: test, meta: meta),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],

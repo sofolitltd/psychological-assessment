@@ -18,7 +18,7 @@ class UpcomingJoinBanner extends StatelessWidget {
       onTap: () => showUpcomingContactDialog(context, isDark, textTheme),
       child: Container(
         width: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: 14),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
@@ -53,7 +53,7 @@ class UpcomingJoinBanner extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'আমাদের সাথে যোগ দিন ',
+                    'আমাদের সাথে যোগ দিন',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,

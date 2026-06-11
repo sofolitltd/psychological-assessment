@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
+import '../../../../core/design_system/app_theme.dart';
+
 class MobileBottomNav extends StatelessWidget {
   final String currentTab;
 
@@ -9,9 +11,10 @@ class MobileBottomNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: isDark ? AppColors.surfaceDark : Colors.white,
         border: Border(
           top: BorderSide(
             color: Theme.of(context).dividerColor.withValues(alpha: 0.5),
@@ -20,7 +23,7 @@ class MobileBottomNav extends StatelessWidget {
         ),
       ),
       child: BottomNavigationBar(
-        backgroundColor: Colors.white,
+        backgroundColor: isDark ? AppColors.surfaceDark : Colors.white,
         currentIndex: currentTab == 'tests'
             ? 0
             : currentTab == 'upcoming'

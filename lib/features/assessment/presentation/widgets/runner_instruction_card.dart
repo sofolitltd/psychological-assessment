@@ -31,7 +31,7 @@ class RunnerInstructionCard extends StatelessWidget {
       margin: margin ?? const EdgeInsets.fromLTRB(AppSpacing.md, AppSpacing.sm, AppSpacing.md, 0),
       padding: const EdgeInsets.all(AppSpacing.md),
       decoration: BoxDecoration(
-        color: const Color(0xFFFFF9E6),
+        color: isDark ? AppColors.surfaceDark : const Color(0xFFFFF9E6),
         borderRadius: AppRadius.roundedMd,
         border: Border.all(
           color: isDark ? AppColors.borderDark : AppColors.border,

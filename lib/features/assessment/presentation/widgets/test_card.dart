@@ -7,19 +7,6 @@ import '../../../../core/design_system/app_theme.dart';
 import '../../../assessment/domain/assessment_models.dart';
 import 'detail_lucide_icon_map.dart';
 
-Color _sensitivityColor(String level) {
-  switch (level) {
-    case 'High':
-      return const Color(0xFFE53935);
-    case 'Medium':
-      return const Color(0xFFFB8C00);
-    case 'Low':
-      return const Color(0xFF43A047);
-    default:
-      return const Color(0xFFD9D7D7);
-  }
-}
-
 class TestCard extends StatefulWidget {
   final TestListItem test;
   final bool uniformHeight;
@@ -170,45 +157,48 @@ class _TestCardState extends State<TestCard> {
                   const SizedBox(height: AppSpacing.sm),
                   Row(
                     children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 3),
-                        decoration: BoxDecoration(
-                          color: color.withValues(alpha: 0.1),
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        child: Text(
-                          test.category,
-                          style: TextStyle(
-                            fontSize: 11,
-                            color: color,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                      if (test.reliabilityBadge.isNotEmpty) ...[
-                        const SizedBox(width: 6),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 6, vertical: 4),
-                          decoration: BoxDecoration(
-                            color: isDark
-                                ? AppColors.borderDark
-                                : AppColors.border.withValues(alpha: 0.3),
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          child: Text(
-                            test.reliabilityBadge,
-                            style: TextStyle(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w500,
-                              color: isDark
-                                  ? AppColors.textSecondaryDark
-                                  : AppColors.textSecondary,
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 3),
+                            decoration: BoxDecoration(
+                              color: color.withValues(alpha: 0.1),
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: Text(
+                              test.category,
+                              style: TextStyle(
+                                fontSize: 11,
+                                color: color,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                          if (test.sensitivityLevel.isNotEmpty) ...[
+                            const SizedBox(width: 6),
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 3),
+                              decoration: BoxDecoration(
+                                color: sensitivityColor(test.sensitivityLevel)
+                                    .withValues(alpha: 0.1),
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              child: Text(
+                                test.sensitivityLevel,
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  color: sensitivityColor(
+                                      test.sensitivityLevel),
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ],
+                      ),
                       const Spacer(),
                       Row(
                         mainAxisSize: MainAxisSize.min,
@@ -221,7 +211,7 @@ class _TestCardState extends State<TestCard> {
                                   const EdgeInsets.only(right: 4),
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: _sensitivityColor(
+                                color: sensitivityColor(
                                     test.sensitivityLevel),
                               ),
                             ),

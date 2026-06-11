@@ -181,7 +181,7 @@ class PdfExportService {
               pw.SizedBox(height: 4),
               pw.Text('Category: ${bundle.test.category!}', style: engStyle(size: 12)),
             ],
-            if (bundle.test.about != null && bundle.test.about!.isNotEmpty) ...[
+            if (fullReport && bundle.test.about != null && bundle.test.about!.isNotEmpty) ...[
               pw.SizedBox(height: 6),
               pw.Container(
                 padding: const pw.EdgeInsets.all(8),
@@ -190,7 +190,7 @@ class PdfExportService {
                   borderRadius: pw.BorderRadius.all(pw.Radius.circular(4)),
                 ),
                 child: _text(bundle.test.about!, size: 11, color: PdfColors.grey700)),
-              
+            
             ],
 
             pw.SizedBox(height: 20),

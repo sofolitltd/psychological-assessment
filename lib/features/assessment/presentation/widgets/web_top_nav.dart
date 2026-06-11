@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/design_system/app_theme.dart';
 import '../../../../core/design_system/responsive.dart';
+import '../../../../core/design_system/theme_toggle_button.dart';
 
 class WebTopNav extends StatelessWidget {
   final String currentTab;
@@ -55,13 +56,29 @@ class WebTopNav extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: AppSpacing.sm),
-              Text(
-                'Psychological Assessments',
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  color: AppColors.primary,
-                ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Psychological',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                      height: 1.2,
+                      color: AppColors.primary,
+                    ),
+                  ),
+                  Text(
+                    'Assessment',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 13,
+                      height: 1.2,
+                      letterSpacing: 2.5,
+                      color: AppColors.primary,
+                    ),
+                  ),
+                ],
               ),
               const Spacer(),
               _NavItem(
@@ -82,6 +99,7 @@ class WebTopNav extends StatelessWidget {
                 onTap: () => context.go('/about'),
               ),
               const SizedBox(width: AppSpacing.sm),
+              const ThemeToggleButton(),
             ],
           ),
         ),

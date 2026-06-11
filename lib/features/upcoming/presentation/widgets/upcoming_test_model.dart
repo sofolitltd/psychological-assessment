@@ -1,17 +1,21 @@
-import 'package:flutter/widgets.dart';
+import '../../../assessment/domain/assessment_models.dart';
 
-class UpcomingTest {
-  final String name;
-  final String subtitle;
-  final String description;
-  final String eta;
-  final IconData icon;
+class UpcomingTestItem {
+  final TestListItem test;
+  final String pdfUrl;
+  final String scoringGuideUrl;
 
-  const UpcomingTest({
-    required this.name,
-    required this.subtitle,
-    required this.description,
-    required this.eta,
-    required this.icon,
+  const UpcomingTestItem({
+    required this.test,
+    this.pdfUrl = '',
+    this.scoringGuideUrl = '',
   });
+
+  factory UpcomingTestItem.fromJson(Map<String, dynamic> json) {
+    return UpcomingTestItem(
+      test: TestListItem.fromJson(json),
+      pdfUrl: json['pdfUrl'] as String? ?? '',
+      scoringGuideUrl: json['scoringGuideUrl'] as String? ?? '',
+    );
+  }
 }

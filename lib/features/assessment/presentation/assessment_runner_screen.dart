@@ -232,28 +232,12 @@ class _AssessmentRunnerScreenState
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Expanded(
-                          flex: Responsive.isDesktop(context) ? 4 : 3,
-                          child: Column(
-                            children: [
-                              RunnerInstructionCard(
-                                instruction: widget.test.instruction,
-                                scoringProcedure: widget.test.scoringProcedure,
-                                isDark: isDark,
-                                margin: const EdgeInsets.only(
-                                    left: 16, top: 16, right: 16, bottom: 8),
-                                onScoringInfo: () {
-                                  showScoringProcedureDialog(
-                                      context, widget.test.scoringProcedure!);
-                                },
-                              ),
-                              Expanded(
-                                child: _buildQuestionList(
-                                    isDark, visibleQuestions, state, notifier),
-                              ),
-                            ],
+                          Expanded(
+                            flex: Responsive.isDesktop(context) ? 4 : 3,
+                            child: _buildQuestionList(
+                                isDark, visibleQuestions, state, notifier,
+                                includeInstruction: true, showSubmit: false),
                           ),
-                        ),
                         SizedBox(
                           width: Responsive.isDesktop(context) ? 24 : 16,
                         ),

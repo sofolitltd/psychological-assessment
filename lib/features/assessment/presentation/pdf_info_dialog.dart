@@ -46,7 +46,8 @@ class _PdfInfoDialogState extends State<_PdfInfoDialogBody> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Dialog(
-      insetPadding: const EdgeInsets.all(AppSpacing.md),
+      insetPadding: const EdgeInsets.all(24),
+      backgroundColor: isDark ? AppColors.surfaceDark : Colors.white,
       child: Container(
         constraints: const BoxConstraints(
           maxHeight: 520,
@@ -61,7 +62,7 @@ class _PdfInfoDialogState extends State<_PdfInfoDialogBody> {
                 padding: const EdgeInsets.fromLTRB(
                   AppSpacing.md,
                   AppSpacing.md,
-                  AppSpacing.sm,
+                  AppSpacing.md,
                   0,
                 ),
                 child: Column(
@@ -108,14 +109,12 @@ class _PdfInfoDialogState extends State<_PdfInfoDialogBody> {
                     const Divider(),
                     const SizedBox(height: 4),
                     Text(
-                      'ডাউনলোডের আগে আপনার তথ্য দিন:',
-                      style: TextStyle(
+                      'Enter your details before download:',
+                      style: GoogleFonts.outfit(
                         fontSize: 14,
                         color: isDark
                             ? AppColors.textSecondaryDark
                             : AppColors.textSecondary,
-                        fontFamily:
-                            GoogleFonts.notoSerifBengali().fontFamily,
                       ),
                     ),
                     const SizedBox(height: 4),
@@ -129,21 +128,29 @@ class _PdfInfoDialogState extends State<_PdfInfoDialogBody> {
                   ),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      const SizedBox(height: 8),
                       TextFormField(
                         controller: nameController,
-                        decoration: const InputDecoration(
-                          labelText: 'নাম (Name)',
-                          hintText: 'আপনার নাম লিখুন',
-                          prefixIcon: Icon(LucideIcons.user, size: 20),
-                          border: OutlineInputBorder(),
+                        decoration: InputDecoration(
+                          labelText: 'Name',
+                          hintText: 'Enter your name',
+                          labelStyle: GoogleFonts.outfit(),
+                          hintStyle: GoogleFonts.outfit(),
+                          prefixIcon: const Icon(LucideIcons.user, size: 20),
+                          border: const OutlineInputBorder(),
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 10,
+                          ),
                         ),
                         validator: (value) {
                           if (value == null || value.trim().isEmpty) {
-                            return 'নাম দিন (Name is required)';
+                            return 'Name is required';
                           }
                           if (!_isOnlyEnglish(value.trim())) {
-                            return 'শুধু ইংরেজি অক্ষর ব্যবহার করুন (Only English characters)';
+                            return 'Only English characters allowed';
                           }
                           return null;
                         },
@@ -151,19 +158,24 @@ class _PdfInfoDialogState extends State<_PdfInfoDialogBody> {
                       const SizedBox(height: 12),
                       TextFormField(
                         controller: clientIdController,
-                        decoration: const InputDecoration(
-                          labelText:
-                              'ক্লায়েন্ট আইডি (Client ID) — ঐচ্ছিক',
-                          hintText: 'ক্লায়েন্ট আইডি থাকলে দিন',
-                          prefixIcon: Icon(LucideIcons.badge, size: 20),
-                          border: OutlineInputBorder(),
+                        decoration: InputDecoration(
+                          labelText: 'Client ID',
+                          hintText: 'Enter client ID (optional)',
+                          labelStyle: GoogleFonts.outfit(),
+                          hintStyle: GoogleFonts.outfit(),
+                          prefixIcon: const Icon(LucideIcons.badge, size: 20),
+                          border: const OutlineInputBorder(),
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 10,
+                          ),
                         ),
                         validator: (value) {
                           if (value == null || value.trim().isEmpty) {
                             return null;
                           }
                           if (!_isOnlyEnglish(value.trim())) {
-                            return 'শুধু ইংরেজি অক্ষর ব্যবহার করুন (Only English characters)';
+                            return 'Only English characters allowed';
                           }
                           return null;
                         },
@@ -172,60 +184,77 @@ class _PdfInfoDialogState extends State<_PdfInfoDialogBody> {
                       TextFormField(
                         controller: phoneController,
                         keyboardType: TextInputType.phone,
-                        decoration: const InputDecoration(
-                          labelText: 'ফোন নম্বর (Phone) — ঐচ্ছিক',
-                          hintText: 'ফোন নম্বর থাকলে দিন',
-                          prefixIcon: Icon(LucideIcons.phone, size: 20),
-                          border: OutlineInputBorder(),
+                        decoration: InputDecoration(
+                          labelText: 'Phone',
+                          hintText: 'Enter phone number (optional)',
+                          labelStyle: GoogleFonts.outfit(),
+                          hintStyle: GoogleFonts.outfit(),
+                          prefixIcon: const Icon(LucideIcons.phone, size: 20),
+                          border: const OutlineInputBorder(),
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 10,
+                          ),
                         ),
                         validator: (value) {
                           if (value == null || value.trim().isEmpty) {
                             return null;
                           }
                           if (!_isOnlyEnglish(value.trim())) {
-                            return 'শুধু ইংরেজি অক্ষর ব্যবহার করুন (Only English characters)';
+                            return 'Only English characters allowed';
                           }
                           return null;
                         },
                       ),
                       const SizedBox(height: 16),
                       Text(
-                        'রিপোর্টের ধরন নির্বাচন করুন:',
-                        style: TextStyle(
+                        'Select report type:',
+                        style: GoogleFonts.outfit(
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
-                          fontFamily:
-                              GoogleFonts.notoSerifBengali().fontFamily,
                         ),
                       ),
                       const SizedBox(height: 8),
-                      SegmentedButton<PdfType>(
-                        segments: const [
-                          ButtonSegment(
-                            value: PdfType.full,
-                            label: Text('সম্পূর্ণ'),
-                            icon: Icon(LucideIcons.fileText, size: 18),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: SegmentedButton<PdfType>(
+                          segments: [
+                            ButtonSegment(
+                              value: PdfType.full,
+                              label: Text('সম্পূর্ণ',
+                                style: TextStyle(
+                                  fontFamily: GoogleFonts.notoSerifBengali().fontFamily,
+                                  fontSize: 14,
+                                ),
+                              ),
+                              icon: const Icon(LucideIcons.fileText, size: 18),
+                            ),
+                            ButtonSegment(
+                              value: PdfType.summary,
+                              label: Text('সংক্ষিপ্ত',
+                                style: TextStyle(
+                                  fontFamily: GoogleFonts.notoSerifBengali().fontFamily,
+                                  fontSize: 14,
+                                ),
+                              ),
+                              icon: const Icon(LucideIcons.fileMinus, size: 18),
+                            ),
+                          ],
+                          selected: {selectedType},
+                          onSelectionChanged: (selection) {
+                            setState(() => selectedType = selection.first);
+                          },
+                          style: ButtonStyle(
+                            visualDensity: VisualDensity.compact,
+                            backgroundColor:
+                                WidgetStateProperty.resolveWith((states) {
+                              if (states.contains(WidgetState.selected)) {
+                                return AppColors.primary
+                                    .withValues(alpha: 0.15);
+                              }
+                              return null;
+                            }),
                           ),
-                          ButtonSegment(
-                            value: PdfType.summary,
-                            label: Text('সংক্ষিপ্ত'),
-                            icon: Icon(LucideIcons.fileMinus, size: 18),
-                          ),
-                        ],
-                        selected: {selectedType},
-                        onSelectionChanged: (selection) {
-                          setState(() => selectedType = selection.first);
-                        },
-                        style: ButtonStyle(
-                          visualDensity: VisualDensity.compact,
-                          backgroundColor:
-                              WidgetStateProperty.resolveWith((states) {
-                            if (states.contains(WidgetState.selected)) {
-                              return AppColors.primary
-                                  .withValues(alpha: 0.15);
-                            }
-                            return null;
-                          }),
                         ),
                       ),
                       const SizedBox(height: 4),
@@ -259,12 +288,20 @@ class _PdfInfoDialogState extends State<_PdfInfoDialogBody> {
                   children: [
                     TextButton(
                       onPressed: () => Navigator.pop(context),
-                      child: const Text('বাতিল'),
+                      child: Text('বাতিল',
+                        style: TextStyle(
+                          fontFamily: GoogleFonts.notoSerifBengali().fontFamily,
+                        ),
+                      ),
                     ),
                     const SizedBox(width: 8),
                     FilledButton.icon(
                       icon: const Icon(LucideIcons.fileDown, size: 18),
-                      label: const Text('ডাউনলোড'),
+                      label: Text('ডাউনলোড',
+                        style: TextStyle(
+                          fontFamily: GoogleFonts.notoSerifBengali().fontFamily,
+                        ),
+                      ),
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
                           Navigator.pop(

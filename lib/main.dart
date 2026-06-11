@@ -4,6 +4,7 @@ import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:go_router/go_router.dart';
 
 import 'core/design_system/app_theme.dart';
+import 'core/design_system/theme_notifier.dart';
 import 'features/about/presentation/about_screen.dart';
 import 'features/assessment/presentation/not_found_screen.dart';
 import 'features/assessment/presentation/result_screen_loader.dart';
@@ -70,20 +71,23 @@ final _router = GoRouter(
             return NoTransitionPage(child: ResultScreenLoader(testId: id));
           },
         ),
+        
       ],
     ),
   ],
 );
 
-class PsychologicalAssessmentApp extends StatelessWidget {
+class PsychologicalAssessmentApp extends ConsumerWidget {
   const PsychologicalAssessmentApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final themeMode = ref.watch(themeModeProvider);
     return MaterialApp.router(
       title: 'Psychological Assessment',
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
+      themeMode: themeMode,
       routerConfig: _router,
       debugShowCheckedModeBanner: false,
     );

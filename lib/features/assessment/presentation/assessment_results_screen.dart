@@ -92,11 +92,6 @@ class _AssessmentResultsScreenState extends State<AssessmentResultsScreen> {
             constraints: BoxConstraints(maxWidth: maxWidth),
             child: Column(
               children: [
-                if (!isMobile) ...[
-                  const SizedBox(height: 16),
-                  _buildTopBar(isDark, scores),
-          // const SizedBox(height: 12),
-                ],
                 Expanded(
                   child: isMobile
                       ? _buildMobileLayout(isDark, scores)
@@ -139,23 +134,44 @@ class _AssessmentResultsScreenState extends State<AssessmentResultsScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            OutlinedButton.icon(
-              onPressed: () => context.go('/'),
-              icon: const Icon(LucideIcons.chevronLeft, size: 16, color: Colors.white),
-              label: const Text(
-                'Back',
-                style: TextStyle(color: Colors.white, fontSize: 13),
-              ),
-              style: OutlinedButton.styleFrom(
-                side: const BorderSide(color: Colors.white38),
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                shape: RoundedRectangleBorder(
-                  borderRadius: AppRadius.roundedSm,
+            Row(
+              children: [
+                OutlinedButton.icon(
+                  onPressed: () => context.go('/test/${widget.bundle.testId}'),
+                  icon: const Icon(LucideIcons.chevronLeft, size: 16, color: Colors.white),
+                  label: const Text(
+                    'Test Details',
+                    style: TextStyle(color: Colors.white, fontSize: 13),
+                  ),
+                  style: OutlinedButton.styleFrom(
+                    side: const BorderSide(color: Colors.white38),
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: AppRadius.roundedSm,
+                    ),
+                    visualDensity: VisualDensity.compact,
+                  ),
                 ),
-                visualDensity: VisualDensity.compact,
-              ),
+                const SizedBox(width: 8),
+                OutlinedButton.icon(
+                  onPressed: () => context.go('/'),
+                  icon: const Icon(LucideIcons.home, size: 16, color: Colors.white),
+                  label: const Text(
+                    'Home',
+                    style: TextStyle(color: Colors.white, fontSize: 13),
+                  ),
+                  style: OutlinedButton.styleFrom(
+                    side: const BorderSide(color: Colors.white38),
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: AppRadius.roundedSm,
+                    ),
+                    visualDensity: VisualDensity.compact,
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 12),
             Text(
               'Assessment Result',
               style: const TextStyle(
@@ -251,32 +267,46 @@ class _AssessmentResultsScreenState extends State<AssessmentResultsScreen> {
     final rightFlex = isDesktop ? 3 : 2;
     final gap = isDesktop ? 24.0 : 16.0;
 
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Expanded(
-          flex: leftFlex,
-          child: ListView(
-            padding: const EdgeInsets.fromLTRB(16, 16, 0, 16),
-            children: scores.map((result) => Padding(
-              padding: const EdgeInsets.only(bottom: AppSpacing.lg),
-              child: _buildScoreCard(result, isDark),
-            )).toList(),
+    return CustomScrollView(
+      slivers: [
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 16),
+            child: _buildTopBar(isDark, scores),
           ),
         ),
-        SizedBox(width: gap),
-        Expanded(
-          flex: rightFlex,
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(0, 16, 16, 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildSummarySection(isDark, scores),
-                const SizedBox(height: AppSpacing.md),
-                _buildBottomActions(isDark),
-              ],
-            ),
+        const SliverToBoxAdapter(child: SizedBox(height: 12)),
+        SliverFillRemaining(
+          hasScrollBody: true,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                flex: leftFlex,
+                child: ListView(
+                  padding: const EdgeInsets.fromLTRB(16, 0, 0, 16),
+                  children: scores.map((result) => Padding(
+                    padding: const EdgeInsets.only(bottom: AppSpacing.lg),
+                    child: _buildScoreCard(result, isDark),
+                  )).toList(),
+                ),
+              ),
+              SizedBox(width: gap),
+              Expanded(
+                flex: rightFlex,
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 16, 16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildSummarySection(isDark, scores),
+                      const SizedBox(height: AppSpacing.md),
+                      _buildBottomActions(isDark),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ],

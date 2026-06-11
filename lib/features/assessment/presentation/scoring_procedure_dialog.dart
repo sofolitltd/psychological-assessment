@@ -25,12 +25,12 @@ void showScoringProcedureDialog(BuildContext context, String scoringProcedure) {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                   Text(
-                    'স্কোরিং পদ্ধতি (Scoring SOP)',
+                    Text(
+                     'স্কোরিং পদ্ধতি',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      fontFamily: GoogleFonts.anekBangla().fontFamily,
+                      fontFamily: GoogleFonts.notoSerifBengali().fontFamily,
                     ),
                   ),
                   IconButton(

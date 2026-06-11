@@ -11,13 +11,26 @@ class AppColors {
   static const border = Color(0xFFCAC4D0);
 
   // Dark Mode
-  static const backgroundDark = Color(0xFF121212);
-  static const surfaceDark = Color(0xFF1E1E1E);
+  static const backgroundDark = Color(0xFF0D1117);
+  static const surfaceDark = Color(0xFF161B22);
   static const textPrimaryDark = Color(0xFFE6E1E5);
   static const textSecondaryDark = Color(0xFFCAC4D0);
-  static const borderDark = Color(0xFF49454F);
+  static const borderDark = Color(0xFF30363D);
 
   static const cardShadow = Color(0x14000000);
+}
+
+Color sensitivityColor(String level) {
+  switch (level) {
+    case 'High':
+      return const Color(0xFFE53935);
+    case 'Medium':
+      return const Color(0xFFFB8C00);
+    case 'Low':
+      return const Color(0xFF43A047);
+    default:
+      return const Color(0xFFD9D7D7);
+  }
 }
 
 class AppSpacing {

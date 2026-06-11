@@ -4,17 +4,27 @@ import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../../core/design_system/app_theme.dart';
 
-void showUpcomingContactDialog(BuildContext context, bool isDark, TextTheme textTheme) {
+void showUpcomingContactDialog(
+  BuildContext context,
+  bool isDark,
+  TextTheme textTheme, {
+  String? titleText,
+  String? subtitleText,
+}) {
   final notoSerif = GoogleFonts.notoSerifBengali();
   showDialog(
     context: context,
     builder: (ctx) => AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: AppRadius.roundedMd),
+      backgroundColor: isDark ? AppColors.surfaceDark : Colors.white,
       title: Row(
         children: [
           const Icon(LucideIcons.handshake, color: AppColors.primary, size: 22),
           const SizedBox(width: 10),
-          Expanded(child: Text('যোগ দিন', style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold, fontFamily: notoSerif.fontFamily))),
+          Expanded(child: Text(
+            titleText ?? 'যোগ দিন',
+            style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold, fontFamily: notoSerif.fontFamily),
+          )),
           IconButton(
             icon: const Icon(LucideIcons.x, size: 20),
             onPressed: () => Navigator.of(ctx).pop(),
@@ -27,7 +37,7 @@ void showUpcomingContactDialog(BuildContext context, bool isDark, TextTheme text
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'বাংলা মনস্তাত্ত্বিক মূল্যায়ন টুল তৈরিতে আমাদের সাথে অংশ নিতে নিচের যেকোনো মাধ্যমে যোগাযোগ করুন।',
+            subtitleText ?? 'বাংলা মনস্তাত্ত্বিক মূল্যায়ন টুল তৈরিতে আমাদের সাথে অংশ নিতে নিচের যেকোনো মাধ্যমে যোগাযোগ করুন।',
             style: textTheme.bodyMedium?.copyWith(height: 1.5, fontFamily: notoSerif.fontFamily),
           ),
           const SizedBox(height: AppSpacing.lg),
