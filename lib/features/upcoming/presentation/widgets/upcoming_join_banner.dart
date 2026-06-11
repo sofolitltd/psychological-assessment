@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
-import '../../../../core/design_system/app_theme.dart';
-import 'upcoming_contact_dialog.dart';
+import 'package:psychological_assessment/core/design_system/app_theme.dart';
+import '../dialogs/upcoming_contact_dialog.dart';
 
 class UpcomingJoinBanner extends StatelessWidget {
   final bool isDark;

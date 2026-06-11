@@ -6,10 +6,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../core/design_system/app_theme.dart';
-import '../data/assessment_repository.dart';
-import '../domain/assessment_bundle.dart';
-import 'assessment_results_screen.dart';
+import 'package:psychological_assessment/core/design_system/app_theme.dart';
+import 'package:psychological_assessment/features/assessment/data/assessment_repository.dart';
+import 'package:psychological_assessment/features/assessment/domain/assessment_bundle.dart';
+import 'package:psychological_assessment/features/assessment/presentation/screens/assessment_results_screen.dart';
 
 class ResultScreenLoader extends ConsumerWidget {
   final String testId;

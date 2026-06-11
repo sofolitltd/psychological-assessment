@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
-import '../../../core/design_system/app_theme.dart';
-import '../../../core/design_system/responsive.dart';
-import '../data/assessment_repository.dart';
-import 'widgets/detail_about_section.dart';
-import 'widgets/detail_content_card.dart';
-import 'widgets/detail_header_card.dart';
-import 'widgets/detail_instruction_section.dart';
-import 'widgets/detail_lucide_icon_map.dart';
-import 'widgets/detail_ready_card.dart';
-import 'widgets/detail_resources_card.dart';
-import 'widgets/detail_stats.dart';
-import 'widgets/detail_top_bar.dart';
-import 'widgets/mobile_bottom_nav.dart';
-import 'widgets/web_top_nav.dart';
+import 'package:psychological_assessment/core/design_system/app_theme.dart';
+import 'package:psychological_assessment/core/design_system/responsive.dart';
+import 'package:psychological_assessment/features/assessment/data/assessment_repository.dart';
+import 'package:psychological_assessment/features/assessment/presentation/widgets/detail_about_section.dart';
+import 'package:psychological_assessment/features/assessment/presentation/widgets/detail_content_card.dart';
+import 'package:psychological_assessment/features/assessment/presentation/widgets/detail_header_card.dart';
+import 'package:psychological_assessment/features/assessment/presentation/widgets/detail_instruction_section.dart';
+import 'package:psychological_assessment/features/assessment/presentation/widgets/detail_lucide_icon_map.dart';
+import 'package:psychological_assessment/features/assessment/presentation/widgets/detail_ready_card.dart';
+import 'package:psychological_assessment/features/assessment/presentation/widgets/detail_resources_card.dart';
+import 'package:psychological_assessment/features/assessment/presentation/widgets/detail_stats.dart';
+import 'package:psychological_assessment/features/assessment/presentation/widgets/detail_top_bar.dart';
+import 'package:psychological_assessment/core/widgets/mobile_bottom_nav.dart';
+import 'package:psychological_assessment/core/widgets/web_top_nav.dart';
 
 class TestDetailScreen extends ConsumerWidget {
   final String testId;

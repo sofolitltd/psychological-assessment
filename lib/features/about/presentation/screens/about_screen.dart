@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../../core/design_system/app_theme.dart';
-import '../../../core/design_system/responsive.dart';
-import '../../assessment/presentation/widgets/mobile_bottom_nav.dart';
-import '../../assessment/presentation/widgets/web_top_nav.dart';
-import 'widgets/about_about_section.dart';
-import 'widgets/about_connect_section.dart';
-import 'widgets/about_developer_section.dart';
-import 'widgets/about_disclaimer_section.dart';
-import 'widgets/about_features_section.dart';
-import 'widgets/about_header_section.dart';
-import 'widgets/about_powered_by.dart';
+import 'package:psychological_assessment/core/design_system/app_theme.dart';
+import 'package:psychological_assessment/core/design_system/responsive.dart';
+import 'package:psychological_assessment/core/widgets/mobile_bottom_nav.dart';
+import 'package:psychological_assessment/core/widgets/web_top_nav.dart';
+import '../widgets/about_about_section.dart';
+import '../widgets/about_connect_section.dart';
+import '../widgets/about_developer_section.dart';
+import '../widgets/about_disclaimer_section.dart';
+import '../widgets/about_features_section.dart';
+import '../widgets/about_header_section.dart';
+import '../widgets/about_powered_by.dart';
 
 class AboutScreen extends ConsumerWidget {
   const AboutScreen({super.key});

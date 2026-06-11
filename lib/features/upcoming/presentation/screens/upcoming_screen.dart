@@ -2,19 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
-import '../../../core/design_system/app_theme.dart';
-import '../../../core/design_system/responsive.dart';
-import '../../assessment/presentation/widgets/mobile_bottom_nav.dart';
-import '../../assessment/presentation/widgets/test_empty_state.dart';
-import '../../assessment/presentation/widgets/test_filter_chip.dart';
-import '../../assessment/presentation/widgets/test_search_field.dart';
-import '../../assessment/presentation/widgets/test_sort_menu.dart';
-import '../../assessment/presentation/widgets/web_top_nav.dart';
-import '../data/upcoming_repository.dart';
-import 'widgets/upcoming_join_banner.dart';
-import 'widgets/upcoming_resource_dialog.dart';
-import 'widgets/upcoming_test_card.dart';
-import 'widgets/upcoming_test_model.dart';
+import 'package:psychological_assessment/core/design_system/app_theme.dart';
+import 'package:psychological_assessment/core/design_system/responsive.dart';
+import 'package:psychological_assessment/core/widgets/mobile_bottom_nav.dart';
+import 'package:psychological_assessment/core/widgets/test_empty_state.dart';
+import 'package:psychological_assessment/core/widgets/test_search_field.dart';
+import 'package:psychological_assessment/core/widgets/test_sort_menu.dart';
+import 'package:psychological_assessment/core/widgets/web_top_nav.dart';
+import 'package:psychological_assessment/features/upcoming/domain/upcoming_list_utils.dart';
+import 'package:psychological_assessment/features/upcoming/presentation/widgets/upcoming_category_filter_bar.dart';
+import 'package:psychological_assessment/features/upcoming/presentation/widgets/upcoming_header_title.dart';
+import '../../data/upcoming_repository.dart';
+import '../widgets/upcoming_join_banner.dart';
+import '../dialogs/upcoming_resource_dialog.dart';
+import '../widgets/upcoming_test_card.dart';
+import '../widgets/upcoming_test_model.dart';
 
 class UpcomingScreen extends ConsumerStatefulWidget {
   const UpcomingScreen({super.key});
@@ -47,29 +49,6 @@ class _UpcomingScreenState extends ConsumerState<UpcomingScreen> {
   Future<void> _refresh() {
     ref.invalidate(upcomingTestListProvider);
     return ref.refresh(upcomingTestListProvider.future);
-  }
-
-  List<UpcomingTestItem> _sorted(List<UpcomingTestItem> items) {
-    if (_sortBy == 'all') {
-      if (!_sortAscending) return items.reversed.toList();
-      return items;
-    }
-    final sorted = List<UpcomingTestItem>.of(items);
-    switch (_sortBy) {
-      case 'severity':
-        const order = {'High': 0, 'Medium': 1, 'Low': 2};
-        sorted.sort((a, b) => (order[a.test.sensitivityLevel] ?? 3)
-            .compareTo(order[b.test.sensitivityLevel] ?? 3));
-        break;
-      case 'items':
-        sorted.sort((a, b) => a.test.questionCount.compareTo(b.test.questionCount));
-        break;
-      case 'name':
-        sorted.sort((a, b) => a.test.name.compareTo(b.test.name));
-        break;
-    }
-    if (!_sortAscending) return sorted.reversed.toList();
-    return sorted;
   }
 
   @override
@@ -110,7 +89,7 @@ class _UpcomingScreenState extends ConsumerState<UpcomingScreen> {
                     .toList()
                   ..sort();
 
-                final filteredItems = _sorted(items.where((item) {
+                final filteredItems = sortUpcomingList(items.where((item) {
                   final matchesCategory = _selectedCategory == null ||
                       item.test.category == _selectedCategory;
                   final q = _searchQuery.toLowerCase();
@@ -118,7 +97,7 @@ class _UpcomingScreenState extends ConsumerState<UpcomingScreen> {
                       item.test.name.toLowerCase().contains(q) ||
                       item.test.description.toLowerCase().contains(q);
                   return matchesCategory && matchesSearch;
-                }).toList());
+                }).toList(), sortBy: _sortBy, ascending: _sortAscending);
 
                 final columns = Responsive.gridColumns(context);
                 final maxWidth = Responsive.maxContentWidth(context);
@@ -248,26 +227,9 @@ class _UpcomingScreenState extends ConsumerState<UpcomingScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Upcoming Tests',
-                        style: textTheme.headlineSmall?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          height: 1.2,
-                        ),
-                      ),
-                      const SizedBox(height: AppSpacing.xs),
-                      Text(
-                        'New assessments currently in development.',
-                        style: textTheme.bodyMedium?.copyWith(
-                          color: isDark
-                              ? AppColors.textSecondaryDark
-                              : AppColors.textSecondary,
-                        ),
-                      ),
-                    ],
+                  child: UpcomingHeaderTitle(
+                    textTheme: textTheme,
+                    isDark: isDark,
                   ),
                 ),
                 const SizedBox(width: AppSpacing.md),
@@ -292,21 +254,9 @@ class _UpcomingScreenState extends ConsumerState<UpcomingScreen> {
               ],
             )
           else ...[
-            Text(
-              'Upcoming Tests',
-              style: textTheme.headlineSmall?.copyWith(
-                fontWeight: FontWeight.bold,
-                height: 1.2,
-              ),
-            ),
-            const SizedBox(height: AppSpacing.xs),
-            Text(
-              'New assessments currently in development.',
-              style: textTheme.bodyMedium?.copyWith(
-                color: isDark
-                    ? AppColors.textSecondaryDark
-                    : AppColors.textSecondary,
-              ),
+            UpcomingHeaderTitle(
+              textTheme: textTheme,
+              isDark: isDark,
             ),
             const SizedBox(height: AppSpacing.lg),
             Row(
@@ -344,39 +294,12 @@ class _UpcomingScreenState extends ConsumerState<UpcomingScreen> {
           ],
           const SizedBox(height: AppSpacing.md),
 
-          SizedBox(
-            height: 32,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              clipBehavior: Clip.none,
-              children: [
-                TestFilterChip(
-                  label: 'All',
-                  selected: _selectedCategory == null,
-                  count: items.length,
-                  onTap: () =>
-                      setState(() => _selectedCategory = null),
-                ),
-                const SizedBox(width: 8),
-                ...categories.map(
-                  (category) => Padding(
-                    padding: const EdgeInsets.only(right: 8),
-                    child: TestFilterChip(
-                      label: category,
-                      selected: _selectedCategory == category,
-                      count: items.where(
-                              (t) => t.test.category == category)
-                          .length,
-                      onTap: () => setState(() =>
-                          _selectedCategory =
-                              _selectedCategory == category
-                                  ? null
-                                  : category),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+          UpcomingCategoryFilterBar(
+            categories: categories,
+            items: items,
+            selectedCategory: _selectedCategory,
+            onCategoryChanged: (val) =>
+                setState(() => _selectedCategory = val),
           ),
         ],
       ),

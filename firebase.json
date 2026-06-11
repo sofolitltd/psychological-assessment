@@ -8,15 +8,7 @@
     ],
     "rewrites": [
       {
-        "source": "/test/**",
-        "destination": "/index.html"
-      },
-      {
-        "source": "/upcoming/**",
-        "destination": "/index.html"
-      },
-      {
-        "source": "/about/**",
+        "source": "**",
         "destination": "/index.html"
       }
     ]

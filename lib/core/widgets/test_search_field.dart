@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
-import '../../../../core/design_system/app_theme.dart';
+import 'package:psychological_assessment/core/design_system/app_theme.dart';
 
 class TestSearchField extends StatelessWidget {
   final TextEditingController controller;

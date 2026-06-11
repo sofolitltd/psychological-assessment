@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
-import '../../../core/design_system/app_theme.dart';
-import '../data/assessment_repository.dart';
-import 'assessment_runner_screen.dart';
+import 'package:psychological_assessment/core/design_system/app_theme.dart';
+import 'package:psychological_assessment/features/assessment/data/assessment_repository.dart';
+import 'package:psychological_assessment/features/assessment/presentation/screens/assessment_runner_screen.dart';
 
 class RunnerScreenLoader extends ConsumerWidget {
   final String testId;

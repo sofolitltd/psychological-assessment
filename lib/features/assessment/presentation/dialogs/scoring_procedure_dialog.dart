@@ -3,7 +3,7 @@ import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
-import '../../../core/design_system/app_theme.dart';
+import 'package:psychological_assessment/core/design_system/app_theme.dart';
 
 void showScoringProcedureDialog(BuildContext context, String scoringProcedure) {
   showDialog(

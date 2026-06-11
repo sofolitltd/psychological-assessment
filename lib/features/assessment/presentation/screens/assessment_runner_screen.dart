@@ -2,20 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../core/design_system/app_theme.dart';
-import '../../../core/design_system/responsive.dart';
-import '../data/assessment_repository.dart';
-import '../domain/assessment_bundle.dart';
-import '../domain/assessment_models.dart';
-import '../domain/scoring_engine.dart';
-import 'assessment_notifier.dart';
-import 'scoring_procedure_dialog.dart';
-import 'widgets/runner_instruction_card.dart';
-import 'widgets/runner_question_card.dart';
-import 'widgets/runner_question_navigator.dart';
-import 'widgets/runner_sidebar.dart';
-import 'widgets/runner_submit_button.dart';
-import 'widgets/runner_top_bar.dart';
+import 'package:psychological_assessment/core/design_system/app_theme.dart';
+import 'package:psychological_assessment/core/design_system/responsive.dart';
+import 'package:psychological_assessment/features/assessment/data/assessment_repository.dart';
+import 'package:psychological_assessment/features/assessment/domain/assessment_bundle.dart';
+import 'package:psychological_assessment/features/assessment/domain/assessment_models.dart';
+import 'package:psychological_assessment/features/assessment/domain/scoring_engine.dart';
+import 'package:psychological_assessment/features/assessment/presentation/providers/assessment_notifier.dart';
+import 'package:psychological_assessment/features/assessment/presentation/widgets/runner_question_list_view.dart';
+import 'package:psychological_assessment/features/assessment/presentation/widgets/runner_question_navigator.dart';
+import 'package:psychological_assessment/features/assessment/presentation/widgets/runner_sidebar.dart';
+import 'package:psychological_assessment/features/assessment/presentation/widgets/runner_top_bar.dart';
 
 class AssessmentRunnerScreen extends ConsumerStatefulWidget {
   final AssessmentTest test;
@@ -112,50 +109,6 @@ class _AssessmentRunnerScreenState
     });
   }
 
-  void _scrollToNextUnanswered(
-    List<TestQuestion> visible,
-    Map<int, int> responses,
-  ) {
-    final nextIndex = visible.indexWhere(
-      (q) => !responses.containsKey(q.id),
-    );
-    if (nextIndex < 0) return;
-    final ctx = _questionKeyMap[visible[nextIndex].id]?.currentContext;
-    if (ctx != null && ctx.findRenderObject() != null) {
-      Scrollable.ensureVisible(
-        ctx,
-        duration: const Duration(milliseconds: 200),
-        curve: Curves.easeInOut,
-        alignment: 0.5,
-      );
-      return;
-    }
-
-    final padding = AppSpacing.md;
-    final roughOffset = padding + nextIndex * (_estimateItemHeight + AppSpacing.md);
-    _scrollController.jumpTo(
-      roughOffset.clamp(0.0, _scrollController.position.maxScrollExtent),
-    );
-
-    Future(() {
-      if (!mounted) return;
-      final updatedVisible = _getVisibleQuestions(ref.read(assessmentProvider).responses);
-      final updatedIndex = updatedVisible.indexWhere(
-        (q) => !responses.containsKey(q.id),
-      );
-      if (updatedIndex < 0) return;
-      final retryCtx = _questionKeyMap[updatedVisible[updatedIndex].id]?.currentContext;
-      if (retryCtx == null) return;
-      if(!retryCtx.mounted) return;
-      Scrollable.ensureVisible(
-        retryCtx,
-        duration: const Duration(milliseconds: 200),
-        curve: Curves.easeInOut,
-        alignment: 0.5,
-      );
-    });
-  }
-
   void _finishAssessment(Map<int, int> responses) {
     final engine = ScoringEngineFactory.forTest(widget.test.testId);
     final rawScores = engine.calculate(
@@ -226,7 +179,21 @@ class _AssessmentRunnerScreenState
                     answeredIndices,
                   ),
                 if (isMobile) ...[
-                  Expanded(child: _buildQuestionList(isDark, visibleQuestions, state, notifier, includeInstruction: true, showSubmit: true)),
+                  Expanded(child: RunnerQuestionListView(
+                    isDark: isDark,
+                    visibleQuestions: visibleQuestions,
+                    responses: state.responses,
+                    notifier: notifier,
+                    questionKeyMap: _questionKeyMap,
+                    scrollController: _scrollController,
+                    instruction: widget.test.instruction,
+                    scoringProcedure: widget.test.scoringProcedure,
+                    allQuestions: widget.test.questions,
+                    defaultOptions: widget.test.options,
+                    includeInstruction: true,
+                    showSubmit: true,
+                    onFinish: () => _finishAssessment(state.responses),
+                  )),
                 ] else
                   Expanded(
                     child: Row(
@@ -234,16 +201,27 @@ class _AssessmentRunnerScreenState
                       children: [
                           Expanded(
                             flex: Responsive.isDesktop(context) ? 4 : 3,
-                            child: _buildQuestionList(
-                                isDark, visibleQuestions, state, notifier,
-                                includeInstruction: true, showSubmit: false),
+                            child: RunnerQuestionListView(
+                              isDark: isDark,
+                              visibleQuestions: visibleQuestions,
+                              responses: state.responses,
+                              notifier: notifier,
+                              questionKeyMap: _questionKeyMap,
+                              scrollController: _scrollController,
+                              instruction: widget.test.instruction,
+                              scoringProcedure: widget.test.scoringProcedure,
+                              allQuestions: widget.test.questions,
+                              defaultOptions: widget.test.options,
+                              includeInstruction: true,
+                              showSubmit: false,
+                            ),
                           ),
                         SizedBox(
                           width: Responsive.isDesktop(context) ? 24 : 16,
                         ),
                         Expanded(
                           flex: Responsive.isDesktop(context) ? 3 : 2,
-                          child:                           RunnerSidebar(
+                          child:                          RunnerSidebar(
                             totalQuestions: visibleQuestions.length,
                             answeredIndices: answeredIndices,
                             progress: progress,
@@ -292,79 +270,4 @@ class _AssessmentRunnerScreenState
       ),
     );
   }
-
-
-
-  Widget _buildQuestionList(
-    bool isDark,
-    List<TestQuestion> visibleQuestions,
-    AssessmentState state,
-    AssessmentNotifier notifier,
-    {bool includeInstruction = false,
-    bool showSubmit = false}
-  ) {
-    final responses = state.responses;
-    final hasInstruction = includeInstruction &&
-        widget.test.instruction != null &&
-        widget.test.instruction!.isNotEmpty;
-    final isComplete = notifier.isComplete(visibleQuestions.length);
-
-    final children = <Widget>[];
-    if (hasInstruction) {
-      children.add(RunnerInstructionCard(
-        instruction: widget.test.instruction,
-        scoringProcedure: widget.test.scoringProcedure,
-        isDark: isDark,
-        margin: const EdgeInsets.only(top: 4, bottom: 24),
-        onScoringInfo: () {
-          showScoringProcedureDialog(
-              context, widget.test.scoringProcedure!);
-        },
-      ));
-    }
-    for (final question in visibleQuestions) {
-      final selected = responses[question.id];
-      final displayNumber =
-          widget.test.questions.indexWhere((q) => q.id == question.id) + 1;
-      children.add(RunnerQuestionCard(
-        key: _questionKeyMap[question.id],
-        question: question,
-        options: question.options ?? widget.test.options,
-        selectedValue: selected,
-        questionNumber: displayNumber,
-        onChanged: (val) {
-          if (val != null) {
-            notifier.setResponse(question.id, val);
-            for (final q in widget.test.questions) {
-              if (q.showIf?.questionId == question.id &&
-                  q.showIf?.value != val) {
-                notifier.clearResponse(q.id);
-              }
-            }
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              if (!mounted) return;
-              final newResp =
-                  ref.read(assessmentProvider).responses;
-              final newVis = _getVisibleQuestions(newResp);
-              _scrollToNextUnanswered(newVis, newResp);
-            });
-          }
-        },
-      ));
-      children.add(const SizedBox(height: 10));
-    }
-    if (showSubmit) {
-      children.add(RunnerSubmitButton(
-        isComplete: isComplete,
-        onSubmit: () => _finishAssessment(responses),
-      ));
-    }
-
-    return ListView(
-      controller: _scrollController,
-      padding: const EdgeInsets.all(AppSpacing.md),
-      children: children,
-    );
-  }
-
 }

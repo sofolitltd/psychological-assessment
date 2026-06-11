@@ -1,7 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-// ─── State ────────────────────────────────────────────────────────────────────
-
 class AssessmentState {
   final Map<int, int> responses;
 
@@ -11,8 +9,6 @@ class AssessmentState {
     return AssessmentState(responses: responses ?? this.responses);
   }
 }
-
-// ─── Notifier ────────────────────────────────────────────────────────────────
 
 class AssessmentNotifier extends Notifier<AssessmentState> {
   @override
@@ -33,14 +29,12 @@ class AssessmentNotifier extends Notifier<AssessmentState> {
     state = const AssessmentState();
   }
 
-  /// [visibleCount] is the number of currently visible questions (skip-logic aware).
   double getProgress(int visibleCount) {
     if (visibleCount == 0) return 0;
     final answered = state.responses.length;
     return (answered / visibleCount).clamp(0.0, 1.0);
   }
 
-  /// [visibleCount] is the number of currently visible questions (skip-logic aware).
   bool isComplete(int visibleCount) {
     if (visibleCount == 0) return false;
     return state.responses.length >= visibleCount;

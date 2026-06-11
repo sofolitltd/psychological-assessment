@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../../../../core/design_system/app_theme.dart';
-import '../../../assessment/presentation/widgets/detail_lucide_icon_map.dart';
-import 'upcoming_contact_dialog.dart';
-import 'upcoming_test_model.dart';
+import 'package:psychological_assessment/core/design_system/app_theme.dart';
+import 'package:psychological_assessment/features/assessment/presentation/widgets/detail_lucide_icon_map.dart';
+import '../dialogs/upcoming_contact_dialog.dart';
+import '../widgets/upcoming_test_model.dart';
 
 void showUpcomingResourceDialog(
   BuildContext context,
@@ -22,6 +22,7 @@ void showUpcomingResourceDialog(
     builder: (ctx) => AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: AppRadius.roundedMd),
       title: Row(
+        crossAxisAlignment: .start,
         children: [
           Container(
             padding: const EdgeInsets.all(8),
@@ -35,9 +36,9 @@ void showUpcomingResourceDialog(
           Expanded(
             child: Text(
               test.name,
-              style: textTheme.titleMedium?.copyWith(
+              style: textTheme.titleSmall?.copyWith(
                 fontWeight: FontWeight.bold,
-                fontFamily: notoSerif.fontFamily,
+                fontFamily: GoogleFonts.outfit().fontFamily,
               ),
             ),
           ),

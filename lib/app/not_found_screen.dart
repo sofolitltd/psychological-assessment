@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
-
-import '../../../core/design_system/app_theme.dart';
-import '../../../core/design_system/responsive.dart';
-import 'widgets/mobile_bottom_nav.dart';
-import 'widgets/web_top_nav.dart';
+import 'package:psychological_assessment/core/design_system/app_theme.dart';
+import 'package:psychological_assessment/core/design_system/responsive.dart';
+import 'package:psychological_assessment/core/widgets/mobile_bottom_nav.dart';
+import 'package:psychological_assessment/core/widgets/web_top_nav.dart';
 
 class NotFoundScreen extends StatelessWidget {
   const NotFoundScreen({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/design_system/app_theme.dart';
+import 'package:psychological_assessment/core/design_system/app_theme.dart';
 
 class TestFilterChip extends StatelessWidget {
   final String label;

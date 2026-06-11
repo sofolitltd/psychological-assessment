@@ -5,7 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../core/design_system/app_theme.dart';
 import '../../domain/assessment_models.dart';
-import '../scoring_procedure_dialog.dart';
+import 'package:psychological_assessment/features/assessment/presentation/dialogs/scoring_procedure_dialog.dart';
 
 class DetailResourcesCard extends StatelessWidget {
   final AssessmentTest test;

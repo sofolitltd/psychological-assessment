@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../core/design_system/app_theme.dart';
-import '../../../core/design_system/responsive.dart';
-import '../../../core/design_system/theme_toggle_button.dart';
-import '../../../features/upcoming/presentation/widgets/upcoming_contact_dialog.dart';
-import '../data/assessment_repository.dart';
-import '../domain/assessment_models.dart';
-import 'widgets/mobile_bottom_nav.dart';
-import 'widgets/test_card.dart';
-import 'widgets/test_empty_state.dart';
-import 'widgets/test_filter_chip.dart';
-import 'widgets/test_search_field.dart';
-import 'widgets/test_sort_menu.dart';
-import 'widgets/web_top_nav.dart';
+import 'package:psychological_assessment/core/design_system/app_theme.dart';
+import 'package:psychological_assessment/core/design_system/responsive.dart';
+import 'package:psychological_assessment/core/design_system/theme_toggle_button.dart';
+import 'package:psychological_assessment/features/upcoming/presentation/dialogs/upcoming_contact_dialog.dart';
+import 'package:psychological_assessment/features/assessment/data/assessment_repository.dart';
+import 'package:psychological_assessment/features/assessment/domain/assessment_models.dart';
+import 'package:psychological_assessment/features/assessment/presentation/widgets/test_card.dart';
+import 'package:psychological_assessment/core/widgets/mobile_bottom_nav.dart';
+import 'package:psychological_assessment/core/widgets/test_empty_state.dart';
+import 'package:psychological_assessment/core/widgets/test_search_field.dart';
+import 'package:psychological_assessment/core/widgets/test_sort_menu.dart';
+import 'package:psychological_assessment/core/widgets/web_top_nav.dart';
+
+import 'package:psychological_assessment/features/assessment/domain/test_list_utils.dart';
+import 'package:psychological_assessment/features/assessment/presentation/widgets/educational_banner.dart';
+import 'package:psychological_assessment/features/assessment/presentation/widgets/test_list_header_title.dart';
+import 'package:psychological_assessment/features/assessment/presentation/widgets/test_category_filter_bar.dart';
 
 class TestListScreen extends ConsumerStatefulWidget {
   const TestListScreen({super.key});
@@ -67,32 +69,6 @@ class _TestListScreenState extends ConsumerState<TestListScreen> {
     return ref.refresh(testListProvider.future);
   }
 
-  List<TestListItem> _sorted(List<TestListItem> items) {
-    if (_sortBy == 'all') {
-      if (!_sortAscending) return items.reversed.toList();
-      return items;
-    }
-    final sorted = List<TestListItem>.of(items);
-    switch (_sortBy) {
-      case 'time':
-        sorted.sort((a, b) => a.estimatedTimeMinutes.compareTo(b.estimatedTimeMinutes));
-        break;
-      case 'severity':
-        const order = {'High': 0, 'Medium': 1, 'Low': 2};
-        sorted.sort((a, b) => (order[a.sensitivityLevel] ?? 3)
-            .compareTo(order[b.sensitivityLevel] ?? 3));
-        break;
-      case 'items':
-        sorted.sort((a, b) => a.questionCount.compareTo(b.questionCount));
-        break;
-      case 'name':
-        sorted.sort((a, b) => a.name.compareTo(b.name));
-        break;
-    }
-    if (!_sortAscending) return sorted.reversed.toList();
-    return sorted;
-  }
-
   @override
   Widget build(BuildContext context) {
     final isMobile = Responsive.isMobile(context);
@@ -131,7 +107,7 @@ class _TestListScreenState extends ConsumerState<TestListScreen> {
                     .toList()
                   ..sort();
 
-                final filteredTests = _sorted(tests.where((test) {
+                final filteredTests = sortTestList(tests.where((test) {
                   final matchesCategory = _selectedCategory == null ||
                       test.category == _selectedCategory;
                   final matchesSearch = test.name
@@ -141,7 +117,7 @@ class _TestListScreenState extends ConsumerState<TestListScreen> {
                           .toLowerCase()
                           .contains(_searchQuery.toLowerCase());
                   return matchesCategory && matchesSearch;
-                }).toList());
+                }).toList(), sortBy: _sortBy, ascending: _sortAscending);
 
                 final columns = Responsive.gridColumns(context);
                 final maxWidth = Responsive.maxContentWidth(context);
@@ -168,9 +144,15 @@ class _TestListScreenState extends ConsumerState<TestListScreen> {
                             SliverPadding(
                               padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
                               sliver: SliverToBoxAdapter(
-                                child: _buildEducationalBanner(
-                                  isDark: isDark,
-                                  textTheme: textTheme,
+                                child: EducationalBanner(
+                                  onDismiss: _dismissBanner,
+                                  onContactTap: () => showUpcomingContactDialog(
+                                    context,
+                                    isDark,
+                                    textTheme,
+                                    titleText: 'যোগাযোগ করুন',
+                                    subtitleText: 'যে কোন প্রশ্ন বা মতামত জানাতে নিচের যেকোনো মাধ্যমে যোগাযোগ করুন।',
+                                  ),
                                 ),
                               ),
                             ),
@@ -263,26 +245,9 @@ class _TestListScreenState extends ConsumerState<TestListScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Assessments',
-                        style: textTheme.headlineSmall?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          height: 1.2,
-                        ),
-                      ),
-                      const SizedBox(height: AppSpacing.xs),
-                      Text(
-                        'Select a test to begin your assessment',
-                        style: textTheme.bodyMedium?.copyWith(
-                          color: isDark
-                              ? AppColors.textSecondaryDark
-                              : AppColors.textSecondary,
-                        ),
-                      ),
-                    ],
+                  child: TestListHeaderTitle(
+                    textTheme: textTheme,
+                    isDark: isDark,
                   ),
                 ),
                 const SizedBox(width: AppSpacing.md),
@@ -310,27 +275,15 @@ class _TestListScreenState extends ConsumerState<TestListScreen> {
             Row(
               children: [
                 Expanded(
-                  child: Text(
-                    'Assessments',
-                    style: textTheme.headlineSmall?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      height: 1.2,
-                    ),
+                  child: TestListHeaderTitle(
+                    textTheme: textTheme,
+                    isDark: isDark,
                   ),
                 ),
                 const ThemeToggleButton(),
               ],
             ),
-            const SizedBox(height: AppSpacing.xs),
-            Text(
-              'Select a test to begin your assessment',
-              style: textTheme.bodyMedium?.copyWith(
-                color: isDark
-                    ? AppColors.textSecondaryDark
-                    : AppColors.textSecondary,
-              ),
-            ),
-            const SizedBox(height: AppSpacing.lg),
+           const SizedBox(height: AppSpacing.lg),
             Row(
               children: [
                 Expanded(
@@ -366,119 +319,15 @@ class _TestListScreenState extends ConsumerState<TestListScreen> {
           ],
           const SizedBox(height: AppSpacing.md),
 
-          SizedBox(
-            height: 32,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              clipBehavior: Clip.none,
-              children: [
-                TestFilterChip(
-                  label: 'All',
-                  selected: _selectedCategory == null,
-                  count: tests.length,
-                  onTap: () =>
-                      setState(() => _selectedCategory = null),
-                ),
-                const SizedBox(width: 8),
-                ...categories.map(
-                  (category) => Padding(
-                    padding: const EdgeInsets.only(right: 8),
-                    child: TestFilterChip(
-                      label: category,
-                      selected: _selectedCategory == category,
-                      count: tests.where(
-                              (t) => t.category == category)
-                          .length,
-                      onTap: () => setState(() =>
-                          _selectedCategory =
-                              _selectedCategory == category
-                                  ? null
-                                  : category),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+          TestCategoryFilterBar(
+            categories: categories,
+            tests: tests,
+            selectedCategory: _selectedCategory,
+            onCategoryChanged: (value) => setState(() => _selectedCategory = value),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildEducationalBanner({
-    required bool isDark,
-    required TextTheme textTheme,
-  }) {
-    final notoSerif = GoogleFonts.notoSerifBengali();
-
-    return GestureDetector(
-      onTap: () => showUpcomingContactDialog(
-        context,
-        isDark,
-        textTheme,
-        titleText: 'যোগাযোগ করুন',
-        subtitleText: 'যে কোন প্রশ্ন বা মতামত জানাতে নিচের যেকোনো মাধ্যমে যোগাযোগ করুন।',
-      ),
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          Container(
-            width: double.infinity,
-            margin: const EdgeInsets.only(bottom: 4),
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Colors.orange.withValues(alpha: 0.6),
-                  Colors.orange.withValues(alpha: 0.9),
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-              borderRadius: AppRadius.roundedSm,
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.primary.withValues(alpha: 0.3),
-                  blurRadius: 8,
-                  offset: const Offset(0, 2),
-                ),
-              ],
-            ),
-            child: Expanded(
-              child: Text(
-                'এটি একটি শিক্ষামূলক প্রকল্প। শিক্ষক, শিক্ষার্থী এবং কমিউনিটির কাছ থেকে তথ্য সংগ্রহ করা হয়েছে। দয়া করে দায়িত্বশীলভাবে ব্যবহার করুন। যে কোন প্রশ্ন বা মতামত জানাতে এখানে ক্লিক করুন।',
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.white.withValues(alpha: 0.85),
-                  fontFamily: notoSerif.fontFamily,
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            top:-5,
-            right:-5,
-            child: GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              onTap: () {
-                _dismissBanner();
-              },
-              child: Container(
-                padding: const EdgeInsets.all(4),
-                decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.9),
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(
-                  LucideIcons.x,
-                  size: 14,
-                  color: Colors.orange.withValues(alpha: 0.9),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 }

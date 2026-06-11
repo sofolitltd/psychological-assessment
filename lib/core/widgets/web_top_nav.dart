@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/design_system/app_theme.dart';
-import '../../../../core/design_system/responsive.dart';
-import '../../../../core/design_system/theme_toggle_button.dart';
+import 'package:psychological_assessment/core/design_system/app_theme.dart';
+import 'package:psychological_assessment/core/design_system/responsive.dart';
+import 'package:psychological_assessment/core/design_system/theme_toggle_button.dart';
 
 class WebTopNav extends StatelessWidget {
   final String currentTab;
