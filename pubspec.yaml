@@ -41,3 +41,5 @@ flutter:
 
   assets:
     - assets/data/
+    - assets/data/upcoming/
+    - assets/images/

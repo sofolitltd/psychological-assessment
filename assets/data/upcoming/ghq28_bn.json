@@ -1,0 +1,17 @@
+{
+  "id": "ghq28_bn",
+  "name": "GHQ 28 Questionnaire",
+  "about": "",
+  "author": [],
+  "adapter": [],
+  "instruction": "",
+  "resources": {
+    "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781160263/General_Health_Questionnaire_28_items_yofihz.pdf",
+    "banglaVersionScoringUrl": ""
+  },
+  "scales": [],
+  "options": [],
+  "questions": [],
+  "resultBands": {},
+  "scoringProcedure": ""
+}

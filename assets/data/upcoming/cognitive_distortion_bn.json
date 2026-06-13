@@ -1,0 +1,17 @@
+{
+  "id": "cognitive_distortion_bn",
+  "name": "Cognitive Distortion Scale",
+  "about": "",
+  "author": [],
+  "adapter": [],
+  "instruction": "",
+  "resources": {
+    "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781160258/Cognitive_Distortion_Scale_39_items_type_pyfggd.pdf",
+    "banglaVersionScoringUrl": ""
+  },
+  "scales": [],
+  "options": [],
+  "questions": [],
+  "resultBands": {},
+  "scoringProcedure": ""
+}

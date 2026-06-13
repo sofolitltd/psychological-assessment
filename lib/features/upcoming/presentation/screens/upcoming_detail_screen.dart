@@ -131,7 +131,7 @@ class UpcomingDetailScreen extends ConsumerWidget {
                     SliverToBoxAdapter(
                       child: _buildStats(item, isDark, textTheme, isMobile),
                     ),
-                    if (item.pdfUrl.isNotEmpty || item.scoringGuideUrl.isNotEmpty)
+                    if (item.resources.banglaVersionUrl.isNotEmpty || item.resources.banglaVersionScoringUrl.isNotEmpty)
                       SliverToBoxAdapter(
                         child: _buildResources(item, test, isDark, textTheme, context),
                       ),
@@ -316,7 +316,7 @@ class UpcomingDetailScreen extends ConsumerWidget {
               spacing: AppSpacing.sm,
               runSpacing: AppSpacing.sm,
               children: [
-                if (item.pdfUrl.isNotEmpty)
+                if (item.resources.banglaVersionUrl.isNotEmpty)
                   OutlinedButton.icon(
                     style: OutlinedButton.styleFrom(
                       foregroundColor: AppColors.primary,
@@ -332,14 +332,14 @@ class UpcomingDetailScreen extends ConsumerWidget {
                         vertical: 12,
                       ),
                     ),
-                    onPressed: () => context.push('/upcoming/${test.id}/pdf-viewer?url=${Uri.encodeComponent(item.pdfUrl)}&title=${Uri.encodeComponent(test.name)}'),
+                    onPressed: () => context.push('/upcoming/${test.id}/pdf-viewer?url=${Uri.encodeComponent(item.resources.banglaVersionUrl)}&title=${Uri.encodeComponent(test.name)}'),
                     icon: const Icon(LucideIcons.fileText, size: 18),
                     label: Text(
                       'মূল পিডিএফ',
                       style: GoogleFonts.notoSerifBengali(fontSize: 13),
                     ),
                   ),
-                if (item.scoringGuideUrl.isNotEmpty)
+                if (item.resources.banglaVersionScoringUrl.isNotEmpty)
                   OutlinedButton.icon(
                     style: OutlinedButton.styleFrom(
                       foregroundColor: AppColors.primary,
@@ -355,7 +355,7 @@ class UpcomingDetailScreen extends ConsumerWidget {
                         vertical: 12,
                       ),
                     ),
-                    onPressed: () => context.push('/upcoming/${test.id}/pdf-viewer?url=${Uri.encodeComponent(item.scoringGuideUrl)}&title=${Uri.encodeComponent('${test.name} - Scoring')}'),
+                    onPressed: () => context.push('/upcoming/${test.id}/pdf-viewer?url=${Uri.encodeComponent(item.resources.banglaVersionScoringUrl)}&title=${Uri.encodeComponent('${test.name} - Scoring')}'),
                     icon: const Icon(LucideIcons.fileCheck, size: 18),
                     label: Text(
                       'স্কোরিং গাইড',

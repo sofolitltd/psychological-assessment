@@ -1,11 +1,25 @@
 {
-  "testId": "nicotine_addiction_bn",
-  "testName": "FTND - Fagerström Nicotine Dependence Scale",
+  "id": "nicotine_addiction_bn",
+  "name": "FTND - Fagerström Nicotine Dependence Scale",
   "about": "স্কেলটি মূলত একজন ব্যক্তির ধূমপানের ঘনত্ব, ধূমপানের তাগিদ এবং ঘুম থেকে ওঠার পর কত দ্রুত ধূমপান করেন — এমন বিষয়গুলোর উপর ভিত্তি করে নির্ধারণ করে তিনি কতটা নিকোটিন নির্ভর। এটি নিকোটিন আসক্তির তীব্রতা বুঝতে সহায়তা করে এবং ব্যক্তিকেন্দ্রিক ধূমপান বন্ধের পরিকল্পনা তৈরিতে গুরুত্বপূর্ণ ভূমিকা রাখে।",
-  "author": "Developed by: Heatherton, Kozlowski, Freeker and Fagerstrom\nAdapted by: Farha Deeba and Rumala Ali,ClinicalPsychology, DU",
+  "author": [
+    {
+      "citation": "Heatherton, Kozlowski, Frecker, & Fagerström (1991)",
+      "url": "https://scholar.google.com/citations?hl=en&user=6jXH1LYAAAAJ"
+    }
+  ],
+  "adapter": [
+    {
+      "citation": "Farha Deeba & Rumala Ali — University of Dhaka",
+      "url": ""
+    }
+  ],
   "instruction": "প্রতিটি প্রশ্নের উত্তরগুলোর মধ্য থেকে যে কোন একটি চিহ্নিত করুন।",
-  "pdfUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781160085/Fagerstrom_Test_For_Nicotine_Dependency_ia8fyp.pdf",
-  "scoringGuideUrl": "",
+  "resources": {
+    "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781160085/Fagerstrom_Test_For_Nicotine_Dependency_ia8fyp.pdf",
+    "banglaVersionScoringUrl": "",
+    "banglaVersionDoi": ""
+  },
   "scales": [
     "general"
   ],
@@ -13,8 +27,6 @@
   "questions": [
     {
       "id": 1,
-      "text": "সকালে ঘুম থেকে ওঠার পর কতক্ষণ পর আপনি প্রথম ধূমপান করেন?",
-      "scale": "general",
       "options": [
         {
           "label": "১ ঘন্টার পরে",
@@ -32,12 +44,12 @@
           "label": "৫ মিনিটের মধ্যে",
           "value": 3
         }
-      ]
+      ],
+      "text": "সকালে ঘুম থেকে ওঠার পর কতক্ষণ পর আপনি প্রথম ধূমপান করেন?",
+      "scale": "general"
     },
     {
       "id": 2,
-      "text": "ধূমপান নিষিদ্ধ এলাকায় (যেমন: সিনেমা হল, লাইব্রেরী, বাজার, মার্কেট ইত্যাদি) কি আপনি ধূমপান থেকে বিরত থাকায় অসুবিধা বোধ করেন?",
-      "scale": "general",
       "options": [
         {
           "label": "না",
@@ -47,12 +59,12 @@
           "label": "হ্যাঁ",
           "value": 1
         }
-      ]
+      ],
+      "text": "ধূমপান নিষিদ্ধ এলাকায় (যেমন: সিনেমা হল, লাইব্রেরী, বাজার, মার্কেট ইত্যাদি) কি আপনি ধূমপান থেকে বিরত থাকায় অসুবিধা বোধ করেন?",
+      "scale": "general"
     },
     {
       "id": 3,
-      "text": "কোন সময়ের সিগারেটটি ছাড়তে আপনার বেশি কষ্ট হয়?",
-      "scale": "general",
       "options": [
         {
           "label": "অন্যান্য যে কোন সময়ে",
@@ -62,12 +74,12 @@
           "label": "সকালের প্রথম সিগারেট",
           "value": 1
         }
-      ]
+      ],
+      "text": "কোন সময়ের সিগারেটটি ছাড়তে আপনার বেশি কষ্ট হয়?",
+      "scale": "general"
     },
     {
       "id": 4,
-      "text": "প্রতিদিন আপনি কয়টা সিগারেট খান?",
-      "scale": "general",
       "options": [
         {
           "label": "১০ টি অথবা তার কম",
@@ -85,12 +97,12 @@
           "label": "৩১ টি অথবা তার বেশি",
           "value": 3
         }
-      ]
+      ],
+      "text": "প্রতিদিন আপনি কয়টা সিগারেট খান?",
+      "scale": "general"
     },
     {
       "id": 5,
-      "text": "দিনের অন্য সময়ের তুলনায় আপনি কি ঘুম থেকে উঠার এক ঘন্টার মধ্যে বেশী ধুমপান করেন?",
-      "scale": "general",
       "options": [
         {
           "label": "না",
@@ -100,12 +112,12 @@
           "label": "হ্যাঁ",
           "value": 1
         }
-      ]
+      ],
+      "text": "দিনের অন্য সময়ের তুলনায় আপনি কি ঘুম থেকে উঠার এক ঘন্টার মধ্যে বেশী ধুমপান করেন?",
+      "scale": "general"
     },
     {
       "id": 6,
-      "text": "অসুস্থ হওয়ার কারণে আপনাকে যদি বেশির ভাগ সময় বিছানায় থাকতে হয়, তখনও কি আপনি ধুমপান করেন?",
-      "scale": "general",
       "options": [
         {
           "label": "না",
@@ -115,7 +127,9 @@
           "label": "হ্যাঁ",
           "value": 1
         }
-      ]
+      ],
+      "text": "অসুস্থ হওয়ার কারণে আপনাকে যদি বেশির ভাগ সময় বিছানায় থাকতে হয়, তখনও কি আপনি ধুমপান করেন?",
+      "scale": "general"
     }
   ],
   "resultBands": {

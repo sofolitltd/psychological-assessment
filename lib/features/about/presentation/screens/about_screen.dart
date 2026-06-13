@@ -6,6 +6,7 @@ import 'package:psychological_assessment/core/widgets/mobile_bottom_nav.dart';
 import 'package:psychological_assessment/core/widgets/web_top_nav.dart';
 import '../widgets/about_about_section.dart';
 import '../widgets/about_connect_section.dart';
+import '../widgets/about_acknowledgements_section.dart';
 import '../widgets/about_developer_section.dart';
 import '../widgets/about_disclaimer_section.dart';
 import '../widgets/about_features_section.dart';
@@ -67,6 +68,8 @@ class AboutScreen extends ConsumerWidget {
         const SizedBox(height: AppSpacing.lg),
         AboutDeveloperSection(isDark: isDark, textTheme: textTheme),
         const SizedBox(height: AppSpacing.md),
+        AboutAcknowledgementsSection(isDark: isDark, textTheme: textTheme),
+        const SizedBox(height: AppSpacing.md),
         AboutConnectSection(isDark: isDark, textTheme: textTheme),
         const SizedBox(height: AppSpacing.lg),
         AboutPoweredBy(textTheme: textTheme),
@@ -108,6 +111,8 @@ class AboutScreen extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AboutDeveloperSection(isDark: isDark, textTheme: textTheme),
+                const SizedBox(height: AppSpacing.md),
+                AboutAcknowledgementsSection(isDark: isDark, textTheme: textTheme),
                 const SizedBox(height: AppSpacing.md),
                 AboutConnectSection(isDark: isDark, textTheme: textTheme),
                 const SizedBox(height: AppSpacing.lg),

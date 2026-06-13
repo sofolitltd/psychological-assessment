@@ -42,7 +42,7 @@ class AboutHeaderSection extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(14),
               child: Image.asset(
-                'assets/data/logo.png',
+                'assets/images/logo.png',
                 height: 60,
                 width: 60,
                 fit: BoxFit.cover,

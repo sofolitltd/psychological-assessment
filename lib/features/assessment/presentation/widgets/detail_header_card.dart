@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../core/design_system/app_theme.dart';
 import '../../../../core/design_system/responsive.dart';
@@ -23,9 +24,9 @@ class DetailHeaderCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final notoSerif = GoogleFonts.notoSerifBengali();
-    final authorLines = (test.author != null && test.author != 'N/A')
-        ? test.author!.split('\n').where((l) => l.trim().isNotEmpty).toList()
-        : <String>[];
+
+    final hasAuthor = test.author != null && test.author!.isNotEmpty;
+    final hasAdapter = test.adapter != null && test.adapter!.isNotEmpty;
 
     return DetailContentCard(
       child: Column(
@@ -58,42 +59,17 @@ class DetailHeaderCard extends StatelessWidget {
               ),
             ],
           ),
-          if (authorLines.isNotEmpty)
+          if (hasAuthor || hasAdapter)
             Padding(
               padding: const EdgeInsets.only(top: AppSpacing.md),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: authorLines.map((line) {
-                  final isDev = line.trimLeft().startsWith('Developed');
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 4),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Icon(
-                          isDev ? LucideIcons.microscope : LucideIcons.penTool,
-                          size: 14,
-                          color: isDark
-                              ? AppColors.textSecondaryDark
-                              : AppColors.textSecondary,
-                        ),
-                        const SizedBox(width: 6),
-                        Expanded(
-                          child: Text(
-                            line.trim(),
-                            style: Theme.of(context).textTheme.bodySmall
-                                ?.copyWith(
-                              color: isDark
-                                  ? AppColors.textSecondaryDark
-                                  : AppColors.textSecondary,
-                              height: 1.4,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                }).toList(),
+                children: [
+                  if (hasAuthor)
+                    _attributionRow(LucideIcons.microscope, 'Author', test.author!.first, isDark, context),
+                  if (hasAdapter)
+                    _attributionRow(LucideIcons.penTool, 'Adapter', test.adapter!.first, isDark, context),
+                ],
               ),
             ),
           const SizedBox(height: AppSpacing.sm),
@@ -127,6 +103,50 @@ class DetailHeaderCard extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _attributionRow(IconData icon, String label, Attribution attr, bool isDark, BuildContext context) {
+    final body = Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Icon(icon, size: 14, color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondary),
+        const SizedBox(width: 6),
+        Expanded(
+          child: RichText(
+            text: TextSpan(
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondary,
+                height: 1.4,
+              ),
+              children: [
+                TextSpan(
+                  text: '$label: ',
+                  style: const TextStyle(fontWeight: FontWeight.w600),
+                ),
+                TextSpan(text: attr.citation),
+              ],
+            ),
+          ),
+        ),
+        if (attr.url.isNotEmpty)
+          Padding(
+            padding: const EdgeInsets.only(left: 4),
+            child: Icon(LucideIcons.externalLink, size: 12, color: AppColors.primary),
+          ),
+      ],
+    );
+
+    if (attr.url.isEmpty) {
+      return Padding(padding: const EdgeInsets.only(bottom: 4), child: body);
+    }
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 4),
+      child: InkWell(
+        onTap: () => launchUrl(Uri.parse(attr.url), mode: LaunchMode.externalApplication),
+        child: body,
       ),
     );
   }

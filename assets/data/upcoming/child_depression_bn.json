@@ -1,0 +1,17 @@
+{
+  "id": "child_depression_bn",
+  "name": "Children's Depression Scale",
+  "about": "",
+  "author": [],
+  "adapter": [],
+  "instruction": "",
+  "resources": {
+    "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781160268/Depression_scale_for_child_18_item_t7ojlq.pdf",
+    "banglaVersionScoringUrl": ""
+  },
+  "scales": [],
+  "options": [],
+  "questions": [],
+  "resultBands": {},
+  "scoringProcedure": ""
+}

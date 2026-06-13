@@ -1,11 +1,25 @@
 {
-  "testId": "self_esteem_bn",
-  "testName": "RSES - Rosenberg Self-Esteem Scale",
+  "id": "self_esteem_bn",
+  "name": "RSES - Rosenberg Self-Esteem Scale",
   "about": "একজন ব্যক্তির নিজের মূল্য বা যোগ্যতার সম্পর্কে সামগ্রিক ব্যক্তিগত মূল্যায়ন। এটি একটি জটিল ধারণা যা জিনগত, ব্যক্তিত্ব, জীবনের অভিজ্ঞতা এবং সামাজিক সম্পর্কের মতো বিভিন্ন বিষয়ের দ্বারা প্রভাবিত হয়। আত্মসম্মান গুরুত্বপূর্ণ কারণ এটি আমাদের চিন্তা-ভাবনা, আচরণ এবং সার্বিক মঙ্গলের ওপর গভীর প্রভাব ফেলে।",
-  "author": "N/A",
+  "author": [
+    {
+      "citation": "Morris Rosenberg (1965)",
+      "url": "https://en.wikipedia.org/wiki/Morris_Rosenberg"
+    }
+  ],
+  "adapter": [
+    {
+      "citation": "Md. Sayeed Akhter & Rehnuma Ferdous (2019)",
+      "url": "http://rurfid.ru.ac.bd/ru_profile/public/teacher/213/profiles"
+    }
+  ],
   "instruction": "আত্মমর্যাদা সম্পর্কিত ১০টি উক্তি রয়েছে। প্রতিটি উক্তি আপনার ক্ষেত্রে কতটুকু প্রযোজ্য তা ৪টি পছন্দ ক্রমের যেকোনো একটি চিহ্নিত করুন।",
-  "pdfUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781078416/Self_Esteem_Scale_omkzcr.pdf",
-  "scoringGuideUrl": "",
+  "resources": {
+    "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781078416/Self_Esteem_Scale_omkzcr.pdf",
+    "banglaVersionScoringUrl": "",
+    "banglaVersionDoi": "10.1504/IJSSS.2019.098195"
+  },
   "scales": [
     "general"
   ],

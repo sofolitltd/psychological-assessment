@@ -1,11 +1,25 @@
 {
-  "testId": "cssrs_bn",
-  "testName": "C-SSRS - Columbia-Suicide Severity Rating Scale",
+  "id": "cssrs_bn",
+  "name": "C-SSRS - Columbia-Suicide Severity Rating Scale",
   "about": "আত্মহত্যার ঝুঁকি মূল্যায়নের জন্য একটি প্রমাণভিত্তিক টুল। এটি ব্যক্তি কতটা ঝুঁকির মধ্যে আছে তা নির্ধারণ করে এবং সে অনুযায়ী প্রয়োজনীয় প্রতিরোধমূলক ব্যবস্থা নিতে সাহায্য করে।",
-  "author": "Developed by: Columbia University Medical Center'",
+  "author": [
+    {
+      "citation": "Columbia University Medical Center",
+      "url": "https://cssrs.columbia.edu/"
+    }
+  ],
+  "adapter": [
+    {
+      "citation": "Mahabuba Rahman, Jebun Nahar, Nusrat Jahan Tanzilla, & Mohsin Ali Shah (2025)",
+      "url": "https://www.seejph.com/index.php/seejph/article/view/6407"
+    }
+  ],
   "instruction": "নিচের প্রশ্নগুলোর উত্তর দিন। গত এক মাসের অবস্থার ওপর ভিত্তি করে 'হ্যাঁ' অথবা 'না' নির্বাচন করুন।",
-  "pdfUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781078437/C-SSRS_Screener_-_Bangla_r21zsl.pdf",
-  "scoringGuideUrl": "",
+  "resources": {
+    "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781078437/C-SSRS_Screener_-_Bangla_r21zsl.pdf",
+    "banglaVersionScoringUrl": "",
+    "banglaVersionDoi": "10.70135/seejph.vi.6407"
+  },
   "scales": [
     "suicide_risk"
   ],
@@ -104,7 +118,5 @@
       }
     ]
   },
-
   "scoringProcedure": "### C-SSRS Suicide Risk স্কোরিং পদ্ধতি\nএটি কলম্বিয়া সুইসাইড সিভিয়ারিটি রেটিং স্কেল।\n\n**ফলাফল নির্ণয়:**\nউত্তরের প্যাটার্নের ওপর ভিত্তি করে ঝুঁকির মাত্রা নির্ধারণ করা হয়:\n* **Low Risk:** সাধারণ আত্মহত্যার চিন্তা।\n* **Moderate Risk:** আত্মহত্যার পরিকল্পনা বা পূর্বপ্রস্তুতি।\n* **High Risk:** সুস্পষ্ট পরিকল্পনা ও উদ্দেশ্য বিদ্যমান।\n"
-
 }

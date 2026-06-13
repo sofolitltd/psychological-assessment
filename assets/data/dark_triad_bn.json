@@ -1,11 +1,25 @@
 {
-  "testId": "dark_triad_bn",
-  "testName": "DTDD - Dark Triad Dirty Dozen",
+  "id": "dark_triad_bn",
+  "name": "DTDD - Dark Triad Dirty Dozen",
   "about": "ডার্ক ট্রায়াড টেস্ট একটি ব্যক্তিত্ব মূল্যায়ন পদ্ধতি যা মানুষের চরিত্রের তিনটি অন্ধকার দিক — ম্যাকিয়াভেলিয়ানিজম, নার্সিসিজম, এবং সাইকোপ্যাথি — পরিমাপ করে। এই তিনটি বৈশিষ্ট্য একত্রে \"ডার্ক ট্রায়াড\" নামে পরিচিত। টেস্টটি মূলত বোঝার জন্য ব্যবহার করা হয় যে কেউ কতটা কৌশলী, আত্মকেন্দ্রিক বা নির্দয় আচরণ করে। এই বৈশিষ্ট্যগুলো নেতিবাচক ও ক্ষতিকর আচরণের সঙ্গে সম্পর্কিত, এবং সাধারণত ব্যক্তিত্ব বিশ্লেষণ, গবেষণা বা আত্মউন্নয়নের উদ্দেশ্যে এই টেস্টটি নেওয়া হয়।",
-  "author": "Developed by: K. Jonason and W.D. Webster\nAdapted by: Oli Ahmed, Lutfun Naher, Rohmotul Islam, Moslima Akter, and Shila Deb",
+  "author": [
+    {
+      "citation": "P. K. Jonason & G. D. Webster (2010)",
+      "url": "https://www.peterjonason.com/"
+    }
+  ],
+  "adapter": [
+    {
+      "citation": "Oli Ahmed, L. Naher, R. Islam, M. Akter, & S. Deb",
+      "url": "https://cu.ac.bd/public_profile/index.php?ein=5612"
+    }
+  ],
   "instruction": "ব্যক্তিত্ব পরিমাপের কিছু উক্তি রয়েছে। প্রতিটি উক্তি আপনার ক্ষেত্রে কতুটুকু প্রযোজ্য তা ৭ মানকের যেকোন একটিতে টিক প্রদানের মাধ্যমের প্রকাশ করুন।",
-  "pdfUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781078415/Dark_Triad_Dirty_Dozen_fmv1jh.pdf",
-  "scoringGuideUrl": "",
+  "resources": {
+    "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781078415/Dark_Triad_Dirty_Dozen_fmv1jh.pdf",
+    "banglaVersionScoringUrl": "",
+    "banglaVersionDoi": "10.1016/j.heliyon.2020.e05341"
+  },
   "scales": [
     "machiavellianism",
     "psychopathy",

@@ -1,0 +1,17 @@
+{
+  "id": "anxiety_du_bn",
+  "name": "Anxiety Scale(36 items)(DU)",
+  "about": "",
+  "author": [],
+  "adapter": [],
+  "instruction": "",
+  "resources": {
+    "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781160259/Hospital_Anxiety_Depression_Scale_ouritb.pdf",
+    "banglaVersionScoringUrl": ""
+  },
+  "scales": [],
+  "options": [],
+  "questions": [],
+  "resultBands": {},
+  "scoringProcedure": ""
+}

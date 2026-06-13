@@ -1,0 +1,17 @@
+{
+  "id": "psqi_bn",
+  "name": "Pittsburgh Sleep Quality Index",
+  "about": "",
+  "author": [],
+  "adapter": [],
+  "instruction": "",
+  "resources": {
+    "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781160260/Pittsburgh_Sleep_Quality_Scale_bangla_a0tekb.pdf",
+    "banglaVersionScoringUrl": ""
+  },
+  "scales": [],
+  "options": [],
+  "questions": [],
+  "resultBands": {},
+  "scoringProcedure": ""
+}

@@ -49,7 +49,7 @@ class WebTopNav extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
                   child: Image.asset(
-                    'assets/data/logo.png',
+                    'assets/images/logo.png',
                     height: 32,
                     fit: BoxFit.contain,
                   ),

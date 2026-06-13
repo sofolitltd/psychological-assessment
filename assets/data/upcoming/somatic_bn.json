@@ -1,0 +1,17 @@
+{
+  "id": "somatic_bn",
+  "name": "Somatic Complaints Scale",
+  "about": "",
+  "author": [],
+  "adapter": [],
+  "instruction": "",
+  "resources": {
+    "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781160265/Somatic_Complaints_Scale_24_items_xxobxk.pdf",
+    "banglaVersionScoringUrl": ""
+  },
+  "scales": [],
+  "options": [],
+  "questions": [],
+  "resultBands": {},
+  "scoringProcedure": ""
+}

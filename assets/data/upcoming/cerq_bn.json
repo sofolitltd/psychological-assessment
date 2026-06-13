@@ -1,0 +1,17 @@
+{
+  "id": "cerq_bn",
+  "name": "Cognitive Emotion Regulation Questionnaire",
+  "about": "",
+  "author": [],
+  "adapter": [],
+  "instruction": "",
+  "resources": {
+    "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781160266/Cognitive_Emotion_Regulation_Questionnaire_Bangla_version__revised_2016_s6nkqu.pdf",
+    "banglaVersionScoringUrl": ""
+  },
+  "scales": [],
+  "options": [],
+  "questions": [],
+  "resultBands": {},
+  "scoringProcedure": ""
+}

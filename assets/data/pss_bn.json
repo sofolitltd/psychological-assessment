@@ -1,11 +1,25 @@
 {
-  "testId": "pss_bn",
-  "testName": "PSS - Perceived Stress Scale",
+  "id": "pss_bn",
+  "name": "PSS - Perceived Stress Scale",
   "about": "স্কেলটি জীবনের পরিস্থিতিগুলোকে কতটা চাপপূর্ণ মনে করা হয় তা পরিমাপ করে। এটি মূল্যায়ন করে যে উত্তরদাতারা তাদের জীবনকে কতটা অপ্রত্যাশিত, নিয়ন্ত্রণের বাইরে এবং অতিরিক্ত চাপের মধ্যে অনুভব করছেন, বিশেষ করে গত এক মাসের মধ্যে। এই স্কেলটি গবেষণা ও চিকিৎসা ক্ষেত্রে স্ট্রেস এবং তার মানসিক সুস্থতার ওপর প্রভাব নির্ণয়ের জন্য ব্যাপকভাবে ব্যবহৃত হয়।",
-  "author": "Developed by: Cohen, Kamarck & Mermelstein\nAdapted by: Md. Nurul Islam, Professor, Department of Psychology, CU",
+  "author": [
+    {
+      "citation": "Cohen, Kamarck, & Mermelstein (1983)",
+      "url": "https://www.cmu.edu/dietrich/psychology/stress-immunity-disease-lab/cohen/index.html"
+    }
+  ],
+  "adapter": [
+    {
+      "citation": "Md. Nurul Islam — University of Chittagong",
+      "url": "https://cu.ac.bd/public_profile/index.php?ein=4606"
+    }
+  ],
   "instruction": "প্রশ্নে উল্লিখিত অনুভুতি এবং ভাবনাগুলো গত এক মাসে আপনার মধ্যে কি পরিমানে ঘটেছে তা পাঁচটি উত্তরের মধ্যে উপযুক্ত ঘর চিহ্নিত করুন",
-  "pdfUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781078415/Perceived_Stress_Scale_10_items_tllnxx.pdf",
-  "scoringGuideUrl": "",
+  "resources": {
+    "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781078415/Perceived_Stress_Scale_10_items_tllnxx.pdf",
+    "banglaVersionScoringUrl": "",
+    "banglaVersionDoi": "10.26262/hjp.v17i1.7844"
+  },
   "scales": [
     "general"
   ],

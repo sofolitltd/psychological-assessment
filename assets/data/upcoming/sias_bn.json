@@ -1,0 +1,17 @@
+{
+  "id": "sias_bn",
+  "name": "Social Interaction Anxiety Scale",
+  "about": "",
+  "author": [],
+  "adapter": [],
+  "instruction": "",
+  "resources": {
+    "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781160261/Social_Interaction_Anxiety_Scale_20_items_hm7tbe.pdf",
+    "banglaVersionScoringUrl": ""
+  },
+  "scales": [],
+  "options": [],
+  "questions": [],
+  "resultBands": {},
+  "scoringProcedure": ""
+}

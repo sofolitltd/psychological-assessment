@@ -1,11 +1,25 @@
 {
-  "testId": "satisfaction_life_bn",
-  "testName": "SWLS - Satisfaction with Life Scale",
+  "id": "satisfaction_life_bn",
+  "name": "SWLS - Satisfaction with Life Scale",
   "about": "ব্যক্তি জীবনের সার্বিক সন্তুষ্টির মাত্রা পরিমাপের জন্য তৈরি করা হয়েছে। এই স্কেলটি একজন ব্যক্তি তার জীবনের সম্পর্কে যে মানসিক মূল্যায়ন করে তা মূল্যায়ন করে, যা তার জীবনের মান সম্পর্কে ধারণা দেয়। এটি ব্যক্তিগত সাফল্য, সম্পর্ক এবং সামগ্রিক জীবনের অভিজ্ঞতার মতো দিকগুলোকে কেন্দ্র করে, এবং একজন ব্যক্তির বিষয়গত মঙ্গল সম্পর্কে গুরুত্বপূর্ণ তথ্য প্রদান করে।",
-  "author": "Developed by: Ed Diener, Robert A. Emmons, Randy J. Larsen & Sharon Griffin (1985)\nAdapted by: Flora Jesmin, Clinical Psychology, University of Dhaka",
+  "author": [
+    {
+      "citation": "Ed Diener, R. A. Emmons, R. J. Larsen, & S. Griffin (1985)",
+      "url": "https://labs.psychology.illinois.edu/~ediener/"
+    }
+  ],
+  "adapter": [
+    {
+      "citation": "Flora Jesmin — University of Dhaka",
+      "url": ""
+    }
+  ],
   "instruction": "পাঁচটি বিবৃতি রয়েছে যা আপনি সমর্থন করতে পারেন আবার নাও করতে পারেন। ১-৭ পর্যন্ত স্কেল ব্যবহার করে বিবৃতিগুলোর প্রতি আপনার মতামত দিন। অনুগ্রহ করে আপনি সঠিক উত্তরটি দিতে চেষ্টা করুন।",
-  "pdfUrl": "",
-  "scoringGuideUrl": "",
+  "resources": {
+    "banglaVersionUrl": "",
+    "banglaVersionScoringUrl": "",
+    "banglaVersionDoi": ""
+  },
   "scales": [
     "general"
   ],

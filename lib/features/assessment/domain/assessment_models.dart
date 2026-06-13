@@ -1,6 +1,42 @@
 import 'dart:convert';
 import 'dart:ui';
 
+// ─── Attribution ──────────────────────────────────────────────────────────────
+
+class Attribution {
+  final String citation;
+  final String url;
+
+  const Attribution({required this.citation, this.url = ''});
+
+  factory Attribution.fromJson(Map<String, dynamic> json) => Attribution(
+        citation: json['citation'] as String,
+        url: json['url'] as String? ?? '',
+      );
+}
+
+// ─── AssessmentResources ──────────────────────────────────────────────────────
+
+class AssessmentResources {
+  final String banglaVersionUrl;
+  final String banglaVersionScoringUrl;
+  final String banglaVersionDoi;
+
+  const AssessmentResources({
+    this.banglaVersionUrl = '',
+    this.banglaVersionScoringUrl = '',
+    this.banglaVersionDoi = '',
+  });
+
+  factory AssessmentResources.fromJson(Map<String, dynamic> json) =>
+      AssessmentResources(
+        banglaVersionUrl: json['banglaVersionUrl'] as String? ?? '',
+        banglaVersionScoringUrl:
+            json['banglaVersionScoringUrl'] as String? ?? '',
+        banglaVersionDoi: json['banglaVersionDoi'] as String? ?? '',
+      );
+}
+
 // ─── ResultBand ───────────────────────────────────────────────────────────────
 
 class ResultBand {
@@ -100,12 +136,12 @@ class AssessmentTest {
   final String testId;
   final String testName;
   final String? about;
-  final String? author;
+  final List<Attribution>? author;
+  final List<Attribution>? adapter;
   final String? category;
   final String? instruction;
   final String? scoringProcedure;
-  final String? pdfUrl;
-  final String? scoringGuideUrl;
+  final AssessmentResources? resources;
   final List<String> scales;
   final List<TestOption> options;
   final List<TestQuestion> questions;
@@ -118,11 +154,11 @@ class AssessmentTest {
     required this.testName,
     this.about,
     this.author,
+    this.adapter,
     this.category,
     this.instruction,
     this.scoringProcedure,
-    this.pdfUrl,
-    this.scoringGuideUrl,
+    this.resources,
     required this.scales,
     required this.options,
     required this.questions,
@@ -142,15 +178,25 @@ class AssessmentTest {
     });
 
     return AssessmentTest(
-      testId: json['testId'] as String,
-      testName: json['testName'] as String,
+      testId: json['id'] as String,
+      testName: json['name'] as String,
       about: json['about'] as String?,
-      author: json['author'] as String?,
+      author: json['author'] != null
+          ? (json['author'] as List)
+              .map((a) => Attribution.fromJson(a as Map<String, dynamic>))
+              .toList()
+          : null,
+      adapter: json['adapter'] != null
+          ? (json['adapter'] as List)
+              .map((a) => Attribution.fromJson(a as Map<String, dynamic>))
+              .toList()
+          : null,
       category: categoryOverride ?? json['category'] as String?,
       instruction: json['instruction'] as String?,
       scoringProcedure: json['scoringProcedure'] as String?,
-      pdfUrl: json['pdfUrl'] as String?,
-      scoringGuideUrl: json['scoringGuideUrl'] as String?,
+      resources: json['resources'] != null
+          ? AssessmentResources.fromJson(json['resources'] as Map<String, dynamic>)
+          : null,
       scales: List<String>.from(json['scales'] as List),
       options: (json['options'] as List)
           .map((o) => TestOption.fromJson(o as Map<String, dynamic>))
@@ -209,7 +255,8 @@ class TestListItem {
         reliabilityBadge: json['reliabilityBadge'] as String? ?? '',
         lucideIconName: json['lucideIconName'] as String? ?? '',
         themeColor: json['themeColor'] != null
-            ? Color(int.parse((json['themeColor'] as String).replaceFirst('#', '0xFF')))
+            ? Color(int.parse(
+                (json['themeColor'] as String).replaceFirst('#', '0xFF')))
             : const Color(0xFF4F46E5),
       );
 }

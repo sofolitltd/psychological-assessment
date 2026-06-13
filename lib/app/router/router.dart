@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '/app/not_found_screen.dart';
 import '/core/widgets/pdf_viewer_screen.dart';
 import '/features/about/presentation/screens/about_screen.dart';
+import '/features/about/presentation/screens/acknowledgements_screen.dart';
 import '/features/assessment/presentation/screens/result_screen_loader.dart';
 import '/features/assessment/presentation/screens/runner_screen_loader.dart';
 import '/features/assessment/presentation/screens/test_detail_screen.dart';
@@ -53,6 +54,14 @@ final router = GoRouter(
       pageBuilder: (context, state) => NoTransitionPage(
         child: Title(title: 'About - Psychological Assessment', color: _titleColor, child: AboutScreen()),
       ),
+      routes: [
+        GoRoute(
+          path: 'acknowledgements',
+          pageBuilder: (context, state) => NoTransitionPage(
+            child: AcknowledgementsScreen(),
+          ),
+        ),
+      ],
     ),
     GoRoute(
       path: '/pdf-viewer',

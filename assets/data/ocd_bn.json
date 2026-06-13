@@ -1,11 +1,20 @@
 {
-  "testId": "ocd_bn",
-  "testName": "OCI-R - Obsessive-Compulsive Inventory",
+  "id": "ocd_bn",
+  "name": "OCI-R - Obsessive-Compulsive Inventory",
   "about": "ঢাকা বিশ্ববিদ্যালয় অবসেসিভ কমপালসিভ স্কেল  তৈরি করা হয়েছে ব্যক্তিদের মধ্যে অবসেসিভ-কমপালসিভ ডিসঅর্ডার এর লক্ষণগুলোর প্রকৃতি এবং তীব্রতা পরিমাপের জন্য। এটি অবসেসিভ চিন্তা, কমপালসিভ আচরণ এবং সেগুলো দ্বারা সৃষ্ট মানসিক ক্লেশের মাত্রা ও ঘনত্ব মূল্যায়ন করে।",
-  "author": "Developed by: Md. Kamruzzaman Mozumder and Dr. Roquia Begum, Clinical Psychology, University of Dhaka",
+  "author": [
+    {
+      "citation": "M. K. Mozumder & R. Begum — University of Dhaka",
+      "url": "https://www.du.ac.bd/body/faculty_details/CPS/1591"
+    }
+  ],
+  "adapter": null,
   "instruction": "প্রশ্নে উল্লিখিত অনুভুতি এবং ভাবনাগুলো গত এক মাসে আপনার মধ্যে কি পরিমানে ঘটেছে তা পাঁচটি উত্তরের মধ্যে উপযুক্ত ঘর চিহ্নিত করুন",
-  "pdfUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781078416/OCD_Scale_zyd0ym.pdf",
-  "scoringGuideUrl": "",
+  "resources": {
+    "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781078416/OCD_Scale_zyd0ym.pdf",
+    "banglaVersionScoringUrl": "",
+    "banglaVersionDoi": "10.26502/jppd.2572-519X0268"
+  },
   "scales": [
     "general"
   ],

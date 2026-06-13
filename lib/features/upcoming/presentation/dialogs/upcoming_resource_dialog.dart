@@ -63,11 +63,11 @@ void showUpcomingResourceDialog(
             ),
             const SizedBox(height: AppSpacing.lg),
           ],
-          if (item.pdfUrl.isNotEmpty) ...[
+          if (item.resources.banglaVersionUrl.isNotEmpty) ...[
             SizedBox(
               width: double.infinity,
               child: OutlinedButton.icon(
-                onPressed: () => launchUrl(Uri.parse(item.pdfUrl)),
+                onPressed: () => launchUrl(Uri.parse(item.resources.banglaVersionUrl)),
                 icon: const Icon(LucideIcons.fileText, size: 18),
                 label: Text(
                   'পিডিএফ ডাউনলোড করুন',
@@ -83,11 +83,11 @@ void showUpcomingResourceDialog(
             ),
             const SizedBox(height: AppSpacing.sm),
           ],
-          if (item.scoringGuideUrl.isNotEmpty) ...[
+          if (item.resources.banglaVersionScoringUrl.isNotEmpty) ...[
             SizedBox(
               width: double.infinity,
               child: OutlinedButton.icon(
-                onPressed: () => launchUrl(Uri.parse(item.scoringGuideUrl)),
+                onPressed: () => launchUrl(Uri.parse(item.resources.banglaVersionScoringUrl)),
                 icon: const Icon(LucideIcons.bookOpen, size: 18),
                 label: Text(
                   'স্কোরিং গাইড ডাউনলোড করুন',

@@ -1,0 +1,17 @@
+{
+  "id": "depression_du_bn",
+  "name": "DU Depression Scale(30 items) (DU)",
+  "about": "",
+  "author": [],
+  "adapter": [],
+  "instruction": "",
+  "resources": {
+    "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781160259/Depression_scale_30_items_fvalkk.pdf",
+    "banglaVersionScoringUrl": ""
+  },
+  "scales": [],
+  "options": [],
+  "questions": [],
+  "resultBands": {},
+  "scoringProcedure": ""
+}

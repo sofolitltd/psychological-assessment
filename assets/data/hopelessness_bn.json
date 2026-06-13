@@ -1,11 +1,25 @@
 {
-  "testId": "hopelessness_bn",
-  "testName": "BHS - Beck Hopelessness Scale",
+  "id": "hopelessness_bn",
+  "name": "BHS - Beck Hopelessness Scale",
   "about": "স্কেলটি একজন ব্যক্তির ভবিষ্যৎ নিয়ে নেতিবাচক প্রত্যাশা পরিমাপ করে। এটি ব্যক্তির হতাশা, নিরাশা এবং প্রেরণার অভাবের মাত্রা নির্ধারণে সহায়তা করে। এই স্কেল প্রায়ই এমন ব্যক্তিদের শনাক্ত করতে ব্যবহৃত হয়, যাদের মধ্যে হতাশা বা আত্মহত্যার চিন্তার ঝুঁকি থাকতে পারে। হোপলেসনেস স্কেল একজনের মানসিক অবস্থার গুরুত্বপূর্ণ ধারণা প্রদান করে এবং আশাবাদী দৃষ্টিভঙ্গি গড়ে তুলতে ও মানসিক স্বাস্থ্য উন্নয়নে প্রয়োজনীয় হস্তক্ষেপ নির্ধারণে সহায়ক হতে পারে।",
-  "author": "Developed by: Beck, Weissman, Lester, & Trexler (1974)\nAdapted by: Md. M. Z. Uddin (2005, personal communication)",
+  "author": [
+    {
+      "citation": "Beck, Weissman, Lester, & Trexler (1974)",
+      "url": "https://beckinstitute.org/about/dr-aaron-t-beck/"
+    }
+  ],
+  "adapter": [
+    {
+      "citation": "Md. M. Z. Uddin (2005)",
+      "url": ""
+    }
+  ],
   "instruction": "এই প্রশ্নপত্রে ২০টি উক্তি/বাক্য আছে। আপনি প্রতিটি বাক্য সতর্কতার সাথে পড়ুন। বাক্যগুলির যেটি আপনার মনের অবস্থাকে (আজকের দিন থেকে শুরু করে গত এক সপ্তাহে) সঠিক ভাবে তুলে ধরে তবে \"সত্য\" চিহ্নিত করুন। ঠিক একই ভাবে যে বাক্যটি আপনার মনের অবস্থার সাথে মিলছে না তবে \"মিথ্যা\" চিহ্নিত করুন। সবশেষে প্রতিটি বাক্য ঠিকমতো পড়া হয়েছে কি না তা দেখে নিন।",
-  "pdfUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781078414/Beck_Hopelessness_Scale_20_items_a1yamq.pdf",
-  "scoringGuideUrl": "",
+  "resources": {
+    "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781078414/Beck_Hopelessness_Scale_20_items_a1yamq.pdf",
+    "banglaVersionScoringUrl": "",
+    "banglaVersionDoi": ""
+  },
   "scales": [
     "general"
   ],
