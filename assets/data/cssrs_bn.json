@@ -2,7 +2,7 @@
   "testId": "cssrs_bn",
   "testName": "C-SSRS - Columbia-Suicide Severity Rating Scale",
   "about": "আত্মহত্যার ঝুঁকি মূল্যায়নের জন্য একটি প্রমাণভিত্তিক টুল। এটি ব্যক্তি কতটা ঝুঁকির মধ্যে আছে তা নির্ধারণ করে এবং সে অনুযায়ী প্রয়োজনীয় প্রতিরোধমূলক ব্যবস্থা নিতে সাহায্য করে।",
-  "author": "Developed by: Columbia University Medical Center\nAdapted for Bangla by: Mental Health Research Team",
+  "author": "Developed by: Columbia University Medical Center'",
   "instruction": "নিচের প্রশ্নগুলোর উত্তর দিন। গত এক মাসের অবস্থার ওপর ভিত্তি করে 'হ্যাঁ' অথবা 'না' নির্বাচন করুন।",
   "pdfUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781078437/C-SSRS_Screener_-_Bangla_r21zsl.pdf",
   "scoringGuideUrl": "",

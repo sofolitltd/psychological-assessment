@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../core/design_system/app_theme.dart';
 import '../../domain/assessment_models.dart';
@@ -88,7 +88,7 @@ class DetailResourcesCard extends StatelessWidget {
                         vertical: 12,
                       ),
                     ),
-                    onPressed: () => launchUrl(Uri.parse(test.pdfUrl!)),
+                    onPressed: () => context.push('/test/${test.testId}/pdf-viewer?url=${Uri.encodeComponent(test.pdfUrl!)}&title=${Uri.encodeComponent(test.testName)}'),
                     icon: const Icon(LucideIcons.fileText, size: 18),
                     label: Text(
                       'মূল পিডিএফ',

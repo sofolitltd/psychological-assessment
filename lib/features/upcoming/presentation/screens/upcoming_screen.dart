@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:psychological_assessment/core/design_system/app_theme.dart';
 import 'package:psychological_assessment/core/design_system/responsive.dart';
@@ -14,7 +15,6 @@ import 'package:psychological_assessment/features/upcoming/presentation/widgets/
 import 'package:psychological_assessment/features/upcoming/presentation/widgets/upcoming_header_title.dart';
 import '../../data/upcoming_repository.dart';
 import '../widgets/upcoming_join_banner.dart';
-import '../dialogs/upcoming_resource_dialog.dart';
 import '../widgets/upcoming_test_card.dart';
 import '../widgets/upcoming_test_model.dart';
 
@@ -149,12 +149,7 @@ class _UpcomingScreenState extends ConsumerState<UpcomingScreen> {
                                   (context, index) => UpcomingTestCard(
                                     item: filteredItems[index],
                                     uniformHeight: true,
-                                    onTap: () => showUpcomingResourceDialog(
-                                      context,
-                                      filteredItems[index],
-                                      isDark,
-                                      textTheme,
-                                    ),
+                                    onTap: () => context.go('/upcoming/${filteredItems[index].test.id}'),
                                   ),
                                   childCount: filteredItems.length,
                                 ),
@@ -176,12 +171,7 @@ class _UpcomingScreenState extends ConsumerState<UpcomingScreen> {
                                   itemBuilder: (context, index) =>
                                       UpcomingTestCard(
                                     item: filteredItems[index],
-                                    onTap: () => showUpcomingResourceDialog(
-                                      context,
-                                      filteredItems[index],
-                                      isDark,
-                                      textTheme,
-                                    ),
+                                    onTap: () => context.go('/upcoming/${filteredItems[index].test.id}'),
                                   ),
                                 ),
                               ),

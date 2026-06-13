@@ -2,7 +2,7 @@
   "testId": "dass21_bn",
   "testName": "DASS-21 - Depression, Anxiety, and Stress Scale",
   "about": "বিষণ্নতা, উদ্বেগ এবং মানসিক চাপ পরিমাপের জন্য একটি আন্তর্জাতিকভাবে স্বীকৃত মূল্যায়ন সরঞ্জাম। এটি ২১টি প্রশ্নের মাধ্যমে গত এক সপ্তাহে আপনার অনুভূতির মাত্রা মূল্যায়ন করে। বিশ্বের বিভিন্ন দেশে মানসিক স্বাস্থ্য গবেষণা ও ক্লিনিক্যাল মূল্যায়নে এটি ব্যাপকভাবে ব্যবহৃত হয়।",
-  "author": "Developed by: S.H. Lovibond & P.F. Lovibond (1995)\nAdapted for Bangla by: Mental Health Research Team",
+  "author": "Developed by: S.H. Lovibond & P.F. Lovibond (1995)",
   "instruction": "অনুগ্রহ করে নিচের প্রতিটি বিবৃতি পড়ুন এবং ০, ১, ২ অথবা ৩ এর মধ্যে কোন উক্তিটি গত এক সপ্তাহে আপনার ক্ষেত্রে প্রযোজ্য তা চিহ্নিত করুন। এখানে কোন সঠিক বা ভুল উত্তর নেই।",
   "pdfUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781078428/DASS21_Bangla_apwwdd.pdf",
   "scoringGuideUrl": "",

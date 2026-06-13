@@ -22,6 +22,7 @@ class DetailHeaderCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final notoSerif = GoogleFonts.notoSerifBengali();
     final authorLines = (test.author != null && test.author != 'N/A')
         ? test.author!.split('\n').where((l) => l.trim().isNotEmpty).toList()
         : <String>[];
@@ -95,6 +96,36 @@ class DetailHeaderCard extends StatelessWidget {
                 }).toList(),
               ),
             ),
+          const SizedBox(height: AppSpacing.sm),
+          const Divider(),
+          const SizedBox(height: AppSpacing.sm),
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(6),
+                decoration: BoxDecoration(
+                  color: Colors.blue.withValues(alpha: 0.15),
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: const Icon(LucideIcons.scrollText, size: 14, color: Colors.blue),
+              ),
+              const SizedBox(width: 10),
+              Text('স্বীকৃতি', style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold, fontFamily: notoSerif.fontFamily)),
+            ],
+          ),
+          const SizedBox(height: AppSpacing.sm),
+          Text(
+            'আমরা ধীরে ধীরে তথ্য সংগ্রহ করছি এবং এই উদ্যোগকে এগিয়ে নিচ্ছি। '
+      'লেখক এবং অভিযোজকের প্রতি আমরা অত্যন্ত শ্রদ্ধাশীল ও কৃতজ্ঞ। '
+      'কোনো ভুল তথ্য বা তথ্যের ঘাটতি থাকলে আমরা আন্তরিকভাবে দুঃখিত,'
+      'কারণ আমাদের কপিরাইট সংক্রান্ত বিষয়গুলো বিবেচনা করতে হচ্ছে।',
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondary,
+              height: 1.6,
+              fontStyle: FontStyle.italic,
+              fontFamily: notoSerif.fontFamily,
+            ),
+          ),
         ],
       ),
     );

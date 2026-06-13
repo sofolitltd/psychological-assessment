@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 import '../../../../core/design_system/app_theme.dart';
+import '../../../../core/extensions.dart';
 
 class RunnerTopBar extends StatelessWidget {
   final String testName;
@@ -10,6 +11,7 @@ class RunnerTopBar extends StatelessWidget {
   final int totalQuestions;
   final bool isDark;
   final VoidCallback onBack;
+  final double? progress;
 
   const RunnerTopBar({
     super.key,
@@ -18,6 +20,7 @@ class RunnerTopBar extends StatelessWidget {
     required this.totalQuestions,
     required this.isDark,
     required this.onBack,
+    this.progress,
   });
 
   @override
@@ -46,15 +49,32 @@ class RunnerTopBar extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
-                Text(
-                  '$answeredCount / $totalQuestions উত্তরিত',
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontFamily: GoogleFonts.notoSerifBengali().fontFamily,
-                    color: isDark
-                        ? AppColors.textSecondaryDark
-                        : AppColors.textSecondary,
-                  ),
+                Row(
+                  children: [
+                    Text(
+                      '${answeredCount.bn} / ${totalQuestions.bn} উত্তরিত',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontFamily: GoogleFonts.notoSerifBengali().fontFamily,
+                        color: isDark
+                            ? AppColors.textSecondaryDark
+                            : AppColors.textSecondary,
+                      ),
+                    ),
+                    if (progress != null) ...[
+                      const SizedBox(width: 8),
+                      Text(
+                        '(${(progress! * 100).round().bn}% সম্পূর্ণ)',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontFamily: GoogleFonts.notoSerifBengali().fontFamily,
+                          color: isDark
+                              ? AppColors.textSecondaryDark
+                              : AppColors.textSecondary,
+                        ),
+                      ),
+                    ],
+                  ],
                 ),
               ],
             ),

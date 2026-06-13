@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:psychological_assessment/app/not_found_screen.dart';
-import 'package:psychological_assessment/features/about/presentation/screens/about_screen.dart';
-import 'package:psychological_assessment/features/assessment/presentation/screens/result_screen_loader.dart';
-import 'package:psychological_assessment/features/assessment/presentation/screens/runner_screen_loader.dart';
-import 'package:psychological_assessment/features/assessment/presentation/screens/test_detail_screen.dart';
-import 'package:psychological_assessment/features/assessment/presentation/screens/test_list_screen.dart';
-import 'package:psychological_assessment/features/upcoming/presentation/screens/upcoming_screen.dart';
+import '/app/not_found_screen.dart';
+import '/core/widgets/pdf_viewer_screen.dart';
+import '/features/about/presentation/screens/about_screen.dart';
+import '/features/assessment/presentation/screens/result_screen_loader.dart';
+import '/features/assessment/presentation/screens/runner_screen_loader.dart';
+import '/features/assessment/presentation/screens/test_detail_screen.dart';
+import '/features/assessment/presentation/screens/test_list_screen.dart';
+import '/features/upcoming/presentation/screens/upcoming_detail_screen.dart';
+import '/features/upcoming/presentation/screens/upcoming_screen.dart';
 
 const _titleColor = Color(0xFF1A73E8);
 
@@ -30,10 +32,35 @@ final router = GoRouter(
       ),
     ),
     GoRoute(
+      path: '/upcoming/:id',
+      pageBuilder: (context, state) {
+        final id = state.pathParameters['id']!;
+        return NoTransitionPage(child: UpcomingDetailScreen(testId: id));
+      },
+      routes: [
+        GoRoute(
+          path: 'pdf-viewer',
+          pageBuilder: (context, state) {
+            final url = state.uri.queryParameters['url'] ?? '';
+            final title = state.uri.queryParameters['title'] ?? 'PDF';
+            return NoTransitionPage(child: PdfViewerScreen(url: url, title: title));
+          },
+        ),
+      ],
+    ),
+    GoRoute(
       path: '/about',
       pageBuilder: (context, state) => NoTransitionPage(
         child: Title(title: 'About - Psychological Assessment', color: _titleColor, child: AboutScreen()),
       ),
+    ),
+    GoRoute(
+      path: '/pdf-viewer',
+      pageBuilder: (context, state) {
+        final url = state.uri.queryParameters['url'] ?? '';
+        final title = state.uri.queryParameters['title'] ?? 'PDF';
+        return NoTransitionPage(child: PdfViewerScreen(url: url, title: title));
+      },
     ),
     GoRoute(
       path: '/test/:id',
@@ -56,7 +83,16 @@ final router = GoRouter(
             return NoTransitionPage(child: ResultScreenLoader(testId: id));
           },
         ),
+        GoRoute(
+          path: 'pdf-viewer',
+          pageBuilder: (context, state) {
+            final url = state.uri.queryParameters['url'] ?? '';
+            final title = state.uri.queryParameters['title'] ?? 'PDF';
+            return NoTransitionPage(child: PdfViewerScreen(url: url, title: title));
+          },
+        ),
       ],
     ),
   ],
 );
+

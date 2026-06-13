@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../core/design_system/app_theme.dart';
+import '../../../../core/extensions.dart';
 import '../../domain/assessment_models.dart';
 
 class RunnerQuestionCard extends StatelessWidget {
@@ -68,11 +69,12 @@ class RunnerQuestionCard extends StatelessWidget {
                     shape: BoxShape.circle,
                   ),
                   child: Text(
-                    '$questionNumber',
+                    questionNumber.bn,
                     style: TextStyle(
                       color: isAnswered ? Colors.white : AppColors.primary,
                       fontWeight: FontWeight.bold,
                       fontSize: 12,
+                      fontFamily: GoogleFonts.notoSerifBengali().fontFamily,
                     ),
                   ),
                 ),

@@ -7,8 +7,16 @@ import '../../../../core/design_system/app_theme.dart';
 class DetailTopBar extends StatelessWidget {
   final bool isMobile;
   final String testName;
+  final String breadcrumbLabel;
+  final String breadcrumbRoute;
 
-  const DetailTopBar({super.key, required this.isMobile, required this.testName});
+  const DetailTopBar({
+    super.key,
+    required this.isMobile,
+    required this.testName,
+    this.breadcrumbLabel = 'Tests',
+    this.breadcrumbRoute = '/',
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,22 +31,25 @@ class DetailTopBar extends StatelessWidget {
       child: Row(
         children: [
           BreadcrumbItem(
-            label: 'Tests',
-            onTap: () => context.go('/'),
+            label: breadcrumbLabel,
+            onTap: () => context.go(breadcrumbRoute),
             isDark: Theme.of(context).brightness == Brightness.dark,
           ),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 4),
             child: Icon(LucideIcons.chevronRight, size: 14),
           ),
-          Text(
-            testName,
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-              color: isDark
-                  ? AppColors.textSecondaryDark
-                  : AppColors.textSecondary,
+          Expanded(
+            child: Text(
+              testName,
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: isDark
+                    ? AppColors.textSecondaryDark
+                    : AppColors.textSecondary,
+              ),
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         ],

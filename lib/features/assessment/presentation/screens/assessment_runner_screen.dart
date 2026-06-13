@@ -154,7 +154,7 @@ class _AssessmentRunnerScreenState
     }
 
     return Title(
-      title: '${widget.test.testName} - Psychological Assessment',
+      title: '${widget.test.testName} - মনস্তাত্ত্বিক মূল্যায়ন',
       color: AppColors.primary,
       child: Scaffold(
       body: SafeArea(
@@ -169,6 +169,7 @@ class _AssessmentRunnerScreenState
                   totalQuestions: visibleQuestions.length,
                   isDark: isDark,
                   onBack: () => context.pop(),
+                  progress: isMobile ? progress : null,
                 ),
                 if (isMobile)
                   _buildProgressBar(isDark, progress),
@@ -244,11 +245,14 @@ class _AssessmentRunnerScreenState
   }
 
   Widget _buildProgressBar(bool isDark, double progress) {
-    return LinearProgressIndicator(
-      value: progress,
-      backgroundColor: AppColors.primary.withValues(alpha: 0.1),
-      color: AppColors.primary,
-      minHeight: 3,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
+      child: LinearProgressIndicator(
+        value: progress,
+        backgroundColor: AppColors.primary.withValues(alpha: 0.1),
+        color: AppColors.primary,
+        minHeight: 3,
+      ),
     );
   }
 

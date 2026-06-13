@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 import '../../../../core/design_system/app_theme.dart';
+import '../../../../core/extensions.dart';
 import 'runner_question_navigator.dart';
 
 class RunnerSidebar extends StatelessWidget {
@@ -65,7 +66,7 @@ class RunnerSidebar extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '${(progress * 100).round()}% সম্পূর্ণ',
+                  '${(progress * 100).round().bn}% সম্পূর্ণ',
                   style: TextStyle(
                     fontSize: 12,
                     fontFamily: GoogleFonts.notoSerifBengali().fontFamily,

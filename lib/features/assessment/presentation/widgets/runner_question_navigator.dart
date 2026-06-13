@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../core/design_system/app_theme.dart';
+import '../../../../core/extensions.dart';
 
 class RunnerQuestionNavigator extends StatelessWidget {
   final int totalQuestions;
@@ -73,7 +74,7 @@ class RunnerQuestionNavigator extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(bottom: AppSpacing.md),
           child: Text(
-            '$answeredCount / $totalQuestions উত্তরিত',
+            '${answeredCount.bn} / ${totalQuestions.bn} উত্তরিত',
             style: TextStyle(
               fontSize: 12,
               fontFamily: GoogleFonts.notoSerifBengali().fontFamily,
@@ -142,9 +143,10 @@ class _GridDot extends StatelessWidget {
           border: Border.all(color: color, width: isCurrent ? 2 : 1.5),
         ),
         child: Text(
-          '${index + 1}',
+          (index + 1).bn,
           style: TextStyle(
             fontSize: 12,
+            fontFamily: GoogleFonts.notoSerifBengali().fontFamily,
             fontWeight: isCurrent || isAnswered ? FontWeight.bold : FontWeight.normal,
             color: isCurrent
                 ? AppColors.primary

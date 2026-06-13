@@ -2,7 +2,7 @@
   "testId": "srq20_bn",
   "testName": "SRQ-20 - Self-Reporting Questionnaire",
   "about": "বিশ্ব স্বাস্থ্য সংস্থা কর্তৃক উদ্ভাবিত একটি মানসিক স্বাস্থ্য স্ক্রিনিং টুল। এটি মূলত উন্নয়নশীল দেশগুলোতে সাধারণ মানসিক স্বাস্থ্য সমস্যা (যেমন: বিষণ্নতা, উদ্বেগ) শনাক্ত করার জন্য তৈরি করা হয়েছে। ২০টি হ্যাঁ/না প্রশ্নের মাধ্যমে গত এক মাসের লক্ষণগুলো মূল্যায়ন করা হয়।",
-  "author": "Developed by: World Health Organization (WHO)\nAdapted for Bangla by: Mental Health Research Team",
+  "author": "Developed by: World Health Organization (WHO)",
   "instruction": "নিচের প্রশ্নগুলো পড়ুন এবং গত ৩০ দিনে আপনার যে সমস্যাগুলো হয়েছে সেগুলোর ক্ষেত্রে 'হ্যাঁ' এবং যেগুলো হয়নি সেগুলোর ক্ষেত্রে 'না' নির্বাচন করুন।",
   "pdfUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781078422/SRQ-20_Bangla_ubftak.pdf",
   "scoringGuideUrl": "",
