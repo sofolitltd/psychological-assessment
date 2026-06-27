@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 import '../../../../core/design_system/app_theme.dart';
+import '../../../assessment/domain/test_list_utils.dart';
 import '../../../assessment/presentation/widgets/detail_lucide_icon_map.dart';
 import 'upcoming_test_model.dart';
 
@@ -90,6 +91,24 @@ class _UpcomingTestCardState extends State<UpcomingTestCard> {
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
+                      if (isTestNew(test))
+                        Container(
+                          margin: const EdgeInsets.only(right: 4),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 6, vertical: 2),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF2E7D32),
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: Text(
+                            'New',
+                            style: TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white.withValues(alpha: 0.95),
+                            ),
+                          ),
+                        ),
                       if (test.estimatedTimeMinutes > 0)
                         Container(
                           padding: const EdgeInsets.symmetric(

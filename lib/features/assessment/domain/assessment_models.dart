@@ -230,6 +230,7 @@ class TestListItem {
   final String reliabilityBadge;
   final String lucideIconName;
   final Color themeColor;
+  final String createdAt;
 
   const TestListItem({
     required this.id,
@@ -242,6 +243,7 @@ class TestListItem {
     this.reliabilityBadge = '',
     this.lucideIconName = '',
     this.themeColor = const Color(0xFF4F46E5),
+    this.createdAt = '',
   });
 
   factory TestListItem.fromJson(Map<String, dynamic> json) => TestListItem(
@@ -258,5 +260,6 @@ class TestListItem {
             ? Color(int.parse(
                 (json['themeColor'] as String).replaceFirst('#', '0xFF')))
             : const Color(0xFF4F46E5),
+        createdAt: json['createdAt'] as String? ?? '',
       );
 }

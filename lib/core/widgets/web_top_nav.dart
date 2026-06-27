@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:psychological_assessment/core/design_system/app_theme.dart';
 import 'package:psychological_assessment/core/design_system/responsive.dart';
 import 'package:psychological_assessment/core/design_system/theme_toggle_button.dart';
+import 'package:psychological_assessment/features/auth/presentation/widgets/profile_icon.dart';
 
 class WebTopNav extends StatelessWidget {
   final String currentTab;
@@ -98,6 +99,8 @@ class WebTopNav extends StatelessWidget {
                 isActive: currentTab == 'about',
                 onTap: () => context.go('/about'),
               ),
+              const SizedBox(width: AppSpacing.sm),
+              const ProfileIcon(),
               const SizedBox(width: AppSpacing.sm),
               const ThemeToggleButton(),
             ],

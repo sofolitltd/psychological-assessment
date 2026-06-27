@@ -1,0 +1,17 @@
+{
+  "id": "bssi21_bn",
+  "name": "BSSI-21 - Beck Scale for Suicidal Ideation",
+  "about": "",
+  "author": [],
+  "adapter": [],
+  "instruction": "",
+  "resources": {
+    "banglaVersionUrl": "",
+    "banglaVersionScoringUrl": ""
+  },
+  "scales": [],
+  "options": [],
+  "questions": [],
+  "resultBands": {},
+  "scoringProcedure": ""
+}

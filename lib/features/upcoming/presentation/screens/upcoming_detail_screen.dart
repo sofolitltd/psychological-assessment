@@ -11,6 +11,7 @@ import '../../../../core/widgets/web_top_nav.dart';
 import '../../../../features/assessment/presentation/widgets/detail_content_card.dart';
 import '../../../../features/assessment/presentation/widgets/detail_lucide_icon_map.dart';
 import '../../../../features/assessment/presentation/widgets/detail_top_bar.dart';
+import '../../../../features/auth/domain/auth_gate.dart';
 import '../../../assessment/domain/assessment_models.dart';
 import '../../../assessment/presentation/widgets/detail_stats.dart';
 import '../../data/upcoming_repository.dart';
@@ -133,7 +134,7 @@ class UpcomingDetailScreen extends ConsumerWidget {
                     ),
                     if (item.resources.banglaVersionUrl.isNotEmpty || item.resources.banglaVersionScoringUrl.isNotEmpty)
                       SliverToBoxAdapter(
-                        child: _buildResources(item, test, isDark, textTheme, context),
+                        child: _buildResources(item, test, isDark, textTheme, context, ref),
                       ),
                     SliverToBoxAdapter(
                       child: _buildEarlyAccess(isDark, textTheme, context),
@@ -277,6 +278,7 @@ class UpcomingDetailScreen extends ConsumerWidget {
     bool isDark,
     TextTheme textTheme,
     BuildContext context,
+    WidgetRef ref,
   ) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(AppSpacing.md, AppSpacing.md, AppSpacing.md, 0),
@@ -332,7 +334,7 @@ class UpcomingDetailScreen extends ConsumerWidget {
                         vertical: 12,
                       ),
                     ),
-                    onPressed: () => context.push('/upcoming/${test.id}/pdf-viewer?url=${Uri.encodeComponent(item.resources.banglaVersionUrl)}&title=${Uri.encodeComponent(test.name)}'),
+                    onPressed: requireAuth(context, ref, () => context.push('/upcoming/${test.id}/pdf-viewer?url=${Uri.encodeComponent(item.resources.banglaVersionUrl)}&title=${Uri.encodeComponent(test.name)}')),
                     icon: const Icon(LucideIcons.fileText, size: 18),
                     label: Text(
                       'মূল পিডিএফ',
@@ -355,7 +357,7 @@ class UpcomingDetailScreen extends ConsumerWidget {
                         vertical: 12,
                       ),
                     ),
-                    onPressed: () => context.push('/upcoming/${test.id}/pdf-viewer?url=${Uri.encodeComponent(item.resources.banglaVersionScoringUrl)}&title=${Uri.encodeComponent('${test.name} - Scoring')}'),
+                    onPressed: requireAuth(context, ref, () => context.push('/upcoming/${test.id}/pdf-viewer?url=${Uri.encodeComponent(item.resources.banglaVersionScoringUrl)}&title=${Uri.encodeComponent('${test.name} - Scoring')}')),
                     icon: const Icon(LucideIcons.fileCheck, size: 18),
                     label: Text(
                       'স্কোরিং গাইড',

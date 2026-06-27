@@ -24,7 +24,7 @@ const contributors = [
   Contributor(name: 'Marium Mojumder Samia',post: 'B.Sc in Psychology (Cu)', institution: 'MS in Psychology (CU)'),
   Contributor(name: 'Lubaba Azad', post: 'B.Sc in Psychology (Cu)', institution: 'MS in Clinical Psychology (DU)'),
   Contributor(name: 'Afzal Hossain Hridoy', post: 'Behavior Therapist, Tender Twig', institution: 'B.Sc, MS, in Psychology(CU)'),
-  Contributor(name: 'Azizul Hazik Sojol', post: 'Counselor, Wellbeing Clinic', institution: 'B.Sc, MS in Psychology (CU)'),
+  Contributor(name: 'Azizul Hakim Sojol', post: 'Counselor, Wellbeing Clinic', institution: 'B.Sc, MS in Psychology (CU)'),
   Contributor(name: 'Bibi Hazear', post: 'Counselor', institution: 'B.Sc, MS in Psychology (CU)'),
   Contributor(name: 'Upoma Eti', post: 'Lieutenant', institution: 'Bangladesh Army'),
   Contributor(name: 'BM Emon', post: 'Counselor', institution: 'B.Sc, MS in Psychology (CU)'),
