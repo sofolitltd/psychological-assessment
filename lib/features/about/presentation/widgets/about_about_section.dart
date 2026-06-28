@@ -18,7 +18,6 @@ class AboutAboutSection extends StatelessWidget {
         borderRadius: AppRadius.roundedMd,
         border: Border.all(
           color: isDark ? AppColors.borderDark : AppColors.border,
-          width: 0.5,
         ),
         boxShadow: [
           BoxShadow(

@@ -30,7 +30,6 @@ class TestSortMenu extends StatelessWidget {
     'time': 'Time',
     'severity': 'Severity',
     'items': 'Items',
-    'newest': 'Newest',
   };
 
   static const _icons = {
@@ -39,7 +38,6 @@ class TestSortMenu extends StatelessWidget {
     'time': LucideIcons.clock,
     'severity': LucideIcons.shieldAlert,
     'items': LucideIcons.barChart3,
-    'newest': LucideIcons.calendarDays,
   };
 
   @override

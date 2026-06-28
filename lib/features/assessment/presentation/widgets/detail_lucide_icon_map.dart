@@ -20,13 +20,4 @@ final Map<String, IconData> lucideIconMap = {
   'heartCrack': LucideIcons.heartCrack,
   'fingerprint': LucideIcons.fingerprint,
   'mask': LucideIcons.venetianMask,
-  'heart': LucideIcons.heart,
-  'brain': LucideIcons.brain,
-  'target': LucideIcons.target,
-  'smartphone': LucideIcons.smartphone,
-  'music': LucideIcons.music,
-  'camera': LucideIcons.camera,
-  'globe': LucideIcons.globe,
-  'bookOpen': LucideIcons.bookOpen,
-  'heartPulse': LucideIcons.heartPulse,
 };

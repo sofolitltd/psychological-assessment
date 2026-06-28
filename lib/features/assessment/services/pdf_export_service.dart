@@ -60,7 +60,7 @@ class PdfExportService {
     final regularFont = await PdfGoogleFonts.outfitRegular();
     final boldFont = await PdfGoogleFonts.outfitBold();
 
-    final accentColor = PdfColor.fromHex('#00897B');
+    final accentColor = PdfColor.fromHex('#6750A4');
     final now = DateFormat('MMMM dd, yyyy — hh:mm a').format(DateTime.now());
 
     pw.TextStyle engStyle({

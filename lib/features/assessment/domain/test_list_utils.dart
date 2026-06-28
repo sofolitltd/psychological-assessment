@@ -1,12 +1,5 @@
 import 'package:psychological_assessment/features/assessment/domain/assessment_models.dart';
 
-bool isTestNew(TestListItem test) {
-  if (test.createdAt.isEmpty) return false;
-  final date = DateTime.tryParse(test.createdAt);
-  if (date == null) return false;
-  return DateTime.now().difference(date).inDays <= 30;
-}
-
 List<TestListItem> sortTestList(List<TestListItem> items, {required String sortBy, required bool ascending}) {
   if (sortBy == 'all') {
     if (!ascending) return items.reversed.toList();
@@ -27,16 +20,6 @@ List<TestListItem> sortTestList(List<TestListItem> items, {required String sortB
       break;
     case 'name':
       sorted.sort((a, b) => a.name.compareTo(b.name));
-      break;
-    case 'newest':
-      sorted.sort((a, b) {
-        final da = DateTime.tryParse(a.createdAt);
-        final db = DateTime.tryParse(b.createdAt);
-        if (da == null && db == null) return 0;
-        if (da == null) return 1;
-        if (db == null) return -1;
-        return db.compareTo(da);
-      });
       break;
   }
   if (!ascending) return sorted.reversed.toList();

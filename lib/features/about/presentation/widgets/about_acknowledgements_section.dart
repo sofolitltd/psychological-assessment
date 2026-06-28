@@ -34,10 +34,8 @@ class AboutAcknowledgementsSection extends StatelessWidget {
                 child: const Icon(LucideIcons.users, size: 14, color: AppColors.primary),
               ),
               const SizedBox(width: 10),
-              Expanded(
-                child: Text('Acknowledgements', style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold, fontFamily: outfit.fontFamily), overflow: TextOverflow.ellipsis),
-              ),
-              const SizedBox(width: 4),
+              Text('Acknowledgements', style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold, fontFamily: outfit.fontFamily)),
+              const Spacer(),
               TextButton(
                 onPressed: () => context.push('/about/acknowledgements'),
                 style: TextButton.styleFrom(

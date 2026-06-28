@@ -10,7 +10,6 @@
       "reliabilityBadge": "Clinical Valid",
       "lucideIconName": "moon",
       "themeColor": "#263238",
-      "createdAt": "2026-03-01",
       "description": "গত এক মাসে আপনার ঘুমের মান, ঘুমের সময়কাল, এবং ঘুমজনিত সমস্যার মাত্রা মূল্যায়নের জন্য আন্তর্জাতিকভাবে স্বীকৃত একটি টুল।",
       "resources": {
         "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781160260/Pittsburgh_Sleep_Quality_Scale_bangla_a0tekb.pdf",
@@ -27,7 +26,6 @@
       "reliabilityBadge": "Academic Standard",
       "lucideIconName": "brain",
       "themeColor": "#1E88E5",
-      "createdAt": "2026-03-15",
       "description": "উদ্বেগজনিত লক্ষণ ও তার তীব্রতা মূল্যায়নের জন্য তৈরি একটি স্কেল।",
       "resources": {
         "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781160259/Hospital_Anxiety_Depression_Scale_ouritb.pdf",
@@ -44,7 +42,6 @@
       "reliabilityBadge": "Academic Standard",
       "lucideIconName": "heart",
       "themeColor": "#5E35B1",
-      "createdAt": "2026-04-01",
       "description": "বিষণ্নতাজনিত লক্ষণ ও তার তীব্রতা মূল্যায়নের জন্য তৈরি একটি স্কেল।",
       "resources": {
         "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781160259/Depression_scale_30_items_fvalkk.pdf",
@@ -61,7 +58,6 @@
       "reliabilityBadge": "Clinical Standard",
       "lucideIconName": "heart",
       "themeColor": "#8E24AA",
-      "createdAt": "2026-04-15",
       "description": "শিশু ও কিশোরদের মধ্যে বিষণ্নতার লক্ষণ ও তীব্রতা মূল্যায়নের জন্য তৈরি একটি প্রমিত স্কেল। ১৮টি প্রশ্নের মাধ্যমে শিশুর মানসিক অবস্থা, আগ্রহ হ্রাস, ও দৈনন্দিন কার্যক্রমে প্রভাব মূল্যায়ন করে।",
       "resources": {
         "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781160268/Depression_scale_for_child_18_item_t7ojlq.pdf",
@@ -78,7 +74,6 @@
       "reliabilityBadge": "WHO Validated",
       "lucideIconName": "scrollText",
       "themeColor": "#00897B",
-      "createdAt": "2026-05-01",
       "description": "সাধারণ মানসিক স্বাস্থ্য ও সুস্থতার একটি ব্যাপক মূল্যায়ন। ২৮টি প্রশ্নের মাধ্যমে শারীরিক লক্ষণ, উদ্বেগ, সামাজিক কার্যকারিতা ও বিষণ্নতা মূল্যায়ন করে।",
       "resources": {
         "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781160263/General_Health_Questionnaire_28_items_yofihz.pdf",
@@ -95,7 +90,6 @@
       "reliabilityBadge": "Clinical Standard",
       "lucideIconName": "heartPulse",
       "themeColor": "#D81B60",
-      "createdAt": "2026-05-15",
       "description": "হাসপাতালে চিকিৎসাধীন রোগীদের উদ্বেগ ও বিষণ্নতার মাত্রা মূল্যায়নের জন্য তৈরি একটি সংক্ষিপ্ত ও কার্যকরী স্কেল।",
       "resources": {
         "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781160259/Hospital_Anxiety_Depression_Scale_ouritb.pdf",
@@ -112,7 +106,6 @@
       "reliabilityBadge": "Psychiatric Std",
       "lucideIconName": "users",
       "themeColor": "#3949AB",
-      "createdAt": "2026-06-01",
       "description": "সামাজিক মিথস্ক্রিয়ায় উদ্বেগ ও অস্বস্তির মাত্রা পরিমাপের জন্য একটি ব্যাপকভাবে ব্যবহৃত স্কেল।",
       "resources": {
         "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781160261/Social_Interaction_Anxiety_Scale_20_items_hm7tbe.pdf",
@@ -129,7 +122,6 @@
       "reliabilityBadge": "Research Grade",
       "lucideIconName": "activity",
       "themeColor": "#607D8B",
-      "createdAt": "2026-06-01",
       "description": "শারীরিক উপসর্গ ও সোমাটিক অভিযোগের মাত্রা ও প্রকৃতি মূল্যায়নের জন্য একটি বিস্তারিত স্কেল।",
       "resources": {
         "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781160265/Somatic_Complaints_Scale_24_items_xxobxk.pdf",
@@ -146,7 +138,6 @@
       "reliabilityBadge": "Research Grade",
       "lucideIconName": "brain",
       "themeColor": "#7E57C2",
-      "createdAt": "2026-06-01",
       "description": "চিন্তার ভুল ধরণ ও জ্ঞানীয় বিকৃতির মাত্রা মূল্যায়নের জন্য একটি ব্যাপক স্কেল।",
       "resources": {
         "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781160258/Cognitive_Distortion_Scale_39_items_type_pyfggd.pdf",
@@ -163,214 +154,9 @@
       "reliabilityBadge": "Research Grade",
       "lucideIconName": "bookOpen",
       "themeColor": "#37474F",
-      "createdAt": "2026-06-15",
       "description": "আবেগ নিয়ন্ত্রণের জ্ঞানীয় কৌশল ও মানসিক চাপ মোকাবিলার পদ্ধতি মূল্যায়নের জন্য একটি আন্তর্জাতিকভাবে স্বীকৃত প্রশ্নমালা।",
       "resources": {
         "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1781160266/Cognitive_Emotion_Regulation_Questionnaire_Bangla_version__revised_2016_s6nkqu.pdf",
-        "banglaVersionScoringUrl": ""
-      }
-    },
-    {
-      "id": "ucla_loneliness_bn",
-      "name": "UCLA Loneliness Scale",
-      "category": "Self",
-      "questionCount": 17,
-      "estimatedTimeMinutes": 10,
-      "sensitivityLevel": "Medium",
-      "reliabilityBadge": "Validated Scale",
-      "lucideIconName": "heart",
-      "themeColor": "#E91E63",
-      "createdAt": "2026-06-27",
-      "description": "একাকিত্ব ও সামাজিক বিচ্ছিন্নতার মাত্রা মূল্যায়নের জন্য আন্তর্জাতিকভাবে স্বীকৃত একটি স্কেল।",
-      "resources": {
-        "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1782529991/UCLA_Loneliness_Scale_mi1koy.pdf",
-        "banglaVersionScoringUrl": ""
-      }
-    },
-{
-      "id": "smartphone_addiction_bn",
-      "name": "Smartphone Addiction Scale",
-      "category": "Behavior",
-      "questionCount": 30,
-      "estimatedTimeMinutes": 8,
-      "sensitivityLevel": "Medium",
-      "reliabilityBadge": "Research Grade",
-      "lucideIconName": "smartphone",
-      "themeColor": "#FF5722",
-      "createdAt": "2026-06-27",
-      "description": "স্মার্টফোনের অতিরিক্ত ব্যবহার ও আসক্তির মাত্রা মূল্যায়নের জন্য একটি ব্যাপক স্কেল।",
-      "resources": {
-        "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1782529991/Smartphone_Addiction_Scale_lr18vb.pdf",
-        "banglaVersionScoringUrl": ""
-      }
-    },
-    {
-      "id": "mhi18_bn",
-      "name": "MHI-18 - Mental Health Inventory",
-      "category": "Screening",
-      "questionCount": 18,
-      "estimatedTimeMinutes": 5,
-      "sensitivityLevel": "Medium",
-      "reliabilityBadge": "Validated Scale",
-      "lucideIconName": "heartPulse",
-      "themeColor": "#4CAF50",
-      "createdAt": "2026-06-27",
-      "description": "মানসিক স্বাস্থ্যের বিভিন্ন মাত্রা—উদ্বেগ, বিষণ্নতা, আচরণ নিয়ন্ত্রণ ও সাধারণ সুস্থতা মূল্যায়নের জন্য একটি ব্যাপক স্কেল।",
-      "resources": {
-        "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1782529991/Mental_Health_Inventory-18_dd1h4j.pdf",
-        "banglaVersionScoringUrl": ""
-      }
-    },
-    {
-      "id": "bpas6_bn",
-      "name": "BPAS-6 - Brief Psychological Adjustment Scale",
-      "category": "Screening",
-      "questionCount": 6,
-      "estimatedTimeMinutes": 2,
-      "sensitivityLevel": "Low",
-      "reliabilityBadge": "Research Grade",
-      "lucideIconName": "activity",
-      "themeColor": "#9C27B0",
-      "createdAt": "2026-06-27",
-      "description": "মানসিক অভিযোজন ও মনোসামাজিক সামঞ্জস্যের মাত্রা দ্রুত মূল্যায়নের জন্য একটি সংক্ষিপ্ত স্কেল।",
-      "resources": {
-        "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1782529990/Brief_Psychological_Adjustment_Scale-6_rlsabc.pdf",
-        "banglaVersionScoringUrl": ""
-      }
-    },
-    {
-      "id": "bfrs16_bn",
-      "name": "BFRS-16 - Brief Family Relationship Scale",
-      "category": "Personality",
-      "questionCount": 16,
-      "estimatedTimeMinutes": 4,
-      "sensitivityLevel": "Low",
-      "reliabilityBadge": "Research Grade",
-      "lucideIconName": "users",
-      "themeColor": "#3F51B5",
-      "createdAt": "2026-06-27",
-      "description": "পারিবারিক সম্পর্কের গুণগত মান, সংহতি ও দ্বন্দ্বের মাত্রা মূল্যায়নের জন্য একটি নির্ভরযোগ্য স্কেল।",
-      "resources": {
-        "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1782529988/Brief_Family_Relationship_Scale_-_16_ldurex.pdf",
-        "banglaVersionScoringUrl": ""
-      }
-    },
-    {
-      "id": "bsmas_tiktok_bn",
-      "name": "BSMAS - Bergen Social Media Addiction Scale (TikTok)",
-      "category": "Behavior",
-      "questionCount": 6,
-      "estimatedTimeMinutes": 2,
-      "sensitivityLevel": "Medium",
-      "reliabilityBadge": "Research Grade",
-      "lucideIconName": "music",
-      "themeColor": "#FF0050",
-      "createdAt": "2026-06-27",
-      "description": "টিকটক ব্যবহারের মাধ্যমে সোশ্যাল মিডিয়া আসক্তির মাত্রা মূল্যায়নের জন্য একটি প্রমিত স্কেল।",
-      "resources": {
-        "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1782529987/Bergen_Social_Media_Addiction-Tiktok_b7m2km.pdf",
-        "banglaVersionScoringUrl": ""
-      }
-    },
-    {
-      "id": "bsmas_instagram_bn",
-      "name": "BSMAS - Bergen Social Media Addiction Scale (Instagram)",
-      "category": "Behavior",
-      "questionCount": 6,
-      "estimatedTimeMinutes": 2,
-      "sensitivityLevel": "Medium",
-      "reliabilityBadge": "Research Grade",
-      "lucideIconName": "camera",
-      "themeColor": "#E4405F",
-      "createdAt": "2026-06-27",
-      "description": "ইনস্টাগ্রাম ব্যবহারের মাধ্যমে সোশ্যাল মিডিয়া আসক্তির মাত্রা মূল্যায়নের জন্য একটি প্রমিত স্কেল।",
-      "resources": {
-        "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1782529987/Bergen_Social_Media_Addiction-Instragram_scefua.pdf",
-        "banglaVersionScoringUrl": ""
-      }
-    },
-    {
-      "id": "bsmas_facebook_bn",
-      "name": "BSMAS - Bergen Social Media Addiction Scale (Facebook)",
-      "category": "Behavior",
-      "questionCount": 6,
-      "estimatedTimeMinutes": 2,
-      "sensitivityLevel": "Medium",
-      "reliabilityBadge": "Research Grade",
-      "lucideIconName": "globe",
-      "themeColor": "#1877F2",
-      "createdAt": "2026-06-27",
-      "description": "ফেসবুক ব্যবহারের মাধ্যমে সোশ্যাল মিডিয়া আসক্তির মাত্রা মূল্যায়নের জন্য একটি প্রমিত স্কেল।",
-      "resources": {
-        "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1782529987/Bangla_Self-Efficacy_Scale_1_km27ev.pdf",
-        "banglaVersionScoringUrl": ""
-      }
-    },
-    {
-      "id": "bssi21_bn",
-      "name": "BSSI-21 - Beck Scale for Suicidal Ideation",
-      "category": "Screening",
-      "questionCount": 21,
-      "estimatedTimeMinutes": 5,
-      "sensitivityLevel": "High",
-      "reliabilityBadge": "Clinical Standard",
-      "lucideIconName": "shieldAlert",
-      "themeColor": "#E53935",
-      "createdAt": "2026-06-27",
-      "description": "আত্মহত্যা সংক্রান্ত চিন্তা, ইচ্ছা ও পরিকল্পনার তীব্রতা মূল্যায়নের জন্য একটি ক্লিনিক্যালি স্বীকৃত স্কেল।",
-      "resources": {
-        "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1782529987/Bangla_Self-Efficacy_Scale_1_km27ev.pdf",
-        "banglaVersionScoringUrl": ""
-      }
-    },
-    {
-      "id": "brief_cope_bn",
-      "name": "Brief COPE - Coping Orientation to Problems Experienced",
-      "category": "Personality",
-      "questionCount": 28,
-      "estimatedTimeMinutes": 8,
-      "sensitivityLevel": "Low",
-      "reliabilityBadge": "Validated Scale",
-      "lucideIconName": "bookOpen",
-      "themeColor": "#00BCD4",
-      "createdAt": "2026-06-27",
-      "description": "মানসিক চাপ মোকাবিলার বিভিন্ন কৌশল ও অভিযোজন পদ্ধতি মূল্যায়নের জন্য আন্তর্জাতিকভাবে স্বীকৃত একটি স্কেল।",
-      "resources": {
-        "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1782529987/Bangla_Self-Efficacy_Scale_1_km27ev.pdf",
-        "banglaVersionScoringUrl": ""
-      }
-    },
-    {
-      "id": "self_efficacy_bn",
-      "name": "Self-Efficacy Scale",
-      "category": "Self",
-      "questionCount": 10,
-      "estimatedTimeMinutes": 3,
-      "sensitivityLevel": "Low",
-      "reliabilityBadge": "Validated Scale",
-      "lucideIconName": "target",
-      "themeColor": "#009688",
-      "createdAt": "2026-06-27",
-      "description": "নিজের ক্ষমতা ও দক্ষতার প্রতি আস্থা এবং কঠিন পরিস্থিতি মোকাবিলার সামর্থ্য মূল্যায়নের জন্য একটি নির্ভরযোগ্য স্কেল।",
-      "resources": {
-        "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1782529987/Bangla_Self-Efficacy_Scale_1_km27ev.pdf",
-        "banglaVersionScoringUrl": ""
-      }
-    },
-    {
-      "id": "big5_44_bn",
-      "name": "Big Five Inventory (44 items)",
-      "category": "Personality",
-      "questionCount": 44,
-      "estimatedTimeMinutes": 10,
-      "sensitivityLevel": "Low",
-      "reliabilityBadge": "Big Five Standard",
-      "lucideIconName": "fingerprint",
-      "themeColor": "#7E57C2",
-      "createdAt": "2026-06-27",
-      "description": "ব্যক্তিত্বের পাঁচটি প্রধান মাত্রা—এক্সট্রাভার্শন, অ্যাগ্রিবলনেস, কনসায়েনশিয়াসনেস, নিউরোটিসিজম ও ওপেননেস—সম্পূর্ণভাবে মূল্যায়নের জন্য একটি ব্যাপক স্কেল।",
-      "resources": {
-        "banglaVersionUrl": "https://res.cloudinary.com/ddsruulom/image/upload/v1782529987/Bangla_Big-5_44_items_xwotqj.pdf",
         "banglaVersionScoringUrl": ""
       }
     }
