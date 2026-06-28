@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:psychological_assessment/core/design_system/app_theme.dart';
-import 'package:psychological_assessment/core/design_system/responsive.dart';
-import 'package:psychological_assessment/core/design_system/theme_toggle_button.dart';
-import 'package:psychological_assessment/features/auth/presentation/widgets/profile_icon.dart';
+import '/core/design_system/app_theme.dart';
+import '/core/design_system/responsive.dart';
+import '/core/design_system/theme_toggle_button.dart';
+import '/features/auth/presentation/widgets/profile_icon.dart';
 
 class WebTopNav extends StatelessWidget {
   final String currentTab;

@@ -9,9 +9,9 @@ import '/features/assessment/presentation/screens/result_screen_loader.dart';
 import '/features/assessment/presentation/screens/runner_screen_loader.dart';
 import '/features/assessment/presentation/screens/test_detail_screen.dart';
 import '/features/assessment/presentation/screens/test_list_screen.dart';
+import '/features/auth/presentation/screens/profile_screen.dart';
 import '/features/upcoming/presentation/screens/upcoming_detail_screen.dart';
 import '/features/upcoming/presentation/screens/upcoming_screen.dart';
-import '/features/auth/presentation/screens/profile_screen.dart';
 
 const _titleColor = Color(0xFF1A73E8);
 
@@ -24,20 +24,26 @@ final router = GoRouter(
     GoRoute(
       path: '/',
       pageBuilder: (context, state) => NoTransitionPage(
-        child: Title(title: 'Tests - Psychological Assessment', color: _titleColor, child: TestListScreen()),
+        child: Title(title: 'Tests - Psychological Assessment', color: _titleColor, child: const TestListScreen()),
       ),
     ),
     GoRoute(
       path: '/upcoming',
       pageBuilder: (context, state) => NoTransitionPage(
-        child: Title(title: 'Upcoming - Psychological Assessment', color: _titleColor, child: UpcomingScreen()),
+        child: Title(
+          title: 'Upcoming - Psychological Assessment',
+          color: _titleColor,
+          child: const UpcomingScreen(),
+        ),
       ),
     ),
     GoRoute(
       path: '/upcoming/:id',
       pageBuilder: (context, state) {
         final id = state.pathParameters['id']!;
-        return NoTransitionPage(child: UpcomingDetailScreen(testId: id));
+        return NoTransitionPage(
+          child: UpcomingDetailScreen(testId: id),
+        );
       },
       routes: [
         GoRoute(
@@ -45,7 +51,9 @@ final router = GoRouter(
           pageBuilder: (context, state) {
             final url = state.uri.queryParameters['url'] ?? '';
             final title = state.uri.queryParameters['title'] ?? 'PDF';
-            return NoTransitionPage(child: PdfViewerScreen(url: url, title: title));
+            return NoTransitionPage(
+              child: PdfViewerScreen(url: url, title: title),
+            );
           },
         ),
       ],
@@ -53,19 +61,27 @@ final router = GoRouter(
     GoRoute(
       path: '/profile',
       pageBuilder: (context, state) => NoTransitionPage(
-        child: Title(title: 'Profile - Psychological Assessment', color: _titleColor, child: ProfileScreen()),
+        child: Title(
+          title: 'Profile - Psychological Assessment',
+          color: _titleColor,
+          child: const ProfileScreen(),
+        ),
       ),
     ),
     GoRoute(
       path: '/about',
       pageBuilder: (context, state) => NoTransitionPage(
-        child: Title(title: 'About - Psychological Assessment', color: _titleColor, child: AboutScreen()),
+        child: Title(
+          title: 'About - Psychological Assessment',
+          color: _titleColor,
+          child: const AboutScreen(),
+        ),
       ),
       routes: [
         GoRoute(
           path: 'acknowledgements',
           pageBuilder: (context, state) => NoTransitionPage(
-            child: AcknowledgementsScreen(),
+            child: const AcknowledgementsScreen(),
           ),
         ),
       ],
@@ -75,7 +91,9 @@ final router = GoRouter(
       pageBuilder: (context, state) {
         final url = state.uri.queryParameters['url'] ?? '';
         final title = state.uri.queryParameters['title'] ?? 'PDF';
-        return NoTransitionPage(child: PdfViewerScreen(url: url, title: title));
+        return NoTransitionPage(
+          child: PdfViewerScreen(url: url, title: title),
+        );
       },
     ),
     GoRoute(
@@ -89,14 +107,18 @@ final router = GoRouter(
           path: 'run',
           pageBuilder: (context, state) {
             final id = state.pathParameters['id']!;
-            return NoTransitionPage(child: RunnerScreenLoader(testId: id));
+            return NoTransitionPage(
+              child: RunnerScreenLoader(testId: id),
+            );
           },
         ),
         GoRoute(
           path: 'result',
           pageBuilder: (context, state) {
             final id = state.pathParameters['id']!;
-            return NoTransitionPage(child: ResultScreenLoader(testId: id));
+            return NoTransitionPage(
+              child: ResultScreenLoader(testId: id),
+            );
           },
         ),
         GoRoute(
@@ -104,11 +126,12 @@ final router = GoRouter(
           pageBuilder: (context, state) {
             final url = state.uri.queryParameters['url'] ?? '';
             final title = state.uri.queryParameters['title'] ?? 'PDF';
-            return NoTransitionPage(child: PdfViewerScreen(url: url, title: title));
+            return NoTransitionPage(
+              child: PdfViewerScreen(url: url, title: title),
+            );
           },
         ),
       ],
     ),
   ],
 );
-

@@ -65,8 +65,8 @@ class ThemeToggleButton extends ConsumerWidget {
           ),
       ],
         child: Container(
-          height: 40,
-          width: 40,
+          height: 36,
+          width: 36,
           padding: EdgeInsets.zero,
           decoration: BoxDecoration(
             color: isDark ? AppColors.surfaceDark : AppColors.surface,

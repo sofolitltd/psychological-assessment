@@ -93,6 +93,7 @@ class AboutDeveloperSection extends StatelessWidget {
 
           Text(
             'Psychosocial Counselor, P2H Project, Bangladesh Red Crescent Society',
+            textAlign: .center,
             style: textTheme.bodySmall?.copyWith(
               color: isDark
                   ? AppColors.textSecondaryDark

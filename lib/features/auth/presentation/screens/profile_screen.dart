@@ -3,12 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
+import '/features/auth/domain/auth_providers.dart';
 
 import '../../../../core/design_system/app_theme.dart';
 import '../../../../core/design_system/responsive.dart';
 import '../../../../core/widgets/mobile_bottom_nav.dart';
 import '../../../../core/widgets/web_top_nav.dart';
-import '../../domain/auth_providers.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({super.key});
@@ -610,7 +610,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             ),
             const SizedBox(height: AppSpacing.lg),
             Text(
-              'আপনি লগ ইন করেননি',
+              'আপনি লগইন করেননি',
               style: textTheme.titleMedium?.copyWith(
                 fontFamily: notoSerif.fontFamily,
                 fontWeight: FontWeight.bold,
@@ -630,6 +630,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             const SizedBox(height: AppSpacing.lg),
             SizedBox(
               height: 48,
+              width: 210,
               child: ElevatedButton.icon(
                 icon: _isLoading
                     ? const SizedBox(
@@ -640,7 +641,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                           color: Colors.white,
                         ),
                       )
-                    : const Icon(LucideIcons.logIn, size: 20),
+                    :  SizedBox(width:  20, height: 20, child: Image.asset("assets/images/google.png"),),
                 label: Text(
                   _isLoading ? 'লগইন হচ্ছে...' : 'Google দিয়ে লগইন করুন',
                   style: TextStyle(fontFamily: notoSerif.fontFamily),

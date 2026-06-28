@@ -58,9 +58,7 @@ class _PdfViewerScreenState extends ConsumerState<PdfViewerScreen> {
     final appWebsite = 'psychologicalassessmentbd.web.app';
     final text = '$appName\n\n${widget.title}\n\nLink:${widget.url}\n\n'
         'Explore more psychological assessments on $appWebsite.';
-    await Share.share(text, subject: widget.title);
-
-    
+    await SharePlus.instance.share(ShareParams(text: text, subject: widget.title));
   }
 
   Future<void> _print(Uint8List bytes) async {

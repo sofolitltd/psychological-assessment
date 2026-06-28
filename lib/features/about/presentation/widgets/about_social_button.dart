@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../../core/design_system/app_theme.dart';
 
@@ -62,7 +61,7 @@ class AboutSocialButton extends StatelessWidget {
               ),
             ),
             Icon(
-              LucideIcons.externalLink,
+              Icons.open_in_new,
               size: 16,
               color: isDark
                   ? AppColors.textSecondaryDark

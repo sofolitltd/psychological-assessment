@@ -1,9 +1,6 @@
-import 'dart:async';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 import '../../../../core/design_system/app_theme.dart';
 
@@ -16,21 +13,14 @@ class ProfileIcon extends StatefulWidget {
 
 class _ProfileIconState extends State<ProfileIcon> {
   User? _user;
-  StreamSubscription<User?>? _authSub;
 
   @override
   void initState() {
     super.initState();
     _user = FirebaseAuth.instance.currentUser;
-    _authSub = FirebaseAuth.instance.authStateChanges().listen((user) {
+    FirebaseAuth.instance.authStateChanges().listen((user) {
       if (mounted) setState(() => _user = user);
     });
-  }
-
-  @override
-  void dispose() {
-    _authSub?.cancel();
-    super.dispose();
   }
 
   @override
@@ -44,23 +34,18 @@ class _ProfileIconState extends State<ProfileIcon> {
         width: 36,
         height: 36,
         decoration: BoxDecoration(
-          shape: BoxShape.circle,
+          borderRadius: BorderRadius.circular(8),
           border: Border.all(
             color: isDark ? AppColors.borderDark : AppColors.border,
-            width: 2,
+            width: 0.5,
           ),
         ),
-        child: ClipOval(
-          child: _user != null && _user!.photoURL != null
-              ? Image.network(_user!.photoURL!, fit: BoxFit.cover)
-              : Icon(
-                  LucideIcons.user,
-                  size: 18,
-                  color: isDark
-                      ? AppColors.textSecondaryDark
-                      : AppColors.textSecondary,
-                ),
-        ),
+        child: _user != null && _user!.photoURL != null
+            ? ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.network(_user!.photoURL!, fit: BoxFit.cover),
+              )
+            : Icon(Icons.person, size: 18, color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondary),
       ),
     );
   }
