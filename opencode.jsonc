@@ -1,0 +1,12 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "lsp": true,
+  "mcp": {
+    "dart-flutter": {
+      "type": "local",
+      "command": ["dart", "mcp-server"],
+      "enabled": true,
+      "environment": {}
+    }
+  }
+}

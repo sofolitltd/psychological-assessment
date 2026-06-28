@@ -1,0 +1,17 @@
+{
+  "id": "big5_44_bn",
+  "name": "Big Five Inventory (44 items)",
+  "about": "",
+  "author": [],
+  "adapter": [],
+  "instruction": "",
+  "resources": {
+    "banglaVersionUrl": "",
+    "banglaVersionScoringUrl": ""
+  },
+  "scales": [],
+  "options": [],
+  "questions": [],
+  "resultBands": {},
+  "scoringProcedure": ""
+}

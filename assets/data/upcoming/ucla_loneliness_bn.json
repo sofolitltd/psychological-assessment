@@ -1,0 +1,17 @@
+{
+  "id": "ucla_loneliness_bn",
+  "name": "UCLA Loneliness Scale",
+  "about": "",
+  "author": [],
+  "adapter": [],
+  "instruction": "",
+  "resources": {
+    "banglaVersionUrl": "",
+    "banglaVersionScoringUrl": ""
+  },
+  "scales": [],
+  "options": [],
+  "questions": [],
+  "resultBands": {},
+  "scoringProcedure": ""
+}

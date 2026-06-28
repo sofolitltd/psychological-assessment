@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:printing/printing.dart';
 
 import 'package:psychological_assessment/core/design_system/app_theme.dart';
@@ -12,48 +13,52 @@ import 'package:psychological_assessment/features/assessment/presentation/widget
 import 'package:psychological_assessment/features/assessment/presentation/widgets/result_score_card.dart';
 import 'package:psychological_assessment/features/assessment/presentation/widgets/result_summary_section.dart';
 import 'package:psychological_assessment/features/assessment/presentation/widgets/result_bottom_actions.dart';
+import 'package:psychological_assessment/features/auth/domain/auth_gate.dart';
 
-class AssessmentResultsScreen extends StatefulWidget {
+class AssessmentResultsScreen extends ConsumerStatefulWidget {
   final AssessmentResultBundle bundle;
 
   const AssessmentResultsScreen({super.key, required this.bundle});
 
   @override
-  State<AssessmentResultsScreen> createState() =>
+  ConsumerState<AssessmentResultsScreen> createState() =>
       _AssessmentResultsScreenState();
 }
 
-class _AssessmentResultsScreenState extends State<AssessmentResultsScreen> {
+class _AssessmentResultsScreenState extends ConsumerState<AssessmentResultsScreen> {
   bool _isGeneratingPdf = false;
 
-  Future<void> _sharePdf() async {
-    final userInfo = await showPdfInfoDialog(context);
-    if (userInfo == null) return;
+  void _onSharePdf() {
+    final gate = requireAuth(context, ref, () async {
+      final userInfo = await showPdfInfoDialog(context);
+      if (userInfo == null) return;
 
-    setState(() => _isGeneratingPdf = true);
-    try {
-      final pdfBytes = await PdfExportService.generateAssessmentReport(
-        widget.bundle,
-        clientName: userInfo.name,
-        clientId: userInfo.clientId,
-        clientPhone: userInfo.phone,
-        fullReport: userInfo.reportType == PdfType.full,
-      );
-      final fileName =
-          '${widget.bundle.testName.replaceAll(' ', '_')}_Report.pdf';
-      await Printing.sharePdf(bytes: pdfBytes, filename: fileName);
-    } catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Failed to generate PDF: $e'),
-            backgroundColor: Colors.red,
-          ),
+      setState(() => _isGeneratingPdf = true);
+      try {
+        final pdfBytes = await PdfExportService.generateAssessmentReport(
+          widget.bundle,
+          clientName: userInfo.name,
+          clientId: userInfo.clientId,
+          clientPhone: userInfo.phone,
+          fullReport: userInfo.reportType == PdfType.full,
         );
+        final fileName =
+            '${widget.bundle.testName.replaceAll(' ', '_')}_Report.pdf';
+        await Printing.sharePdf(bytes: pdfBytes, filename: fileName);
+      } catch (e) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Failed to generate PDF: $e'),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+      } finally {
+        if (mounted) setState(() => _isGeneratingPdf = false);
       }
-    } finally {
-      if (mounted) setState(() => _isGeneratingPdf = false);
-    }
+    });
+    gate();
   }
 
   @override
@@ -115,7 +120,7 @@ class _AssessmentResultsScreenState extends State<AssessmentResultsScreen> {
               ResultBottomActions(
                 isDark: isDark,
                 isGeneratingPdf: _isGeneratingPdf,
-                onSharePdf: _sharePdf,
+                onSharePdf: _onSharePdf,
                 scoringProcedure: widget.bundle.test.scoringProcedure,
                 testId: widget.bundle.testId,
               ),
@@ -179,7 +184,7 @@ class _AssessmentResultsScreenState extends State<AssessmentResultsScreen> {
                       ResultBottomActions(
                         isDark: isDark,
                         isGeneratingPdf: _isGeneratingPdf,
-                        onSharePdf: _sharePdf,
+                        onSharePdf: _onSharePdf,
                         scoringProcedure: widget.bundle.test.scoringProcedure,
                         testId: widget.bundle.testId,
                       ),

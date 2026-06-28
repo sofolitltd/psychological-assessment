@@ -11,6 +11,7 @@ import '/features/assessment/presentation/screens/test_detail_screen.dart';
 import '/features/assessment/presentation/screens/test_list_screen.dart';
 import '/features/upcoming/presentation/screens/upcoming_detail_screen.dart';
 import '/features/upcoming/presentation/screens/upcoming_screen.dart';
+import '/features/auth/presentation/screens/profile_screen.dart';
 
 const _titleColor = Color(0xFF1A73E8);
 
@@ -48,6 +49,12 @@ final router = GoRouter(
           },
         ),
       ],
+    ),
+    GoRoute(
+      path: '/profile',
+      pageBuilder: (context, state) => NoTransitionPage(
+        child: Title(title: 'Profile - Psychological Assessment', color: _titleColor, child: ProfileScreen()),
+      ),
     ),
     GoRoute(
       path: '/about',

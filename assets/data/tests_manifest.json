@@ -10,6 +10,7 @@
       "reliabilityBadge": "WHO Validated",
       "lucideIconName": "clipboardCheck",
       "themeColor": "#4CAF50",
+      "createdAt": "2025-01-15",
       "description": "আপনার দৈনন্দিন মানসিক স্বাস্থ্য ও সাধারণ কার্যক্ষমতায় কোনো ধরনের অস্বস্তি বা পরিবর্তনের উপস্থিতি আছে কি না, তা যাচাই করার একটি প্রাথমিক টুল।"
     },
     {
@@ -22,6 +23,7 @@
       "reliabilityBadge": "Clinical Standard",
       "lucideIconName": "shieldAlert",
       "themeColor": "#E53935",
+      "createdAt": "2025-02-01",
       "description": "চরম হতাশা বা মানসিক কষ্টের মুহূর্তে নিজের ক্ষতি করার মতো কোনো ঝুঁকিপূর্ণ চিন্তা বা প্রবণতা তৈরি হচ্ছে কি না, তা মূল্যায়নের জন্য একটি আন্তর্জাতিক সুরক্ষা স্কেল।"
     },
     {
@@ -34,6 +36,7 @@
       "reliabilityBadge": "WHO Approved",
       "lucideIconName": "smile",
       "themeColor": "#00ACC1",
+      "createdAt": "2025-02-15",
       "description": "গত দুই সপ্তাহে আপনার মনের সার্বিক সুস্থতা, প্রাণবন্ততা এবং জীবনের ইতিবাচক দিকগুলোর একটি সংক্ষিপ্ত ও সহজ মূল্যায়ন।"
     },
     {
@@ -46,6 +49,7 @@
       "reliabilityBadge": "Global Standard",
       "lucideIconName": "activity",
       "themeColor": "#FB8C00",
+      "createdAt": "2025-03-01",
       "description": "একই সাথে আপনার ভেতরের বিষণ্নতা, উদ্বেগ এবং দৈনিক মানসিক চাপের মাত্রা ও তীব্রতা আলাদাভাবে পরিমাপ করার একটি বৈজ্ঞানিক স্কেল।"
     },
     {
@@ -58,6 +62,7 @@
       "reliabilityBadge": "APA Validated",
       "lucideIconName": "cloudRain",
       "themeColor": "#5E35B1",
+      "createdAt": "2025-03-15",
       "description": "গত দুই সপ্তাহে আপনার মন খারাপ থাকা, ক্লান্তি বা নিস্তেজ বোধ করার মতো বিষণ্নতার লক্ষণগুলোর গভীরতা ও তীব্রতা মূল্যায়ন করে।"
     },
     {
@@ -70,6 +75,7 @@
       "reliabilityBadge": "Clinical Standard",
       "lucideIconName": "brainCircuit",
       "themeColor": "#3949AB",
+      "createdAt": "2025-04-01",
       "description": "দৈনন্দিন জীবনে অতিরিক্ত ও অনিয়ন্ত্রিত দুশ্চিন্তা, অস্থিরতা বা ভবিষ্যৎ নিয়ে এক ধরণের অবিন্যস্ত ভীতি পরিমাপের স্কেল।"
     },
     {
@@ -82,6 +88,7 @@
       "reliabilityBadge": "Academic Standard",
       "lucideIconName": "gauge",
       "themeColor": "#D81B60",
+      "createdAt": "2025-04-15",
       "description": "জীবনের বিভিন্ন পরিস্থিতি বা ঘটনাগুলো আপনার মানসিক ক্ষমতার ওপর কতটা চাপ তৈরি করছে এবং আপনি তা কতটা সামাল দিতে পারছেন, তা পরিমাপ করে।"
     },
     {
@@ -94,6 +101,7 @@
       "reliabilityBadge": "Empirical Gold",
       "lucideIconName": "award",
       "themeColor": "#00897B",
+      "createdAt": "2025-05-01",
       "description": "নিজের প্রতি আপনার নিজস্ব মূল্যায়ন, আত্মমর্যাদাবোধ এবং নিজের যোগ্যতা বা মূল্যকে আপনি কীভাবে দেখেন তা পরিমাপ করার স্কেল।"
     },
     {
@@ -106,6 +114,7 @@
       "reliabilityBadge": "Clinical Standard",
       "lucideIconName": "trendingDown",
       "themeColor": "#C0392B",
+      "createdAt": "2025-05-15",
       "description": "আপনার ভবিষ্যৎ, নিজের লক্ষ্য এবং সামনের দিনগুলো নিয়ে আপনার মনের অবচেতন নেতিবাচকতা বা আশাহীনতার মাত্রা মূল্যায়ন করে।"
     },
     {
@@ -130,6 +139,7 @@
       "reliabilityBadge": "Validated Scale",
       "lucideIconName": "sparkles",
       "themeColor": "#FFB300",
+      "createdAt": "2025-06-15",
       "description": "আপনার বর্তমান জীবন, অর্জন এবং জীবনযাত্রার মান নিয়ে আপনার নিজস্ব একটি সামগ্রিক ও সচেতন সন্তুষ্টির পরিমাপ।"
     },
     {
@@ -142,6 +152,7 @@
       "reliabilityBadge": "Clinical Valid",
       "lucideIconName": "moon",
       "themeColor": "#263238",
+      "createdAt": "2025-07-01",
       "description": "আপনার অনিদ্রা বা ঘুমের সমস্যার ধরন, এর তীব্রতা এবং এটি আপনার দৈনিক কর্মক্ষমতায় কতটা নেতিবাচক প্রভাব ফেলছে তা মূল্যায়ন করে।"
     },
     {
@@ -154,6 +165,7 @@
       "reliabilityBadge": "DSM-5 Aligned",
       "lucideIconName": "refreshCw",
       "themeColor": "#795548",
+      "createdAt": "2025-07-15",
       "description": "মনের ভেতর একই অস্বস্তিকর চিন্তা বারবার আসা (Obsession) এবং তা থেকে মুক্তি পেতে একই কাজ বারবার করার বাধ্যবাধকতা (Compulsion) পরিমাপ করে।"
     },
     {
@@ -166,6 +178,7 @@
       "reliabilityBadge": "Research Grade",
       "lucideIconName": "wifiOff",
       "themeColor": "#607D8B",
+      "createdAt": "2025-08-01",
       "description": "ভার্চুয়াল জগৎ বা অনিয়ন্ত্রিত ইন্টারনেট ব্যবহার আপনার বাস্তব জীবনের দায়িত্ব, সম্পর্ক এবং মানসিক সুস্থতার ওপর কতটা নেতিবাচক প্রভাব ফেলছে তা যাচাই করে।"
     },
     {
@@ -178,6 +191,7 @@
       "reliabilityBadge": "Global Standard",
       "lucideIconName": "cigarette",
       "themeColor": "#8D6E63",
+      "createdAt": "2025-08-15",
       "description": "তামাক বা নিকোটিন জাতীয় উপাদানের ওপর আপনার শরীরের মনস্তাত্ত্বিক ও শারীরিক নির্ভরশীলতার মাত্রা ও তীব্রতা পরিমাপ করে।"
     },
     {
@@ -190,6 +204,7 @@
       "reliabilityBadge": "Relational Std",
       "lucideIconName": "heartCrack",
       "themeColor": "#EC407A",
+      "createdAt": "2025-09-01",
       "description": "রোমান্টিক সম্পর্কের ক্ষেত্রে আপনার আবেগের অতিরিক্ত আচ্ছন্নতা, নিয়ন্ত্রণ করার প্রবণতা বা অস্বাভিক মানসিক নির্ভরশীলতা মূল্যায়ন করে।"
     },
     {
@@ -202,6 +217,7 @@
       "reliabilityBadge": "Big Five Standard",
       "lucideIconName": "fingerprint",
       "themeColor": "#7E57C2",
+      "createdAt": "2025-09-15",
       "description": "আপনার ব্যক্তিত্বের মূল ৫টি প্রধান বৈশ্বিক মাত্রা (Big Five Traits) খুব সংক্ষেপে এবং দ্রুত বোঝার একটি বৈজ্ঞানিক ইনভেন্টরি।"
     },
     {
@@ -214,6 +230,7 @@
       "reliabilityBadge": "Research Valid",
       "lucideIconName": "mask",
       "themeColor": "#37474F",
+      "createdAt": "2025-10-01",
       "description": "মানুষের আন্তঃব্যক্তিক আচরণের কিছু নির্দিষ্ট জটিল ও নেতিবাচক দিক—যেমন অতি-অহংকার, কৌশলগত আচরণ বা সহানুভূতির অভাব মূল্যায়ন করে।"
     }
   ]

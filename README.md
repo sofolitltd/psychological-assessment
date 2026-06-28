@@ -4,7 +4,7 @@ A modern, offline-first psychological assessment platform built with Flutter. Pr
 
 ## Features
 
-- **18 validated assessments** covering mood, anxiety, personality, sleep, behavior, and more
+- **18 validated assessments + 22 upcoming tests** covering mood, anxiety, personality, sleep, behavior, and more
 - **Offline-first** — all data stays on-device, no internet required after initial load
 - **Bangla (Bengali) language** — full localization with `Noto Serif Bengali` for all body text
 - **PDF export** — generate and share professional assessment reports
@@ -14,7 +14,9 @@ A modern, offline-first psychological assessment platform built with Flutter. Pr
 - **Riverpod state management** — reactive, testable architecture
 - **Developer profile** — network-loaded avatar with fallback
 
-## Included Assessments
+## All Tests
+
+### Available Assessments
 
 | Test | Category | Items |
 |------|----------|-------|
@@ -36,6 +38,37 @@ A modern, offline-first psychological assessment platform built with Flutter. Pr
 | OLS — Obsessive Love Scale | Behavior | 13 |
 | TIPI — Ten-Item Personality Inventory | Personality | 10 |
 | DTDD — Dark Triad Dirty Dozen | Personality | 12 |
+
+
+
+### Upcoming Tests
+
+| Test | Category | Items |
+|------|----------|-------|
+| Pittsburgh Sleep Quality Index (PSQI) | Sleep | 19 |
+| Anxiety Scale (36 items) (DU) | Anxiety | 36 |
+| DU Depression Scale (30 items) (DU) | Depression | 30 |
+| Children's Depression Scale | Depression | 18 |
+| GHQ 28 Questionnaire | Screening | 28 |
+| Hospital Anxiety & Depression Scale (HADS) | Mood | 14 |
+| Social Interaction Anxiety Scale (SIAS) | Anxiety | 20 |
+| Somatic Complaints Scale | Screening | 24 |
+| Cognitive Distortion Scale | Personality | 39 |
+| Cognitive Emotion Regulation Questionnaire (CERQ, Revised 2016) | Personality | 36 |
+| UCLA Loneliness Scale | Self | 17 |
+| Smartphone Addiction Scale | Behavior | 30 |
+| MHI-18 — Mental Health Inventory | Screening | 18 |
+| BPAS-6 — Brief Psychological Adjustment Scale | Screening | 6 |
+| BFRS-16 — Brief Family Relationship Scale | Personality | 16 |
+| BSMAS — Bergen Social Media Addiction Scale (TikTok) | Behavior | 6 |
+| BSMAS — Bergen Social Media Addiction Scale (Instagram) | Behavior | 6 |
+| BSMAS — Bergen Social Media Addiction Scale (Facebook) | Behavior | 6 |
+| BSSI-21 — Beck Scale for Suicidal Ideation | Screening | 21 |
+| Brief COPE — Coping Orientation to Problems Experienced | Personality | 28 |
+| Self-Efficacy Scale | Self | 10 |
+| Big Five Inventory (44 items) | Personality | 44 |
+
+
 
 ## Tech Stack
 
@@ -131,17 +164,6 @@ flutter build web
 flutter build apk
 ```
 
-## Upcoming Tests
-
-- Pittsburgh Sleep Quality Index (PSQI)
-- DU Anxiety Scale (Dhaka University)
-- DU Depression Scale (Dhaka University)
-- GHQ 28 Questionnaire
-- Hospital Anxiety & Depression Scale (HADS)
-- Social Interaction Anxiety Scale (SIAS)
-- Somatic Complaints Scale
-- Cognitive Distortion Scale
-- Cognitive Emotion Regulation Questionnaire (CERQ, Revised 2016)
 
 ## Developer
 

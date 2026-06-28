@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
@@ -6,9 +7,10 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../core/design_system/app_theme.dart';
 import '../../domain/assessment_models.dart';
+import '../../../auth/domain/auth_gate.dart';
 import 'package:psychological_assessment/features/assessment/presentation/dialogs/scoring_procedure_dialog.dart';
 
-class DetailResourcesCard extends StatelessWidget {
+class DetailResourcesCard extends ConsumerWidget {
   final AssessmentTest test;
   final bool isDark;
   final BuildContext outerContext;
@@ -21,7 +23,7 @@ class DetailResourcesCard extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final resources = test.resources ?? const AssessmentResources();
     final hasPdf = resources.banglaVersionUrl.isNotEmpty;
     final hasDoi = resources.banglaVersionDoi.isNotEmpty;
@@ -91,7 +93,7 @@ class DetailResourcesCard extends StatelessWidget {
                         vertical: 12,
                       ),
                     ),
-                    onPressed: () => context.push('/test/${test.testId}/pdf-viewer?url=${Uri.encodeComponent(resources.banglaVersionUrl)}&title=${Uri.encodeComponent(test.testName)}'),
+                    onPressed: requireAuth(context, ref, () => context.push('/test/${test.testId}/pdf-viewer?url=${Uri.encodeComponent(resources.banglaVersionUrl)}&title=${Uri.encodeComponent(test.testName)}')),
                     icon: const Icon(LucideIcons.fileText, size: 18),
                     label: Text(
                       'মূল পিডিএফ',
